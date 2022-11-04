@@ -5,12 +5,10 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      backgroundColor: '#f5f0e9'
     },
     mainTitle: {
-        marginTop: 40,
+        marginTop: 50,
         fontSize: 36,
-        fontWeight: 'bold',
     },
     innerContainer: {
         marginTop: 40,
@@ -31,7 +29,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
     },
     messageBox: {
-        backgroundColor: '#fff',
+        backgroundColor: '#e5e5e5',
         margin: 10,
         padding: 15
     },
@@ -52,5 +50,36 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         width: 300,
         fontSize: 24
+    },
+    firstScreenImg: {
+        marginTop: 30,
+        height: 300,
+        width: 300
+    },
+    infoTextContainer: {
+        marginTop: 40,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    infoText: {
+        fontSize: 24
+    },
+    smallText: {
+        marginTop: 40,
+        marginBottom: 70,
+        fontSize: 10,
+
+    },
+    customButton: {
+        backgroundColor: '#eca04d',
+        borderRadius: 45,
+    },
+    buttonText: {
+        fontSize: 24,
+        marginLeft: 50,
+        marginRight: 50,
+        marginTop: 20,
+        marginBottom: 20,
+        fontWeight: 'bold'
     }
   });
