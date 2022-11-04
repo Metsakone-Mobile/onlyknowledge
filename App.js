@@ -1,14 +1,24 @@
-
+import { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './components/TabNavigator'
+import FirstScreen from './components/FirstScreen';
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
-  );
+  const [isLogged, setIsLogged] = useState(false)
+
+  if(!isLogged){
+    return (
+      <FirstScreen login={() => setIsLogged(true)}/>
+    ) 
+    } else {
+      return (
+        <NavigationContainer>
+          <TabNavigator />
+        </NavigationContainer>
+      );
+  }
+  
 }
 
 
