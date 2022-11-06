@@ -12,7 +12,7 @@ export default function TabNavigator() {
 
   return (
     <Tab.Navigator>
-        <Tab.Screen name='Stack' component={StackNavigator} options={{headerShown: false}} />
+        <Tab.Screen name='Main' component={StackNavigator} options={{headerShown: false}} />
         <Tab.Screen name='Notifications' component={Notifications} />
         <Tab.Screen name='My Profile' component={MyProfile} />
     </Tab.Navigator>

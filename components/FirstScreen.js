@@ -2,6 +2,7 @@ import { View, Text, Image, Pressable } from 'react-native'
 import React from 'react'
 import { useFonts } from 'expo-font'
 import styles from '../Styles'
+import firstScreenStyles from '../styles/FirstScreenStyles'
 import CustomButton from './CustomButton'
 
 export default function FirstScreen({login}) {
@@ -16,13 +17,13 @@ export default function FirstScreen({login}) {
       <View style={styles.container}>
         <Text style={[styles.mainTitle, {fontFamily: 'PridiRegular'}]}>ONLY KNOWLEDGE</Text>
         <Image
-          style={styles.firstScreenImg}
+          style={firstScreenStyles.image}
           source={require('../assets/first_screen_bg_img.png')}
         />
-        <View style={styles.infoTextContainer}>
-          <Text style={styles.infoText}>Join and find tutoring</Text>
-          <Text style={styles.infoText}>for your problems</Text>
-          <Text style={styles.smallText}>And make us rich, you dumbass bitch...</Text>
+        <View style={firstScreenStyles.infoContainer}>
+          <Text style={firstScreenStyles.infoText}>Join and find tutoring</Text>
+          <Text style={firstScreenStyles.infoText}>for your problems</Text>
+          <Text style={firstScreenStyles.smallText}>And make us rich, you dumbass bitch...</Text>
         </View>
         <Pressable onPress={login}>
           {(state) => <CustomButton pressed={state.pressed} buttonText="Get started" />}
