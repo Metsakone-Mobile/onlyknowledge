@@ -19,4 +19,10 @@ export default StyleSheet.create({
         marginBottom: 70,
         fontSize: 10,
     },
+    signInRow: {
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'baseline'
+    }
 })

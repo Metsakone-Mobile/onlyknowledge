@@ -1,11 +1,11 @@
-import { View, Text, Image, Pressable } from 'react-native'
+import { View, Text, Image, Pressable, Button } from 'react-native'
 import React from 'react'
 import { useFonts } from 'expo-font'
 import styles from '../Styles'
 import firstScreenStyles from '../styles/FirstScreenStyles'
 import CustomButton from './CustomButton'
 
-export default function FirstScreen({login}) {
+export default function FirstScreen({navigation}) {
   const [loadedFont] = useFonts({                                 // A non-system font used.
     PridiRegular: require('../assets/fonts/Pridi-Regular.ttf')
   })
@@ -25,9 +25,13 @@ export default function FirstScreen({login}) {
           <Text style={firstScreenStyles.infoText}>for your problems</Text>
           <Text style={firstScreenStyles.smallText}>And make us rich, you dumbass bitch...</Text>
         </View>
-        <Pressable onPress={login}>
+        <Pressable onPress={() => navigation.navigate('SignUp')}>
           {(state) => <CustomButton pressed={state.pressed} buttonText="Get started" />}
         </Pressable>
+        <View style={firstScreenStyles.signInRow}>
+            <Text>Already a user?</Text>
+            <Button title='Sign In' onPress={() => navigation.navigate('Login')} />
+        </View>
       </View>
     )
   }

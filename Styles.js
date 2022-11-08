@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#e5e5e5',
       alignItems: 'center',
     },
     mainTitle: {
@@ -29,4 +29,21 @@ export default StyleSheet.create({
         width: 300,
         fontSize: 24
     },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalView: {
+        margin: 20,
+        padding: 20,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+
   });
