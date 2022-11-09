@@ -5,6 +5,8 @@ import styles from '../Styles'
 import firstScreenStyles from '../styles/FirstScreenStyles'
 import CustomButton from './CustomButton'
 
+// The first screen to be shown when the app is launched.
+
 export default function FirstScreen({navigation}) {
   const [loadedFont] = useFonts({                                 // A non-system font used.
     PridiRegular: require('../assets/fonts/Pridi-Regular.ttf')

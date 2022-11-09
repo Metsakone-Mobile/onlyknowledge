@@ -1,9 +1,11 @@
 import { View, Text, TextInput, Pressable, Button, Modal } from 'react-native'
 import React, { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword } from '../firebase/Config'
+import { getAuth, createUserWithEmailAndPassword, firestore, setDoc, doc, USER } from '../firebase/Config'
 import styles from '../Styles'
 import signUpStyles from '../styles/SignUpStyles'
 import CustomButton from './CustomButton'
+
+// A component where a new user can create an account.
 
 export default function SignUpScreen({navigation}) {
   const [name, setName] = useState('')
@@ -12,9 +14,8 @@ export default function SignUpScreen({navigation}) {
   const [comparePassword, setComparePassword] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
 
-  const test = () => {
-    console.log("hehe")
-  }
+  // Firebase authentication is used in creating the account. For more info on how it works
+  // check out official documentation at https://firebase.google.com/docs/auth/web/start
 
   const createAccount = () => {
     if(password === comparePassword) {
@@ -23,6 +24,7 @@ export default function SignUpScreen({navigation}) {
         .then((userCredentials) => {
             const user = userCredentials.user
             setModalVisible(true)
+            saveUser(user.uid)
         })
         .catch(error => {
             const errorCode = error.code
@@ -32,6 +34,12 @@ export default function SignUpScreen({navigation}) {
     } else {
         alert('Passwords do not match')
     }
+  }
+
+  const saveUser = async(userId) => {
+    await setDoc(doc(firestore, USER, userId), {
+      name: name
+    }).catch(err => console.log(err))
   }
 
   const close = () => {
