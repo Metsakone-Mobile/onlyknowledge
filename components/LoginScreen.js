@@ -6,12 +6,20 @@ import loginStyles from '../styles/LoginScreenStyles'
 import CustomButton from './CustomButton'
 import { AuthContext } from '../context/AuthContext'
 
+// A user with an existing account can log in.
+
 export default function LoginScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
-  const {setIsLogged, setLoggedUser} = useContext(AuthContext)
+  // The state variables from App.js broght here using useContext
+  // The variables get values when the user logs in.
+  const {setIsLogged, setLoggedUserID} = useContext(AuthContext)
 
+
+  // Firebase authentication is used in login-function.
+  // For more information how it works check out official documentation at https://firebase.google.com/docs/auth/web/start
+  
   const login = () => {
     //console.log(email)
     //console.log(password)
@@ -19,9 +27,9 @@ export default function LoginScreen() {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
         const user = userCredentials.user
-        //console.log(user)
+        console.log("USER: ", user)
         setIsLogged(true)
-        setLoggedUser(user)
+        setLoggedUserID(user.uid)
 
     })
     .catch(error => {
