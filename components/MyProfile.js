@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER  } from '../firebase/Config'
 import { AuthContext } from '../context/AuthContext'
+import Pickers from './Pickers'
 import styles from '../Styles'
 
 
@@ -32,6 +33,7 @@ export default function MyProfile() {
     <View style={styles.container}>
       <Text style={styles.mainTitle}>My Profile</Text>
       <Text style={styles.label}>{name}</Text>
+      <Pickers/>
     </View>
   )
 }

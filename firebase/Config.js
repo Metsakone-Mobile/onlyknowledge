@@ -2,11 +2,12 @@ import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot } from 'firebase/firestore'
 
-// Add firebase configurations here
-
+//tänne configit
 
   initializeApp(firebaseConfig)
   const firestore = getFirestore()
+
+  
 
   const USER = 'user'
 
