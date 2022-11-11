@@ -1,10 +1,9 @@
 import { View, Text, TextInput, Pressable } from 'react-native'
-import { getAuth, signInWithEmailAndPassword } from '../firebase/Config'
+import { getAuth, signInWithEmailAndPassword } from '../../../firebase/Config'
 import React, { useState, useContext } from 'react'
-import styles from '../Styles'
-import loginStyles from '../styles/LoginScreenStyles'
-import CustomButton from './CustomButton'
-import { AuthContext } from '../context/AuthContext'
+import loginStyles from './LoginScreenStyles'
+import CustomButton from '../../Customs/CustomButton'
+import { AuthContext } from '../../../context/AuthContext'
 
 // A user with an existing account can log in.
 
@@ -40,8 +39,8 @@ export default function LoginScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.mainTitle}>ONLY KNOWLEDGE</Text>
+    <View style={loginStyles.container}>
+      <Text style={loginStyles.mainTitle}>ONLY KNOWLEDGE</Text>
         <View style={loginStyles.loginContainer}>
             <TextInput style={loginStyles.inputField} 
             placeholder='Enter email address' 

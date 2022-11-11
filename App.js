@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import TabNavigator from './components/TabNavigator'
-import LoginNavigator from './components/LoginNavigator';
+import TabNavigator from './components/Navigators/TabNavigator'
+import LoginNavigator from './components/Navigators/LoginNavigator';
 
 import { AuthContext } from './context/AuthContext'
 

@@ -1,14 +1,13 @@
 import { View, Text, TextInput } from 'react-native'
 import React from 'react'
-import styles from '../Styles'
-import quickQuestionStyles from '../styles/QuickQuestionStyles'
+import quickQuestionStyles from './QuickQuestionStyles'
 
 export default function QuickQuestion() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.mainTitle}>Quick Question</Text>
-        <View style={styles.innerContainer}>
-            <Text style={styles.label}>State your question</Text>
+    <View style={quickQuestionStyles.container}>
+      <Text style={quickQuestionStyles.mainTitle}>Quick Question</Text>
+        <View style={quickQuestionStyles.innerContainer}>
+            <Text style={quickQuestionStyles.label}>State your question</Text>
             <TextInput 
              style={quickQuestionStyles.questionBox} 
              placeholder='Start typing...'

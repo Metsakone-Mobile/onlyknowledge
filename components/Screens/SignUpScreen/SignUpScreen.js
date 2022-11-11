@@ -1,9 +1,8 @@
 import { View, Text, TextInput, Pressable, Button, Modal } from 'react-native'
 import React, { useState } from 'react'
-import { getAuth, createUserWithEmailAndPassword, firestore, setDoc, doc, USER } from '../firebase/Config'
-import styles from '../Styles'
-import signUpStyles from '../styles/SignUpStyles'
-import CustomButton from './CustomButton'
+import { getAuth, createUserWithEmailAndPassword, firestore, setDoc, doc, USER } from '../../../firebase/Config'
+import signUpStyles from './SignUpStyles'
+import CustomButton from '../../Customs/CustomButton'
 
 // A component where a new user can create an account.
 
@@ -48,8 +47,8 @@ export default function SignUpScreen({navigation}) {
   }
     
   return (
-    <View style={styles.container}>
-      <Text style={styles.mainTitle}>ONLY KNOWLEDGE</Text>
+    <View style={signUpStyles.container}>
+      <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
       <View style={signUpStyles.signUpContainer}>
             <TextInput style={signUpStyles.inputField} 
             placeholder='Name' 
@@ -82,8 +81,8 @@ export default function SignUpScreen({navigation}) {
         visible={modalVisible}
         onRequestClose= {close}
         >
-            <View style={styles.modalContainer}>
-                <View style={styles.modalView}>
+            <View style={signUpStyles.modalContainer}>
+                <View style={signUpStyles.modalView}>
                     <Text>Account created succesfully!</Text>
                     <Button title='Go to login' onPress={close} />
                 </View>
