@@ -4,6 +4,7 @@ export default StyleSheet.create({
     customButton: {
         backgroundColor: '#eca04d',
         borderRadius: 45,
+        alignItems: 'center'
     },
     buttonText: {
         fontSize: 24,
