@@ -1,8 +1,8 @@
 import { View, Text } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { firestore, doc, getDoc, USER  } from '../firebase/Config'
-import { AuthContext } from '../context/AuthContext'
-import styles from '../Styles'
+import { firestore, doc, getDoc, USER  } from '../../../firebase/Config'
+import { AuthContext } from '../../../context/AuthContext'
+import myProfileStyles from './MyProfileStyles'
 
 
 export default function MyProfile() {
@@ -29,9 +29,9 @@ export default function MyProfile() {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.mainTitle}>My Profile</Text>
-      <Text style={styles.label}>{name}</Text>
+    <View style={myProfileStyles.container}>
+      <Text style={myProfileStyles.mainTitle}>My Profile</Text>
+      <Text style={myProfileStyles.label}>{name}</Text>
     </View>
   )
 }

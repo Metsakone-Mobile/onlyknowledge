@@ -1,9 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot } from 'firebase/firestore'
-
-// Add firebase configurations here
-
+// Fire Base Config here
 
   initializeApp(firebaseConfig)
   const firestore = getFirestore()

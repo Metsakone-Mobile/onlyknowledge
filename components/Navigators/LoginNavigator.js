@@ -1,8 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import FirstScreen from './FirstScreen'
-import SignUpScreen from './SignUpScreen'
-import LoginScreen from './LoginScreen'
+import FirstScreen from '../Screens/FirstScreen/FirstScreen'
+import SignUpScreen from '../Screens/SignUpScreen/SignUpScreen'
+import LoginScreen from '../Screens/LoginScreen/LoginScreen'
 
 
 // LoginNavigator is a stack navigator used to navigate between the applications first screen, login and signup screens.

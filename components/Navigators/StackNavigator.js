@@ -1,9 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import HomeScreen from './HomeScreen'
-import FindATutor from './FindATutor'
-import QuickQuestion from './QuickQuestion'
+import HomeScreen from '../Screens/HomeScreen/HomeScreen'
+import FindATutor from '../Screens/FindATutorScreen/FindATutor'
+import QuickQuestion from '../Screens/QuickQuestionScreen/QuickQuestion'
 
 export default function StackNavigator() {
 

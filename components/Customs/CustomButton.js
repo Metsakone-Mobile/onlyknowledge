@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import buttonStyles from '../styles/CustomButtonStyles'
+import buttonStyles from './CustomButtonStyles'
 
 // Custom button with a change of color whenever pressed.
 // This button can be reused anywhere, since the text is passed in as props.

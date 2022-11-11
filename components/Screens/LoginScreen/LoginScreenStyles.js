@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-    signUpContainer: {
+    loginContainer: {
         width: '100%',
         alignItems: 'center',
         marginTop: 80
@@ -10,8 +10,17 @@ export default StyleSheet.create({
         width: '80%',
         backgroundColor: '#fff',
         borderRadius: 50,
-        marginBottom: 40,
+        marginBottom: 80,
         padding: 20,
         fontSize: 20
-    }
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#e5e5e5',
+        alignItems: 'center',
+      },
+      mainTitle: {
+          marginTop: 50,
+          fontSize: 36,
+      },
 })
