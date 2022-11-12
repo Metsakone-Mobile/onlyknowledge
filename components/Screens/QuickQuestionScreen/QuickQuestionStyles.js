@@ -6,7 +6,8 @@ export default StyleSheet.create({
         width: 300,
         backgroundColor: '#fff',
         borderRadius: 10,
-        borderWidth: 1
+        borderWidth: 1,
+        fontSize:20,
     },
     container: {
         flex: 1,
