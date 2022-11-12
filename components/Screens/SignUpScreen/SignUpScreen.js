@@ -6,7 +6,7 @@ import CustomButton from '../../Customs/CustomButton'
 
 // A component where a new user can create an account.
 
-export default function SignUpScreen({navigation}) {
+export default function SignUpScreen({ navigation }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -17,25 +17,25 @@ export default function SignUpScreen({navigation}) {
   // check out official documentation at https://firebase.google.com/docs/auth/web/start
 
   const createAccount = () => {
-    if(password === comparePassword) {
-        const auth = getAuth()
-        createUserWithEmailAndPassword(auth, email, password)
+    if (password === comparePassword) {
+      const auth = getAuth()
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
-            const user = userCredentials.user
-            setModalVisible(true)
-            saveUser(user.uid)
+          const user = userCredentials.user
+          setModalVisible(true)
+          saveUser(user.uid)
         })
         .catch(error => {
-            const errorCode = error.code
-            const errorMsg = error.message
-            alert(errorMsg)
+          const errorCode = error.code
+          const errorMsg = error.message
+          alert(errorMsg)
         })
     } else {
-        alert('Passwords do not match')
+      alert('Passwords do not match')
     }
   }
 
-  const saveUser = async(userId) => {
+  const saveUser = async (userId) => {
     await setDoc(doc(firestore, USER, userId), {
       name: name
     }).catch(err => console.log(err))
@@ -45,49 +45,49 @@ export default function SignUpScreen({navigation}) {
     setModalVisible(false)
     navigation.navigate('Login')
   }
-    
+
   return (
     <View style={signUpStyles.container}>
       <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
       <View style={signUpStyles.signUpContainer}>
-            <TextInput style={signUpStyles.inputField} 
-            placeholder='Name' 
-            value={name}
-            onChangeText={text => setName(text)}
-            />
-            <TextInput style={signUpStyles.inputField} 
-            placeholder='Email'
-            value={email}
-            onChangeText={text => setEmail(text)}
-            />
-            <TextInput style={signUpStyles.inputField}
-            placeholder='Password'
-            secureTextEntry={true}
-            value={password}
-            onChangeText={text => setPassword(text)}
-            />
-            <TextInput style={signUpStyles.inputField} 
-            placeholder='Re-enter password'
-            secureTextEntry={true}
-            value={comparePassword}
-            onChangeText={text => setComparePassword(text)}
-            />
-        </View>
-        <Pressable onPress={createAccount}>
-            {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit'} />}
-        </Pressable>
-        <Modal
+        <TextInput style={signUpStyles.inputField}
+          placeholder='Name'
+          value={name}
+          onChangeText={text => setName(text)}
+        />
+        <TextInput style={signUpStyles.inputField}
+          placeholder='Email'
+          value={email}
+          onChangeText={text => setEmail(text)}
+        />
+        <TextInput style={signUpStyles.inputField}
+          placeholder='Password'
+          secureTextEntry={true}
+          value={password}
+          onChangeText={text => setPassword(text)}
+        />
+        <TextInput style={signUpStyles.inputField}
+          placeholder='Re-enter password'
+          secureTextEntry={true}
+          value={comparePassword}
+          onChangeText={text => setComparePassword(text)}
+        />
+      </View>
+      <Pressable onPress={createAccount}>
+        {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit'} />}
+      </Pressable>
+      <Modal
         animationType='fade'
         visible={modalVisible}
-        onRequestClose= {close}
-        >
-            <View style={signUpStyles.modalContainer}>
-                <View style={signUpStyles.modalView}>
-                    <Text>Account created succesfully!</Text>
-                    <Button title='Go to login' onPress={close} />
-                </View>
-            </View>
-        </Modal>
+        onRequestClose={close}
+      >
+        <View style={signUpStyles.modalContainer}>
+          <View style={signUpStyles.modalView}>
+            <Text>Account created succesfully!</Text>
+            <Button title='Go to login' onPress={close} />
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
