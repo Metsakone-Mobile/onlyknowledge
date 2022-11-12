@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
+import Pickers from '../../Customs/Pickers'
 
 
 export default function MyProfile() {
@@ -32,6 +33,7 @@ export default function MyProfile() {
     <View style={myProfileStyles.container}>
       <Text style={myProfileStyles.mainTitle}>My Profile</Text>
       <Text style={myProfileStyles.label}>{name}</Text>
+      <Pickers/>
     </View>
   )
 }

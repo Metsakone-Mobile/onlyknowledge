@@ -1,17 +1,21 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot } from 'firebase/firestore'
-// Fire Base Config here
 
 const firebaseConfig = {
 
+  
+
 }
+
+
 
   initializeApp(firebaseConfig)
   const firestore = getFirestore()
 
   const USER = 'user'
   const QUESTIONS = 'Questions'
+  const SUBJECTS = 'subjects'
 
   export {
     getAuth,
@@ -27,4 +31,5 @@ const firebaseConfig = {
     onSnapshot,
     USER,
     QUESTIONS,
+    SUBJECTS
   }
