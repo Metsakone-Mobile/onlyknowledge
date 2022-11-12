@@ -2,9 +2,8 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     signUpContainer: {
-        width: '100%',
+        width: 400,
         alignItems: 'center',
-        marginTop: 80
     },
     inputField: {
         width: '80%',
@@ -13,15 +12,18 @@ export default StyleSheet.create({
         marginBottom: 40,
         padding: 20,
         fontSize: 20
-    },    container: {
+    },    
+    container: {
         flex: 1,
         backgroundColor: '#e5e5e5',
         alignItems: 'center',
-      },
-      mainTitle: {
+    },
+    mainTitle: {
           marginTop: 50,
           fontSize: 36,
-      },    modalContainer: {
+          marginBottom: 80
+    },    
+    modalContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -37,4 +39,13 @@ export default StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
       },
+      buttonContainer: {
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 40
+      },
+      label: {
+        fontSize: 32,
+        marginBottom: 10
+      }
 })
