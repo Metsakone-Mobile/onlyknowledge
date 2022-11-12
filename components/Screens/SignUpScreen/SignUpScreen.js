@@ -7,7 +7,7 @@ import SubjectButton from '../../Customs/SubjectButton'
 
 // A component where a new user can create an account.
 
-export default function SignUpScreen({navigation}) {
+export default function SignUpScreen({ navigation }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
@@ -42,25 +42,25 @@ export default function SignUpScreen({navigation}) {
   // check out official documentation at https://firebase.google.com/docs/auth/web/start
 
   const createAccount = () => {
-    if(password === comparePassword) {
-        const auth = getAuth()
-        createUserWithEmailAndPassword(auth, email, password)
+    if (password === comparePassword) {
+      const auth = getAuth()
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
-            const user = userCredentials.user
-            setModalVisible(true)
-            saveUser(user.uid)
+          const user = userCredentials.user
+          setModalVisible(true)
+          saveUser(user.uid)
         })
         .catch(error => {
-            const errorCode = error.code
-            const errorMsg = error.message
-            alert(errorMsg)
+          const errorCode = error.code
+          const errorMsg = error.message
+          alert(errorMsg)
         })
     } else {
-        alert('Passwords do not match')
+      alert('Passwords do not match')
     }
   }
 
-  const saveUser = async(userId) => {
+  const saveUser = async (userId) => {
     await setDoc(doc(firestore, USER, userId), {
       name: name
     }).catch(err => console.log(err))
@@ -71,10 +71,6 @@ export default function SignUpScreen({navigation}) {
     navigation.navigate('Login')
   }
 
-  const subject = () => {
-    console.log('moi')
-  }
-    
   return (
     <SafeAreaView style={signUpStyles.container}>
       <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
