@@ -47,5 +47,12 @@ export default StyleSheet.create({
       label: {
         fontSize: 32,
         marginBottom: 10
+      },
+      isTutorContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 40
       }
 })
