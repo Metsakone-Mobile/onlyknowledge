@@ -1,15 +1,18 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextIn} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
+import MyProfileStyles from './MyProfileStyles'
+import Cloudinary from '../../Customs/Cloudinary'
 
 
 export default function MyProfile() {
 
   const { loggedUserID } = useContext(AuthContext)
   const [name, setName] = useState('')
+
 
 
   const getUserInfo = async () => {
@@ -29,10 +32,17 @@ export default function MyProfile() {
     getUserInfo()
   }, [])
 
+
+
   return (
     <View style={myProfileStyles.container}>
-      <Text style={myProfileStyles.mainTitle}>My Profile</Text>
-      <Text style={myProfileStyles.label}>{name}</Text>
+      <View style={myProfileStyles.mainTitle}>
+        <Text style={myProfileStyles.label}> {name}</Text>
+
+
+      </View>
+<Cloudinary/>
+   
       <Pickers/>
     </View>
   )
