@@ -1,10 +1,10 @@
-import { View, SafeAreaView, Text, TextInput, Pressable, Button, Modal, ScrollView, } from 'react-native'
+import { View, SafeAreaView, Text, TextInput, Pressable, Button, Modal, ScrollView, Switch } from 'react-native'
 import React, { useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword, firestore, setDoc, doc, USER } from '../../../firebase/Config'
 import signUpStyles from './SignUpStyles'
 import CustomButton from '../../Customs/CustomButton'
 import SubjectButton from '../../Customs/SubjectButton'
-import PrettyButton from '../../Customs/PrettyButton'
+import ProfileDescription from '../../Customs/ProfileDescription'
 
 // A component where a new user can create an account.
 
@@ -15,29 +15,9 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState('')
   const [comparePassword, setComparePassword] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
-  const [favoriteSubjects, setFavoriteSubjects] = useState([
-    {
-      label: 'Math',
-      value: 'Math',
-      isChosen: false
-    },
-    {
-      label: 'Physics',
-      value: 'Physics',
-      isChosen: false
-    },
-    {
-      label: 'Biology',
-      value: 'Biology',
-      isChosen: false
-    },
-    {
-      label: 'Chemistry',
-      value: 'Chemistry',
-      isChosen: false
-    }
-  ])
-  
+  const [isTutor, setIsTutor] = useState(false)
+  const [profileDescription, setProfileDescription] = useState('')
+  const [favoriteSubjects, setFavoriteSubjects] = useState([])
 
   // Firebase authentication is used in creating the account. For more info on how it works
   // check out official documentation at https://firebase.google.com/docs/auth/web/start
@@ -60,21 +40,34 @@ export default function SignUpScreen({ navigation }) {
       alert('Passwords do not match')
     }
   }
-
+  
   const saveUser = async (userId) => {
     await setDoc(doc(firestore, USER, userId), {
-      name: name
+      name: name,
+      username: username,
+      isTutor: isTutor,
+      favoriteSubjects: favoriteSubjects,
+      profileDescription: profileDescription
     }).catch(err => console.log(err))
-  }
+  }        
 
   const close = () => {
     setModalVisible(false)
     navigation.navigate('Login')
   }
-
+  
+  const toggleIsTutor = () => {
+    setIsTutor(!isTutor)
+  }
+  
   return (
     <SafeAreaView style={signUpStyles.container}>
       <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
+      {
+        favoriteSubjects.map((sub, i) => (
+          <Text key={i}>{sub}</Text>
+        ))
+      }
       <ScrollView contentContainerStyle={signUpStyles.signUpContainer} bounces={false}>
             <TextInput style={signUpStyles.inputField} 
             placeholder='Name' 
@@ -83,6 +76,7 @@ export default function SignUpScreen({ navigation }) {
             />
             <TextInput style={signUpStyles.inputField} 
             placeholder='Email'
+            keyboardType='email-address'
             value={email}
             onChangeText={text => setEmail(text)}
             />
@@ -103,10 +97,21 @@ export default function SignUpScreen({ navigation }) {
             value={comparePassword}
             onChangeText={text => setComparePassword(text)}
             />
+            <View style={signUpStyles.isTutorContainer}>
+              <Text style={[signUpStyles.label, {fontSize: 24, marginBottom: 0}]}>Make me a tutor</Text>
+              <Switch 
+                trackColor={{ false: '#eca04d', true: '#0c0275'}}
+                thumbColor={isTutor ? '#eca04d' : '#f21e0f'}
+                ios_backgroundColor='#423d3d'
+                onValueChange={toggleIsTutor}
+                value={isTutor}
+              />
+            </View>
             <Text style={signUpStyles.label}>Favorite subjects</Text>
             <View style={signUpStyles.buttonContainer}>
-            <SubjectButton options={favoriteSubjects} onPress={(subjects) => setFavoriteSubjects(subjects)}/>
+            <SubjectButton favoriteSubjects={favoriteSubjects} setFavoriteSubjects={setFavoriteSubjects}/>
             </View>
+            <ProfileDescription setProfileDescription={setProfileDescription}/>
             <Pressable onPress={createAccount}>
             {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit'} />}
             </Pressable>
@@ -121,12 +126,14 @@ export default function SignUpScreen({ navigation }) {
             <View style={signUpStyles.modalContainer}>
                 <View style={signUpStyles.modalView}>
                     <Text>Account created succesfully!</Text>
-                    <Pressable onPress={close}>
-                    {(state) => <PrettyButton pressed={state.pressed} buttonText="Go to login"/>}
-                    </Pressable>
+                    <Button title='Go to login' onPress={close} />
                 </View>
             </View>
         </Modal>
     </SafeAreaView>
   )
-}
+}  
+
+
+
+

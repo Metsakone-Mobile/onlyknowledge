@@ -26,7 +26,7 @@ export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) {
       isChosen: false
     }
   ])
-  
+
   const handlePress = (subject) => {
 
     let chosenSubjects = [...subjects]
@@ -39,7 +39,7 @@ export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) {
       chosenSubject.isChosen = !chosenSubject.isChosen
       chosenSubjects[chosenSubjectIndex] = chosenSubject
       setSubjects(chosenSubjects)
-      
+
       if(chosenSubject.isChosen){
         chosenFavorites.push(chosenSubject.value)
         setFavoriteSubjects(chosenFavorites)
@@ -54,7 +54,7 @@ export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) {
 
   return (
     <>
-    {subjects.map((subject) => (
+      {subjects.map((subject) => (
         <View key={subject.value} style={subjectButtonStyles.subjectButtonContainer}>
             <Text style={subjectButtonStyles.label}>{subject.label}</Text>
             <Pressable style={subjectButtonStyles.unChecked} onPress={() => handlePress(subject)}>
@@ -63,6 +63,5 @@ export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) {
         </View>
     ))}
     </>
-
   )
 }
