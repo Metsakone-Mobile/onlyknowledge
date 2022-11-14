@@ -30,7 +30,8 @@ const getUserInfo = async () => {
   const saveSubjects= async () => {
     const docRef = addDoc(collection(firestore, "subject"), {
       subject: itemss,
-      name: name
+      name: name,
+      timestamp: Date()
 
     });
     }
@@ -39,24 +40,32 @@ const getUserInfo = async () => {
 
   const [open, setOpen] = useState(false)
 
-  //parentluokat arrayssa
+  //pickern alkuarvot (eli ei valintoja)
 
-  const [value, setValue] = useState(['luonnontieteet', 'tanssi']);
+  const [value, setValue] = useState([]);
 
 
-  //eri aihealueet parentteineen
+  //eri aihealueet 
   const [items, setItems] = useState([
 
-    {label: 'Luonnontieteet', value: 'luonnontieteet'},
-    {label: 'Fysiikka', value: 'fysiikka'},
+    {label: 'Math', value: 'math'},
+    {label: 'Physics', value: 'physics'},
     
 
-    {label: 'Tanssi', value: 'tanssi'},
-    {label: 'Letkajenkka', value: 'letkajenkka'},
+    {label: 'Biology', value: 'biology'},
+    {label: 'Chemistry', value: 'chemistry'},
 
   ]);
 
-  const [itemss, setItemss] = useState(['']);
+  //tallennetaan itemssiin valinnat, jotka savesubjectilla lähetetään firebaseen
+
+  const [itemss, setItemss] = useState([
+    {label: 'Luonnontieteet', value: 'luonnontieteet'},
+  {label: 'Fysiikka', value: 'fysiikka'},
+  
+
+  {label: 'Tanssi', value: 'tanssi'},
+  {label: 'Letkajenkka', value: 'letkajenkka'},]);
 
   //jätetään tyylittely toistaiseksi returnin sisään
 
