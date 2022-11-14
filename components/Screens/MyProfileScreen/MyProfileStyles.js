@@ -6,13 +6,18 @@ export default StyleSheet.create ({
         backgroundColor: '#e5e5e5',
         alignItems: 'center',
       },
+      ProfilepicView:{
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
       mainTitle: {
-          marginTop: 50,
+          marginTop: 20,
           fontSize: 36,
       },  
         label: {
         fontSize: 24,
         fontWeight: 'bold',
+        marginBottom: 20,
     },
     profileCircle: {
         width: 150,
@@ -42,6 +47,11 @@ export default StyleSheet.create ({
         borderWidth: 1,
         borderRadius: 10,
         paddingLeft: 10,
+      },
+      editText:{
+        fontSize: 10,
+        marginTop: 10, 
+       marginLeft:20,
        
         
     
