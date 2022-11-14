@@ -4,6 +4,7 @@ export default StyleSheet.create({
     questionBox: {
         height: 300,
         width: 300,
+        padding: 5,
         backgroundColor: '#fff',
         borderRadius: 10,
         borderWidth: 1,

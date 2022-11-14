@@ -9,8 +9,8 @@ export default StyleSheet.create({
         marginTop: 12,
     },
     unChecked: {
-        height: 44,
-        width: 44,
+        height: 40,
+        width: 40,
         borderRadius: 10,
         borderWidth: 3,
         borderColor: '#000',
@@ -18,14 +18,14 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     checked: {
-        width: 34,
-        height: 34,
+        width: 30,
+        height: 30,
         borderRadius: 5,
         backgroundColor: '#eca04d'
     },
     label: {
         marginTop: 5,
-        fontSize: 32,
+        fontSize: 24,
         color: '#000',
         fontWeight: 'bold',
     }
