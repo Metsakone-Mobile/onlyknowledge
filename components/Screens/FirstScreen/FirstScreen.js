@@ -3,6 +3,7 @@ import React from 'react'
 import { useFonts } from 'expo-font'
 import firstScreenStyles from './FirstScreenStyles'
 import CustomButton from '../../Customs/CustomButton'
+import PrettyButton from '../../Customs/PrettyButton'
 
 // The first screen to be shown when the app is launched.
 
@@ -32,7 +33,10 @@ export default function FirstScreen({navigation}) {
         </Pressable>
         <View style={firstScreenStyles.signInRow}>
             <Text>Already a user?</Text>
-            <Button title='Sign In' onPress={() => navigation.navigate('Login')} />
+            <Pressable onPress={() => navigation.navigate('Login')}>
+              {(state) => <PrettyButton pressed={state.pressed} buttonText="Sign In"/>}
+            </Pressable>
+            {/*<Button title='Sign In' onPress={() => navigation.navigate('Login')} />*/}
         </View>
         </ScrollView>
       </SafeAreaView>
