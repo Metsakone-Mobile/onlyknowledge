@@ -1,40 +1,19 @@
 import { View, Text, Image, TouchableOpacity} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../context/AuthContext'
 import {firestore, doc, getDoc, USER} from '../../firebase/Config'
 import * as ImagePicker from 'expo-image-picker'
-import { AntDesign } from '@expo/vector-icons';
 import MyProfileStyles from '../Screens/MyProfileScreen/MyProfileStyles'
 
 export default function Cloudinary() {
 
 let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dapbyrfgw/image/upload';
 
-const { loggedUserID } = useContext(AuthContext)
-const [name, setName] = useState('')
+
 
 const [image,setImage]= useState(null)
 const [cloudImage,setCloudImage]= useState(null)
 
-
-
-const getUserInfo = async () => {
-    console.log(loggedUserID)
-    const docRef = doc(firestore, USER, loggedUserID)
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      console.log("Doc data: ", docSnap.data())
-      setName(docSnap.data().name)
-    } else {
-      console.log("Voe mavon silimä")
-    }
-  }
-
-  useEffect(() => {
-    getUserInfo()
-  }, [])
-
+let imageURL = cloudImage
 
 
   const OpenImagePicker = async () => {
@@ -69,7 +48,8 @@ const getUserInfo = async () => {
         let data = await r.json()
 
         console.log(data.secure_url)
-       setCloudImage( data.secure_url)
+       setCloudImage( data.secure_url) //tässä setcloudimagessa tulee urli
+       //setPhotoURL(cloudImage)// ei toimi
     }).catch(err=>console.log(err))
     }
 }

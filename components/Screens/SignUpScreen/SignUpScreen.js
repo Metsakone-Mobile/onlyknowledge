@@ -5,6 +5,7 @@ import signUpStyles from './SignUpStyles'
 import CustomButton from '../../Customs/CustomButton'
 import SubjectButton from '../../Customs/SubjectButton'
 import ProfileDescription from '../../Customs/ProfileDescription'
+import Cloudinary from '../../Customs/Cloudinary'
 
 // A component where a new user can create an account.
 
@@ -16,6 +17,7 @@ export default function SignUpScreen({ navigation }) {
   const [comparePassword, setComparePassword] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [isTutor, setIsTutor] = useState(false)
+  const [cloudImage, setCloudImage] = useState('')
   const [profileDescription, setProfileDescription] = useState('')
   const [favoriteSubjects, setFavoriteSubjects] = useState([])
 
@@ -47,7 +49,8 @@ export default function SignUpScreen({ navigation }) {
       username: username,
       isTutor: isTutor,
       favoriteSubjects: favoriteSubjects,
-      profileDescription: profileDescription
+      profileDescription: profileDescription,
+      photoURL: cloudImage
     }).catch(err => console.log(err))
   }        
 
@@ -59,15 +62,17 @@ export default function SignUpScreen({ navigation }) {
   const toggleIsTutor = () => {
     setIsTutor(!isTutor)
   }
-  
+  console.log (cloudImage)
   return (
     <SafeAreaView style={signUpStyles.container}>
       <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
+    
       {
         favoriteSubjects.map((sub, i) => (
           <Text key={i}>{sub}</Text>
         ))
       }
+     
       <ScrollView contentContainerStyle={signUpStyles.signUpContainer} bounces={false}>
             <TextInput style={signUpStyles.inputField} 
             placeholder='Name' 
@@ -111,6 +116,9 @@ export default function SignUpScreen({ navigation }) {
             <View style={signUpStyles.buttonContainer}>
             <SubjectButton favoriteSubjects={favoriteSubjects} setFavoriteSubjects={setFavoriteSubjects}/>
             </View>
+            
+            <Cloudinary imageURL={imageURL}/>
+
             <ProfileDescription setProfileDescription={setProfileDescription}/>
             <Pressable onPress={createAccount}>
             {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit'} />}
