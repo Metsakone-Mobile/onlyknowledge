@@ -5,6 +5,7 @@ import {firestore, doc, getDoc, USER} from '../../firebase/Config'
 import * as ImagePicker from 'expo-image-picker'
 import { AntDesign } from '@expo/vector-icons';
 import MyProfileStyles from '../Screens/MyProfileScreen/MyProfileStyles'
+import CloudinaryStyles from './CloudinaryStyles'
 
 export default function Cloudinary() {
 
@@ -76,14 +77,14 @@ const getUserInfo = async () => {
 
 
   return (
-     <View style={MyProfileStyles.container}>
+     <View style={CloudinaryStyles.container}>
    
- <View style={MyProfileStyles.ProfilepicView}>
+ <View style={CloudinaryStyles.ProfilepicView}>
   <TouchableOpacity onPress={OpenImagePicker} > 
-  <View style={MyProfileStyles.profileCircle}>
-     <Image source={{ uri: cloudImage }} style={MyProfileStyles.profilePic} />
+  <View style={CloudinaryStyles.profileCircle}>
+     <Image source={{ uri: cloudImage }} style={CloudinaryStyles.profilePic} />
   </View>
-   <Text style={MyProfileStyles.editText}>Change profile picture</Text>
+   <Text style={CloudinaryStyles.editText}>Change profile picture</Text>
   </TouchableOpacity>
  
  </View>

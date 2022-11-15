@@ -2,23 +2,21 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create ({
     container: {
-        flex: 1,
-        backgroundColor: '#e5e5e5',
+      flex:1,
+      backgroundColor: '#e5e5e5',
         alignItems: 'center',
-        padding: 20
-      },
-      ProfilepicView:{
-        justifyContent: 'center',
-        alignItems: 'center'
+        width:'100%'
+
+       
       },
       mainTitle: {
           marginTop: 20,
-          fontSize: 36,
+        
       },  
         label: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginBottom: 10,
       },  
       listSubjects: {
       fontSize: 14,
@@ -28,25 +26,13 @@ export default StyleSheet.create ({
     subjectsContainer: {
       marginTop: 19,
       justifyContent: "center",
-      backgroundColor: 'white',
+      backgroundColor: '#ffff',
       padding: 20,
       width: '50%',
       borderRadius: 25
       
     },
-    profileCircle: {
-        width: 150,
-        height: 150,
-        borderRadius: 150 / 2,
-        backgroundColor: '#FF9800',
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-      profilePic:{
-        width: 150,
-        height: 150,
-        borderRadius: 150 / 2,
-      },
+    
       placeHolder:{
         flexDirection: 'row',
         marginTop: 20,
@@ -63,12 +49,27 @@ export default StyleSheet.create ({
         borderRadius: 10,
         paddingLeft: 10,
       },
-      editText:{
-        fontSize: 10,
-        marginTop: 10, 
-       marginLeft:20,
-       
-        
     
-      }
+      textboxContainer:{
+        width: '80%',
+        marginBottom:20,
+        marginTop:40,
+        borderRadius: 10,
+        padding:1,
+        alignItems:'flex-start',
+        justifyContent:'flex-start'
+      },
+      textbox:{
+        width: '80%',
+      
+      },
+      textDetails:{
+        width: 300,
+        height: 30,
+        fontSize: 20,
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingLeft: 10,
+        alignItems: 'flex-start',
+      },
 })

@@ -44,6 +44,7 @@ export default function SignUpScreen({ navigation }) {
   const saveUser = async (userId) => {
     await setDoc(doc(firestore, USER, userId), {
       name: name,
+      email:email,
       username: username,
       isTutor: isTutor,
       favoriteSubjects: favoriteSubjects,
