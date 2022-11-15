@@ -5,6 +5,7 @@ export default StyleSheet.create ({
         flex: 1,
         backgroundColor: '#e5e5e5',
         alignItems: 'center',
+        padding: 20
       },
       ProfilepicView:{
         justifyContent: 'center',
@@ -18,6 +19,20 @@ export default StyleSheet.create ({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+      },  
+      listSubjects: {
+      fontSize: 14,
+      
+      marginBottom: 20,
+    },
+    subjectsContainer: {
+      marginTop: 19,
+      justifyContent: "center",
+      backgroundColor: 'white',
+      padding: 20,
+      width: '50%',
+      borderRadius: 25
+      
     },
     profileCircle: {
         width: 150,
