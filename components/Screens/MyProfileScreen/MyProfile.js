@@ -4,12 +4,12 @@ import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
-import MyProfileStyles from './MyProfileStyles'
 import Cloudinary from '../../Customs/Cloudinary'
-import SignUpStyles from '../SignUpScreen/SignUpStyles'
+import { EvilIcons } from '@expo/vector-icons';
 
 
-export default function MyProfile() {
+
+export default function MyProfile({navigation}) {
 
   const { loggedUserID } = useContext(AuthContext)
   const [name, setName] = useState('')
@@ -43,7 +43,14 @@ export default function MyProfile() {
 
   return (
   <View style={myProfileStyles.container}>
-
+   <View style={{width:'100%', flexDirection: 'row', justifyContent:'flex-end', paddingTop:16, paddingLeft: 16, marginRight:10,}}>
+            <TouchableOpacity style={{alignItems:'flex-end'}} >
+            <EvilIcons name="pencil" size={24} color="black"  
+                onPress={() => navigation.navigate('Edit Profile')} 
+                
+            />
+            </TouchableOpacity>
+          </View>
     
     <Cloudinary/>
 
@@ -68,10 +75,6 @@ export default function MyProfile() {
       <View style={myProfileStyles.textbox}>
         <Text style={myProfileStyles.textDetails}> {email}</Text>
       </View>
-  
-    
-  
-        
 
       </ScrollView> 
   

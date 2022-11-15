@@ -3,8 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import {firestore, doc, getDoc, USER} from '../../firebase/Config'
 import * as ImagePicker from 'expo-image-picker'
-import { AntDesign } from '@expo/vector-icons';
-import MyProfileStyles from '../Screens/MyProfileScreen/MyProfileStyles'
 import CloudinaryStyles from './CloudinaryStyles'
 
 export default function Cloudinary() {
@@ -77,10 +75,9 @@ const getUserInfo = async () => {
 
 
   return (
-     <View style={CloudinaryStyles.container}>
-   
+<View style={CloudinaryStyles.container}>
  <View style={CloudinaryStyles.ProfilepicView}>
-  <TouchableOpacity onPress={OpenImagePicker} > 
+   <TouchableOpacity onPress={OpenImagePicker} > 
   <View style={CloudinaryStyles.profileCircle}>
      <Image source={{ uri: cloudImage }} style={CloudinaryStyles.profilePic} />
   </View>
@@ -88,6 +85,6 @@ const getUserInfo = async () => {
   </TouchableOpacity>
  
  </View>
- </View>
+</View>
   )
 }
