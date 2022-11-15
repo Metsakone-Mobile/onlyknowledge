@@ -12,6 +12,7 @@ export default function MyProfile() {
 
   const { loggedUserID } = useContext(AuthContext)
   const [name, setName] = useState('')
+  const [subjects, setSubjects] = useState([])
 
 
 
@@ -23,6 +24,7 @@ export default function MyProfile() {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setName(docSnap.data().name)
+      setSubjects(docSnap.data().favoriteSubjects)
     } else {
       console.log("Voe mavon silimä")
     }
@@ -32,16 +34,25 @@ export default function MyProfile() {
     getUserInfo()
   }, [])
 
-
+//<Text key={index} style={myProfileStyles.listSubjects}> {subjects}</Text>
 
   return (
     <View style={myProfileStyles.container}>
       <View style={myProfileStyles.mainTitle}>
         <Text style={myProfileStyles.label}> {name}</Text>
+        
 
 
       </View>
-<Cloudinary/>
+      <Cloudinary/>
+      <View style={myProfileStyles.subjectsContainer}>
+        {subjects.map((favoriteSubjects, index) =>{
+          return(
+          <Text key={index} style={myProfileStyles.listSubjects}> {favoriteSubjects}</Text>);
+        })}
+        
+      
+      </View>
    
       <Pickers/>
     </View>

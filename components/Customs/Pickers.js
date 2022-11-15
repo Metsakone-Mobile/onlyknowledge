@@ -2,13 +2,14 @@ import { View, Text, Pressable, Button } from 'react-native'
 import React, { useState, useContext, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker'
 import { AuthContext } from '../../context/AuthContext';
-import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection, SUBJECTS } from '../../firebase/Config'
+import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection, SUBJECTS, database } from '../../firebase/Config'
 import CustomButton from './CustomButton';
 
 export default function Pickers() {
 
 const { loggedUserID } = useContext(AuthContext)
 const [name, setName] = useState('')
+
 
 const getUserInfo = async () => {
     console.log(loggedUserID)
@@ -18,14 +19,21 @@ const getUserInfo = async () => {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setName(docSnap.data().name)
+      
     } else {
       console.log("Penus")
     }
   }
 
+  
+
+ 
+
   useEffect(() => {
     getUserInfo()
   }, [])
+
+  
 
   const saveSubjects= async () => {
     const docRef = addDoc(collection(firestore, "subject"), {
@@ -35,6 +43,8 @@ const getUserInfo = async () => {
 
     });
     }
+
+  
 
 
 
