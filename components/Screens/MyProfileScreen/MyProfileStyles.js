@@ -4,10 +4,9 @@ export default StyleSheet.create ({
     container: {
       flex:1,
       backgroundColor: '#e5e5e5',
-        alignItems: 'center',
-        width:'100%'
+      alignItems: 'center',
+      width:'100%'
 
-       
       },
       mainTitle: {
           marginTop: 20,
