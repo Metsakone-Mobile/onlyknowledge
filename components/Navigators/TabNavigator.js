@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
+import ProfileNavigator from './ProfileNavigator'
 import StackNavigator from './StackNavigator'
 import MyProfile from '../Screens/MyProfileScreen/MyProfile'
 import Notifications from '../Screens/NotificationScreen/Notifications'
@@ -33,7 +33,7 @@ export default function TabNavigator() {
           tabBarIcon: ({ color }) => (
             <AntDesign name="profile" color={color} size={20} />
           ),
-        }} component={MyProfile} />
+        }} component={ProfileNavigator} />
     </Tab.Navigator>
   )
 }
