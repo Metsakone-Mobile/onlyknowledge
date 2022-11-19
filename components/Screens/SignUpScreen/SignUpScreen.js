@@ -1,10 +1,12 @@
-import { View, SafeAreaView, Text, TextInput, Pressable, Button, Modal, ScrollView, Switch } from 'react-native'
+import { View, SafeAreaView, Text, TextInput, Pressable, Button, Modal, ScrollView, Switch, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword, firestore, setDoc, doc, USER } from '../../../firebase/Config'
 import signUpStyles from './SignUpStyles'
 import CustomButton from '../../Customs/CustomButton'
 import SubjectButton from '../../Customs/SubjectButton'
 import ProfileDescription from '../../Customs/ProfileDescription'
+import CloudinaryStyles from '../../Customs/CloudinaryStyles'
+import * as ImagePicker from 'expo-image-picker'
 
 // A component where a new user can create an account.
 
@@ -13,6 +15,8 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [image,setImage]= useState(null)
+  const [photoURL, setPhotoURL] = useState('')
   const [comparePassword, setComparePassword] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [isTutor, setIsTutor] = useState(false)
@@ -21,6 +25,8 @@ export default function SignUpScreen({ navigation }) {
 
   // Firebase authentication is used in creating the account. For more info on how it works
   // check out official documentation at https://firebase.google.com/docs/auth/web/start
+  let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dapbyrfgw/image/upload';
+
 
   const createAccount = () => {
     if (password === comparePassword) {
@@ -48,7 +54,8 @@ export default function SignUpScreen({ navigation }) {
       username: username,
       isTutor: isTutor,
       favoriteSubjects: favoriteSubjects,
-      profileDescription: profileDescription
+      profileDescription: profileDescription,
+      photoURL: photoURL
     }).catch(err => console.log(err))
   }        
 
@@ -61,6 +68,44 @@ export default function SignUpScreen({ navigation }) {
     setIsTutor(!isTutor)
   }
   
+const OpenImagePicker = async () => {
+    let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+      if (permissionResult.granted === false) {
+        Alert.alert('Permission to access camera roll is required!');
+        return;
+  }
+    let pickerResult = await ImagePicker.launchImageLibraryAsync({
+    allowsEditing: true,
+    aspect: [4, 3],
+    base64: true
+   });
+      if (!pickerResult.cancelled ===true) {
+        setImage({ image: pickerResult.uri });
+
+      //muutetaan kuvan muoto
+        let base64Img = `data:image/jpg;base64,${pickerResult.base64}`;
+        
+        let data = {
+          "file": base64Img,
+          "upload_preset": "wr3ifdpb",
+        }
+
+    fetch(CLOUDINARY_URL, {
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+    }).then(async r => {
+        let data = await r.json()
+
+        console.log(data.secure_url)
+       setPhotoURL( data.secure_url)
+    }).catch(err=>console.log(err))
+    }
+}
+
+
   return (
     <SafeAreaView style={signUpStyles.container}>
       <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
@@ -111,6 +156,17 @@ export default function SignUpScreen({ navigation }) {
             <Text style={signUpStyles.label}>Favorite subjects</Text>
             <View style={signUpStyles.buttonContainer}>
             <SubjectButton favoriteSubjects={favoriteSubjects} setFavoriteSubjects={setFavoriteSubjects}/>
+            </View>
+            <View style={CloudinaryStyles.container}>
+            <View style={CloudinaryStyles.ProfilepicView}>
+              <TouchableOpacity onPress={OpenImagePicker} > 
+                <View style={CloudinaryStyles.profileCircle}>
+                  <Image source={{ uri: photoURL }} style={CloudinaryStyles.profilePic} />
+                </View>
+                <Text style={CloudinaryStyles.editText}>Change profile picture</Text>
+             </TouchableOpacity>
+          
+            </View>
             </View>
             <ProfileDescription setProfileDescription={setProfileDescription}/>
             <Pressable onPress={createAccount}>
