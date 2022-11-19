@@ -16,6 +16,7 @@ export default function MyProfile({navigation}) {
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
   const [subjects, setSubjects] = useState([])
+  const [photoURL, setPhotoURL] = useState ('')
 
 
 
@@ -30,6 +31,7 @@ export default function MyProfile({navigation}) {
       setEmail(docSnap.data().email)
       setUsername(docSnap.data().username)
       setSubjects(docSnap.data().favoriteSubjects)
+      setPhotoURL(docSnap.data().photoURL)
     } else {
       console.log("Voe mavon silimä")
     }
@@ -52,7 +54,9 @@ export default function MyProfile({navigation}) {
             </TouchableOpacity>
           </View>
     
-    <Cloudinary/>
+    <View style={myProfileStyles.profileContent}>
+      <Image style={myProfileStyles.profilePic} source={{uri: photoURL}}/>
+    </View>
 
     <ScrollView contentContainerStyle={myProfileStyles.textboxContainer} bounces={false}>
       <View style={myProfileStyles.textbox}>

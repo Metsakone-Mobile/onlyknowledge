@@ -6,10 +6,24 @@ export default StyleSheet.create ({
       backgroundColor: '#e5e5e5',
       alignItems: 'center',
       width:'100%'
-
+    },
+    profileContent: {
+      width: 150,
+      height: 150,
+      borderRadius: 150 / 2,
+      backgroundColor: '#FF9800',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop:30,
       },
+      profilePic:{
+        width: 150,
+        height: 150,
+        borderRadius: 150 / 2,
+      },
+
       mainTitle: {
-          marginTop: 20,
+        marginTop: 20,
         
       },  
         label: {
