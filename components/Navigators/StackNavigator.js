@@ -2,7 +2,6 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import HomeScreen from '../Screens/HomeScreen/HomeScreen'
-import EditProfile from '../Screens/EditProfileScreen/EditProfile'
 import FindATutor from '../Screens/FindATutorScreen/FindATutor'
 import QuickQuestion from '../Screens/QuickQuestionScreen/QuickQuestion'
 

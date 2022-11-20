@@ -22,17 +22,20 @@ export default function TabNavigator() {
           ),
           headerShown: false
         }} component={StackNavigator} />
+
       <Tab.Screen name='Notifications'
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="notification" color={color} size={20} />
           ),
         }} component={Notifications} />
+
       <Tab.Screen name='My Profile'
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="profile" color={color} size={20} />
           ),
+          headerShown: false
         }} component={ProfileNavigator} />
     </Tab.Navigator>
   )

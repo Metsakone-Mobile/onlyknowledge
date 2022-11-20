@@ -4,7 +4,6 @@ import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
-import Cloudinary from '../../Customs/Cloudinary'
 import { EvilIcons } from '@expo/vector-icons';
 
 
