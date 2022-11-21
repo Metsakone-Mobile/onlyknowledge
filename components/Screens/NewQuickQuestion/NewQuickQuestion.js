@@ -1,13 +1,13 @@
 import { View, Text, TextInput, Pressable, Button } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection } from '../../../firebase/Config'
-import quickQuestionStyles from './QuickQuestionStyles'
+import quickQuestionStyles from './NewQuickQuestionStyles'
 import { AuthContext } from '../../../context/AuthContext'
 import CustomButton from '../../Customs/CustomButton'
 
 
 
-export default function QuickQuestion() {
+export default function NewQuickQuestion() {
   const [question_input, setQuestion_Input] = useState('');
   const [question_field, setQuestion_Field] = useState('');
   const [name, setName] = useState('');
@@ -37,8 +37,10 @@ export default function QuickQuestion() {
  const saveQuestion= async () => {
     const docRef = addDoc(collection(firestore, "Questions"), {
       question_input: question_input,
-      name: name
-
+      name: name,
+      userId: loggedUserID,
+      answered: false,
+      date: new Date().toLocaleDateString()
     });
     }
 

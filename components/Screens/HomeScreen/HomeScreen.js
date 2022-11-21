@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }) {
         </Pressable>
         <Pressable
           style={homeScreenStyles.pressable}
-          onPress={() => navigation.navigate('Quick question')}>
+          onPress={() => navigation.navigate('Quick question navigator')}>
           <Text style={homeScreenStyles.label}>Quick question</Text>
         </Pressable>
       </View>
