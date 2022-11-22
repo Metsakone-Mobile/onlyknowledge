@@ -69,7 +69,7 @@ export default function SignUpScreen({ navigation }) {
   }
   
 const OpenImagePicker = async () => {
-    let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (permissionResult.granted === false) {
         Alert.alert('Permission to access camera roll is required!');
         return;

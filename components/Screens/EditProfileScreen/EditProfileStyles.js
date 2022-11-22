@@ -25,6 +25,21 @@ export default StyleSheet.create ({
         marginBottom: 40,
         padding: 15,
         fontSize: 20,
+        
     
     },    
+    profileContent: {
+        width: 150,
+        height: 150,
+        borderRadius: 150 / 2,
+        backgroundColor: '#FF9800',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:30,
+        },
+        profilePic:{
+            width: 150,
+            height: 150,
+            borderRadius: 150 / 2,
+          },
 })
