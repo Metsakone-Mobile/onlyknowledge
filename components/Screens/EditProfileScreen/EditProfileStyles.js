@@ -3,10 +3,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create ({
     container: {
       flex:1,
-      backgroundColor: '#e5e5e5',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      width:'100%'
+      backgroundColor: '#fff',
     },
     mainTitle:{
         fontSize: 20,
@@ -41,5 +38,6 @@ export default StyleSheet.create ({
             width: 150,
             height: 150,
             borderRadius: 150 / 2,
+            marginTop: 20,
           },
 })

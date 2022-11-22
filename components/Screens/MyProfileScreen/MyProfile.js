@@ -1,10 +1,11 @@
-import { View, Text, Image, TouchableOpacity, Modal, ScrollView} from 'react-native'
+import { View, Text, Image, TouchableOpacity, Modal, ScrollView, SafeAreaView} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
 import { EvilIcons } from '@expo/vector-icons';
+import MyProfileStyles from './MyProfileStyles'
 
 
 
@@ -46,49 +47,42 @@ export default function MyProfile({navigation}) {
 //<Text key={index} style={myProfileStyles.listSubjects}> {subjects}</Text>
 
   return (
-  <View style={myProfileStyles.container}>
-      <View style={myProfileStyles.editProfile}>
-            <TouchableOpacity style={{alignItems:'flex-end'}} >
-            <EvilIcons name="pencil" size={30} color="black"  
-                onPress={() => navigation.navigate('Edit Profile')} />
-            </TouchableOpacity>
-      </View>
-    
-    <View style={myProfileStyles.profileContent}>
-      <Image style={myProfileStyles.profilePic} source={{uri: photoURL}}/>
+  
+
+  <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} >
+    <ScrollView  style={MyProfileStyles.container}
+      contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
+      showsVerticalScrollIndicator={false}>
+        
+        <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
+        <Text style={myProfileStyles.mainTitle}>{name}</Text>
+        
+        <Text style={myProfileStyles.label}> user ID:{loggedUserID}</Text>
+        <View style={myProfileStyles.btnWrapper}>
+          <TouchableOpacity style={myProfileStyles.btn}
+            onPress={() => {navigation.navigate('Edit Profile')}}>
+              <Text style={{color: '#000000'}}>Edit Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myProfileStyles.btn} 
+            onPress={() => logout()}>
+              <Text style={{color: '#000000'}}>Logout</Text>
+          </TouchableOpacity>
+        </View>
+        <Text>My Favorite subjects:</Text>
+    <View style={{width: '80%'}}>
+      <Pickers/>
     </View>
 
-    <ScrollView contentContainerStyle={myProfileStyles.textboxContainer} bounces={false}>
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.label}>name:</Text>
-      </View>
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.textDetails}> {name}</Text>
-      </View>
+     {/*  <View style={myProfileStyles.subjectsContainer}>
+        {subjects.map((favoriteSubjects, index) =>{
+          return(
+          <Text key={index} style={myProfileStyles.listSubjects}> {favoriteSubjects}</Text>);
+        })}
 
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.label}>username:</Text>
-      </View>
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.textDetails}> {username}</Text>
-      </View>
+      </View> */}
 
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.label}>email:</Text>
-      </View>
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.textDetails}> {email}</Text>
-      </View>
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.label}>favorite subjects:</Text>
-      </View>
-      <View style={myProfileStyles.textbox}>
-        <Text style={myProfileStyles.textDetails}> {subjects}</Text>
-      </View>
+  </ScrollView>
+  </SafeAreaView>
 
-      </ScrollView> 
-  
-   
-  </View>
   )
 }
