@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, TextIn, ScrollView} from 'react-native'
+import { View, Text, Image, TouchableOpacity, Modal, ScrollView} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
@@ -40,18 +40,19 @@ export default function MyProfile({navigation}) {
     getUserInfo()
   }, [])
 
+
+
+
 //<Text key={index} style={myProfileStyles.listSubjects}> {subjects}</Text>
 
   return (
   <View style={myProfileStyles.container}>
-   <View style={{width:'100%', flexDirection: 'row', justifyContent:'flex-end', paddingTop:16, paddingLeft: 16, marginRight:10,}}>
+      <View style={myProfileStyles.editProfile}>
             <TouchableOpacity style={{alignItems:'flex-end'}} >
-            <EvilIcons name="pencil" size={24} color="black"  
-                onPress={() => navigation.navigate('Edit Profile')} 
-                
-            />
+            <EvilIcons name="pencil" size={30} color="black"  
+                onPress={() => navigation.navigate('Edit Profile')} />
             </TouchableOpacity>
-          </View>
+      </View>
     
     <View style={myProfileStyles.profileContent}>
       <Image style={myProfileStyles.profilePic} source={{uri: photoURL}}/>
@@ -59,38 +60,35 @@ export default function MyProfile({navigation}) {
 
     <ScrollView contentContainerStyle={myProfileStyles.textboxContainer} bounces={false}>
       <View style={myProfileStyles.textbox}>
-        <Text style={{fontSize: 15, fontWeight: 'bold',}}>name:</Text>
+        <Text style={myProfileStyles.label}>name:</Text>
       </View>
       <View style={myProfileStyles.textbox}>
         <Text style={myProfileStyles.textDetails}> {name}</Text>
       </View>
 
       <View style={myProfileStyles.textbox}>
-        <Text style={{fontSize: 15, fontWeight: 'bold',}}>username:</Text>
+        <Text style={myProfileStyles.label}>username:</Text>
       </View>
       <View style={myProfileStyles.textbox}>
         <Text style={myProfileStyles.textDetails}> {username}</Text>
       </View>
 
       <View style={myProfileStyles.textbox}>
-        <Text style={{fontSize: 15, fontWeight: 'bold',}}>email:</Text>
+        <Text style={myProfileStyles.label}>email:</Text>
       </View>
       <View style={myProfileStyles.textbox}>
         <Text style={myProfileStyles.textDetails}> {email}</Text>
       </View>
+      <View style={myProfileStyles.textbox}>
+        <Text style={myProfileStyles.label}>favorite subjects:</Text>
+      </View>
+      <View style={myProfileStyles.textbox}>
+        <Text style={myProfileStyles.textDetails}> {subjects}</Text>
+      </View>
 
       </ScrollView> 
   
-      
-      <View style={myProfileStyles.subjectsContainer}>
-        {subjects.map((favoriteSubjects, index) =>{
-          return(
-          <Text key={index} style={myProfileStyles.listSubjects}> {favoriteSubjects}</Text>);
-        })}
-      
-      </View>
    
-      <Pickers/>
   </View>
   )
 }
