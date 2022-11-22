@@ -14,12 +14,13 @@ export default function App() {
   
   const [isLogged, setIsLogged] = useState(false)
   const [loggedUserID, setLoggedUserID] = useState('')
+  const [isUserTutor, setIsUserTutor] = useState(false)
 
 
   if(!isLogged){
     return (
       <NavigationContainer>
-        <AuthContext.Provider value={{setIsLogged, setLoggedUserID}}>
+        <AuthContext.Provider value={{setIsLogged, setLoggedUserID, setIsUserTutor}}>
         <LoginNavigator />
         </AuthContext.Provider>
       </NavigationContainer>
@@ -27,7 +28,7 @@ export default function App() {
     } else {
       return (
         <NavigationContainer>
-          <AuthContext.Provider value={{loggedUserID}}>
+          <AuthContext.Provider value={{loggedUserID, isUserTutor}}>
           <TabNavigator />
           </AuthContext.Provider>
         </NavigationContainer>

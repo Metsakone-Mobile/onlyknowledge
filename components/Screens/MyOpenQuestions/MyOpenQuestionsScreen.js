@@ -13,11 +13,19 @@ export default function MyOpenQuestionsScreen() {
   const getOpenQuestions = async () => {
     const questionsRef = collection(firestore, 'Questions')
     const q = query(questionsRef, where("userId", '==', loggedUserID), where("answered", '==', false))
-    
+  
     const querySnapShot = await getDocs(q)
     let tempOpenQuestions = []
     querySnapShot.forEach((doc) => {
-        tempOpenQuestions.push(doc.data())
+        const formedQuestion = {
+          answered: doc.data().answered,
+          name: doc.data().name,
+          question_input: doc.data().question_input,
+          userId: doc.data().userId,
+          date: doc.data().date,
+          questionId: doc.id,
+        }
+        tempOpenQuestions.push(formedQuestion)
     })
     setOpenQuestions(tempOpenQuestions)
     setIsLoaded(true)
