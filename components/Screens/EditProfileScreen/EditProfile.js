@@ -15,6 +15,7 @@ export default function EditProfile() {
   const [email,setEmail] = useState('')
   const [photoURL, setPhotoURL] = useState ('')
 
+
   const getUserInfo = async () => {
     console.log(loggedUserID)
     const docRef = doc(firestore, USER, loggedUserID)
@@ -40,7 +41,7 @@ export default function EditProfile() {
       email: email
     }).then(()=>{
       console.log ('User is updated')
-      Alert.alert ('Profile Updated!',
+      Alert.alert ('Profile is updated!',
       'Your profile has been updated successfully.')
     
     }).catch((error) => {
@@ -74,7 +75,7 @@ export default function EditProfile() {
         </View>
 
            <Pressable onPress={updateUser}>
-        {(state) => <CustomButton pressed={state.pressed} buttonText={'Save changes'} />}
+        {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}
       </Pressable>
 
     </View>
