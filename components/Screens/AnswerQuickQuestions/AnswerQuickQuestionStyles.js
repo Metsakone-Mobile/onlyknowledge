@@ -13,10 +13,15 @@ export default StyleSheet.create({
     }, 
     questionCard: {
         minHeight: 120,
-        width: '80%',
+        width: '100%',
         backgroundColor: '#f5f2eb',
         paddingLeft: 20,
+        paddingRight: 20,
         paddingTop: 5,
         marginBottom: 20,
+        borderWidth: 1,
+    },
+    questionText: {
+        fontSize: 12
     },
 })
