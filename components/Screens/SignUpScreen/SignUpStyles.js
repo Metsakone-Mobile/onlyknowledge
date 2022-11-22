@@ -54,5 +54,31 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 40
-      }
+      },
+      profilePic:{
+        width: 150,
+        height: 150,
+        borderRadius: 150 / 2,
+      },
+      profileText:{
+        fontSize: 10,
+        marginTop: 10,
+        marginBottom:20, 
+        marginLeft:20,
+           
+    },
+    ProfilepicView:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom:20,
+    },
+    profileCircle: {
+      width: 150,
+      height: 150,
+      borderRadius: 150 / 2,
+      backgroundColor: '#FF9800',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop:30,
+    },
 })

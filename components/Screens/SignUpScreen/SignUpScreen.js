@@ -5,8 +5,8 @@ import signUpStyles from './SignUpStyles'
 import CustomButton from '../../Customs/CustomButton'
 import SubjectButton from '../../Customs/SubjectButton'
 import ProfileDescription from '../../Customs/ProfileDescription'
-import CloudinaryStyles from '../../Customs/CloudinaryStyles'
 import * as ImagePicker from 'expo-image-picker'
+import SignUpStyles from './SignUpStyles'
 
 // A component where a new user can create an account.
 
@@ -99,7 +99,7 @@ const OpenImagePicker = async () => {
     }).then(async r => {
         let data = await r.json()
 
-        console.log(data.secure_url)
+       console.log(data.secure_url)
        setPhotoURL( data.secure_url)
     }).catch(err=>console.log(err))
     }
@@ -157,13 +157,13 @@ const OpenImagePicker = async () => {
             <View style={signUpStyles.buttonContainer}>
             <SubjectButton favoriteSubjects={favoriteSubjects} setFavoriteSubjects={setFavoriteSubjects}/>
             </View>
-            <View style={CloudinaryStyles.container}>
-            <View style={CloudinaryStyles.ProfilepicView}>
+            <View style={signUpStyles.container}>
+            <View style={SignUpStyles.ProfilepicView}>
               <TouchableOpacity onPress={OpenImagePicker} > 
-                <View style={CloudinaryStyles.profileCircle}>
-                  <Image source={{ uri: photoURL }} style={CloudinaryStyles.profilePic} />
+                <View style={SignUpStyles.profileCircle}>
+                  <Image source={{ uri: photoURL }} style={SignUpStyles.profilePic} />
                 </View>
-                <Text style={CloudinaryStyles.editText}>Change profile picture</Text>
+                <Text style={signUpStyles.profileText}>Choose profile picture</Text>
              </TouchableOpacity>
           
             </View>

@@ -1,3 +1,4 @@
+import { signInWithCustomToken } from 'firebase/auth'
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create ({
@@ -21,19 +22,25 @@ export default StyleSheet.create ({
         height: 150,
         borderRadius: 150 / 2,
       },
+      editProfile: {
+        width:'100%',
+         flexDirection: 'row', 
+         justifyContent:'flex-end', 
+         paddingTop:16, 
+         paddingLeft: 16, 
+         marginRight:10
+      },
 
       mainTitle: {
         marginTop: 20,
         
       },  
-        label: {
-        fontSize: 24,
+      label: {
+        fontSize: 15, 
         fontWeight: 'bold',
-        marginBottom: 10,
       },  
       listSubjects: {
       fontSize: 14,
-      
       marginBottom: 20,
     },
     subjectsContainer: {
@@ -67,22 +74,20 @@ export default StyleSheet.create ({
         width: '80%',
         marginBottom:20,
         marginTop:40,
-        borderRadius: 10,
         padding:1,
         alignItems:'flex-start',
         justifyContent:'flex-start'
       },
       textbox:{
         width: '80%',
-      
       },
       textDetails:{
         width: 300,
-        height: 30,
         fontSize: 20,
-        borderWidth: 1,
         borderRadius: 10,
-        paddingLeft: 10,
         alignItems: 'flex-start',
+        padding:5,
+        borderWidth:1,
+        marginBottom: 10,
       },
 })
