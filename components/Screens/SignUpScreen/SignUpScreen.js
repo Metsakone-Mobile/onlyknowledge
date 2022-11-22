@@ -16,7 +16,7 @@ export default function SignUpScreen({ navigation }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [image,setImage]= useState(null)
-  const [photoURL, setPhotoURL] = useState('')
+  const [photoURL, setPhotoURL] = useState('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
   const [comparePassword, setComparePassword] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [isTutor, setIsTutor] = useState(false)
@@ -161,7 +161,7 @@ const OpenImagePicker = async () => {
             <View style={SignUpStyles.ProfilepicView}>
               <TouchableOpacity onPress={OpenImagePicker} > 
                 <View style={SignUpStyles.profileCircle}>
-                  <Image source={{ uri: photoURL }} style={SignUpStyles.profilePic} />
+                  <Image source={ {uri: photoURL}} style={SignUpStyles.profilePic} />
                 </View>
                 <Text style={signUpStyles.profileText}>Choose profile picture</Text>
              </TouchableOpacity>
