@@ -1,7 +1,8 @@
-import { View, Text, ScrollView, Button, Pressable} from 'react-native'
+import { View, Text, ScrollView, Pressable} from 'react-native'
+import { useFocusEffect} from '@react-navigation/native'
 import CustomButton2 from '../../Customs/CustomButton2'
 import styles from './AnswerQuickQuestionStyles'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
 
 export default function MyOpenQuestionsScreen({navigation}) {
@@ -28,13 +29,14 @@ export default function MyOpenQuestionsScreen({navigation}) {
     })
     setOpenQuestions(tempOpenQuestions)
     setIsLoaded(true)
-    console.log(tempOpenQuestions)
+    console.log("Open questions: ", tempOpenQuestions)
   }  
 
-
-  useEffect(() => {
-    getOpenQuestions()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      getOpenQuestions()
+    }, [])
+  )
 
   if(isLoaded === false) {
     return <View><Text>Loading...</Text></View>

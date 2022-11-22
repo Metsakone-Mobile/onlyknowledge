@@ -34,7 +34,7 @@ export default function GiveAnswerScreen({ navigation, route}) {
         answered: true,
         answeredBy: username
     })
-    navigation.navigate('Answer questions')
+    navigation.goBack()
   }
 
   return (
