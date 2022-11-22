@@ -15,7 +15,7 @@ export default function MyProfile({navigation}) {
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
   const [subjects, setSubjects] = useState([])
-  const [photoURL, setPhotoURL] = useState ('')
+  const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
 
 
 
