@@ -1,9 +1,9 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, Image, ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 
 import { firestore, collection, query, where, getDocs, USER  } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
-import styles from './FindATutorStyles'
+import styles, { findATutorStyles } from './FindATutorStyles'
 
 
 
@@ -31,6 +31,7 @@ export default function FindATutor() {
             profileDescription: doc.data().profileDescription,
             favoriteSubjects: doc.data().favoriteSubjects,
             userId: doc.data().userId,
+            photoURL: doc.data().photoURL,
             
           }
           availableTutors.push(tutorSearch)
@@ -38,6 +39,7 @@ export default function FindATutor() {
       setTutor(availableTutors)
       setIsLoaded(true)
       console.log(availableTutors)
+      console.log(photoURL)
     }  
   
     useEffect(() => {
@@ -67,24 +69,28 @@ export default function FindATutor() {
       return <View><Text>Loading...</Text></View>
     } else {
   return (
-    <View>
+    <ScrollView>
+    <View style={findATutorStyles.container}>
       <Text>Käyttäjä: {name}</Text>
           <Text>Tutors:</Text>
            {tutor.map(tutor => (
-            <View style={{minHeight: 120,
-              width: '80%',
-              backgroundColor: '#f5f2eb',
-              paddingLeft: 20,
-              paddingTop: 5,
-              marginBottom: 20,}} 
+            
+            <View style={findATutorStyles.tutorCard} 
               key={tutor.name}>
+                <View>
+                  <Image style={findATutorStyles.profilePic} source={{uri: tutor.photoURL}}/>
+                </View>
                 <Text style={{fontWeight: 'bold', marginBottom: 5}}>{tutor.profileDescription}</Text>
-                <Text style={{fontWeight: 'bold'}}>Tutor:</Text>
-                <Text>{tutor.tutor}</Text>
-                <Text>{tutor.favoriteSubjects}</Text>
+                <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
+                
+                <Text style={findATutorStyles.tutorname}>{tutor.tutor}</Text>
+                <Text style={findATutorStyles.tutornamehHader}>Subjects I teach:</Text>
+                
+                <Text style={findATutorStyles.tutorname}>{tutor.favoriteSubjects}</Text>
             </View>
            ))}
         </View>
+        </ScrollView>
   )
            }
 }
