@@ -3,17 +3,7 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } f
 import { getFirestore, collection, doc, addDoc, getDoc, getDocs, setDoc, query, onSnapshot, database, where, updateDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCNxbPczkUpQM2mUTu0Kno7eyo48qNv6-c",
 
-  authDomain: "onlyknowledge-e6966.firebaseapp.com",
-
-  projectId: "onlyknowledge-e6966",
-
-  storageBucket: "onlyknowledge-e6966.appspot.com",
-
-  messagingSenderId: "781353024788",
-
-  appId: "1:781353024788:web:312c49d154551b8e321601"
 }
 
 
