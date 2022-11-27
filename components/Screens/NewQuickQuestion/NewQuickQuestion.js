@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable, Button } from 'react-native'
+import { View, Text, TextInput, Pressable, Button, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection } from '../../../firebase/Config'
 import quickQuestionStyles from './NewQuickQuestionStyles'
@@ -45,14 +45,10 @@ export default function NewQuickQuestion() {
     }
 
   return (
-    <View style={quickQuestionStyles.container}>
+    <ScrollView contentContainerStyle={quickQuestionStyles.container}>
       <Text style={quickQuestionStyles.mainTitle}>Quick Question</Text>
 
       <View style={quickQuestionStyles.innerContainer}>
-        <Text style={quickQuestionStyles.label}>State your question:</Text>
-        <Text style={quickQuestionStyles.label}
-          onChangeText={name => setName({ name })}
-        >{name}</Text>
         <TextInput
           style={quickQuestionStyles.questionBox}
           placeholder='Start typing...'
@@ -64,6 +60,6 @@ export default function NewQuickQuestion() {
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit'} />}
       </Pressable>
 
-    </View>
+    </ScrollView>
   )
 }
