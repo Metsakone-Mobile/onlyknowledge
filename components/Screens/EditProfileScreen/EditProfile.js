@@ -6,10 +6,8 @@ import EditProfileStyles from './EditProfileStyles'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 import CustomButton from '../../Customs/CustomButton'
 import * as ImagePicker from 'expo-image-picker'
-import SignUpStyles from '../SignUpScreen/SignUpStyles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useFocusEffect } from '@react-navigation/native'
+
 
 export default function EditProfile({ navigation, route}) {
 
@@ -18,7 +16,6 @@ export default function EditProfile({ navigation, route}) {
 
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
-  const [newUsername, setNewUsername] = useState('')
   const [email,setEmail] = useState('')
   const [image,setImage]= useState(null)
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
@@ -32,9 +29,6 @@ export default function EditProfile({ navigation, route}) {
 
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
-      setName(docSnap.data().name)
-      setEmail(docSnap.data().email)
-      //setUsername(docSnap.data().username)
       setPhotoURL(docSnap.data().photoURL)
     } else {
       console.log("Penus")
@@ -93,7 +87,6 @@ export default function EditProfile({ navigation, route}) {
       photoURL: photoURL,
       
     }).then(()=> {
-      console.log ('User is updated')
       Alert.alert ('Profile is updated!',
       'Your profile has been updated successfully.')
     
@@ -116,96 +109,42 @@ export default function EditProfile({ navigation, route}) {
           <ImageBackground source={{uri: photoURL }}
             style={{ width: 100,height: 100,}}
             imageStyle={{ borderRadius: 6}}>
-            <View style={{flex: 1,justifyContent: 'center', alignItems: 'center'}}>
+            <View style={EditProfileStyles.pictureContainer}>
               <MaterialCommunityIcons
-              onPress={OpenImagePicker}
-                name="camera"
+                onPress={OpenImagePicker}
+                name="camera"   style={EditProfileStyles.EditPicture}
                 size={35}
-                color="#fff"
-                      style={{
-                        opacity: 0.7,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderWidth: 1,
-                        borderColor: '#fff',
-                        borderRadius: 10,
-                      }}
-                    />
-
-          </View>
+                color="#fff"/>
+            </View>
           </ImageBackground>
         </TouchableOpacity>
-       </View>
-        <View>
+      </View>
+      <View>
          <Text style={{marginTop: 10, fontSize: 24,}}> </Text>
-        </View>
-        <View style={EditProfileStyles.inputField}>
-          <TextInput
-            placeholder="username"
-            value={username}
-            onChangeText={(username) => {setUsername(username)}}
-            style={{flex: 1, 
-              paddingLeft: 10,
-              color: '#333333',}}
+      </View>
+      <View style={EditProfileStyles.inputField}>
+        <TextInput 
+          placeholder="name"
+          value={username}
+          onChangeText={(name) => {setName(name)}}
+          style={EditProfileStyles.inputStyle}
           />
-        </View>
-
-        <Pressable onPress={updateUser}>
+      </View>
+      <View style={EditProfileStyles.inputField}>
+        <TextInput 
+          placeholder="username"
+          value={username}
+          onChangeText={(username) => {setUsername(username)}}
+          style={EditProfileStyles.inputStyle}
+          />
+      </View>
+       
+      <Pressable onPress={updateUser}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}
       </Pressable>
-    {/* <View style={EditProfileStyles.container}>
-
-      <Text style={EditProfileStyles.mainTitle}>MY DETAILS: </Text>
-
-       <View style={{  
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom:20,}}>
-        <TouchableOpacity onPress={OpenImagePicker} > 
-            <View style={SignUpStyles.profileCircle}>
-              <Image source={ {uri: photoURL}} style={{
-              width: 150,
-              height: 150,
-              borderRadius: 150 / 2,
-              backgroundColor: '#FF9800',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop:30,}} />
-            </View>
-                <Text style={{ fontSize: 10,
-                  marginTop: 10,
-                  marginBottom:20, 
-                  marginLeft:20,
-                  }}>Choose profile picture</Text>
-          </TouchableOpacity>
-          </View>  
-
-        <View style= {EditProfileStyles.innerContainer}>
-          <TextInput style={EditProfileStyles.inputField}
-              placeholder='name' 
-              value={name}
-              onChangeText={(name) => {setName(name)}}
-            />
-          <TextInput style={EditProfileStyles.inputField}
-            placeholder='username' 
-            value={username}
-            onChangeText={(username) => {setUsername(username)}}
-            />
-
-          <TextInput  style={EditProfileStyles.inputField}
-            placeholder='email' 
-            value={email}
-            onChangeText={(email) => {setEmail(email)}}
-            />
-        </View>
-
-           <Pressable onPress={updateUser}>
-        {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}
-      </Pressable>
-
-    </View> */}
-  </ScrollView>
-</SafeAreaView>
+    
+    </ScrollView>
+  </SafeAreaView>
 
 
   )

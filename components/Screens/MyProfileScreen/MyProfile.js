@@ -46,34 +46,30 @@ export default function MyProfile({navigation}) {
   )
 
 
-//<Text key={index} style={myProfileStyles.listSubjects}> {subjects}</Text>
-
-  return (
-  
-
+  return (  
   <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} >
     <ScrollView  style={MyProfileStyles.container}
       contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
       showsVerticalScrollIndicator={false}>
         
-        <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
-        <Text style={myProfileStyles.mainTitle}>{username}</Text>
+      <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
+      <Text style={myProfileStyles.mainTitle}>{username}</Text>
         
-        <Text style={myProfileStyles.label}> user ID:{loggedUserID}</Text>
-        <View style={myProfileStyles.btnWrapper}>
-          <TouchableOpacity style={myProfileStyles.btn}
-            onPress={() => {navigation.navigate('Edit Profile')}}>
-              <Text style={{color: '#000000'}}>Edit Profile</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={myProfileStyles.btn} 
-            onPress={() => logout()}>
-              <Text style={{color: '#000000'}}>Logout</Text>
-          </TouchableOpacity>
-        </View>
-        <Text>My Favorite subjects:</Text>
-    <View style={{width: '80%'}}>
-      <Pickers/>
-    </View>
+      <Text style={myProfileStyles.label}> user ID:{loggedUserID}</Text>
+      <View style={myProfileStyles.btnWrapper}>
+        <TouchableOpacity style={myProfileStyles.btn}
+          onPress={() => {navigation.navigate('Edit Profile')}}>
+          <Text style={{color: '#000000'}}>Edit Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={myProfileStyles.btn} 
+          onPress={() => logout()}>
+          <Text style={{color: '#000000'}}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+      <Text>My Favorite subjects:</Text>
+      <View style={{width: '80%'}}>
+        <Pickers/>
+      </View>
 
      {/*  <View style={myProfileStyles.subjectsContainer}>
         {subjects.map((favoriteSubjects, index) =>{
@@ -83,7 +79,7 @@ export default function MyProfile({navigation}) {
 
       </View> */}
 
-  </ScrollView>
+    </ScrollView>
   </SafeAreaView>
 
   )

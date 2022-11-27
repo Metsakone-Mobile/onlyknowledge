@@ -1,4 +1,4 @@
-import { signInWithCustomToken } from 'firebase/auth'
+
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create ({
