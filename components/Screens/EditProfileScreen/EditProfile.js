@@ -9,14 +9,16 @@ import * as ImagePicker from 'expo-image-picker'
 import SignUpStyles from '../SignUpScreen/SignUpStyles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useFocusEffect } from '@react-navigation/native'
 
-export default function EditProfile() {
+export default function EditProfile({ navigation, route}) {
+
 
   const { loggedUserID } = useContext(AuthContext)
 
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
-  const [newUsername, setNewUsername] = useState(username)
+  const [newUsername, setNewUsername] = useState('')
   const [email,setEmail] = useState('')
   const [image,setImage]= useState(null)
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
@@ -32,7 +34,7 @@ export default function EditProfile() {
       console.log("Doc data: ", docSnap.data())
       setName(docSnap.data().name)
       setEmail(docSnap.data().email)
-      setUsername(docSnap.data().username)
+      //setUsername(docSnap.data().username)
       setPhotoURL(docSnap.data().photoURL)
     } else {
       console.log("Penus")
@@ -97,17 +99,14 @@ export default function EditProfile() {
     
     }).catch((error) => {
       console.log('ounou');
-    })       
-
-
+    })  
+    navigation.goBack()
 
 }
 
 
  
   return (
-
-  
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} > 
       <ScrollView style={EditProfileStyles.container}
       contentContainerStyle={{justifyContent: 'space-between',  alignItems: 'center' }}
@@ -132,27 +131,20 @@ export default function EditProfile() {
                         borderRadius: 10,
                       }}
                     />
-          
+
           </View>
           </ImageBackground>
         </TouchableOpacity>
        </View>
         <View>
-         <Text style={{marginTop: 10, fontSize: 24,}}> nimi</Text>
+         <Text style={{marginTop: 10, fontSize: 24,}}> </Text>
         </View>
-        <View style={{flexDirection: 'row',
-    marginTop: 15,
-    marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
-    width:'80%'}}>
+        <View style={EditProfileStyles.inputField}>
           <TextInput
             placeholder="username"
-            value={username ? username : ''}
-            onChangeText={(txt) => setUsername({username: txt})}
-            style={{flex: 1,
-              marginTop: Platform.OS === 'ios' ? 0 : -12,
+            value={username}
+            onChangeText={(username) => {setUsername(username)}}
+            style={{flex: 1, 
               paddingLeft: 10,
               color: '#333333',}}
           />

@@ -16,12 +16,13 @@ export default StyleSheet.create ({
         width:'100%'
     },
     inputField: {
-        width: '80%',
-        backgroundColor: '#fff',
-        borderRadius: 50,
-        marginBottom: 40,
-        padding: 15,
-        fontSize: 20,
+        flexDirection: 'row',
+            marginTop: 15,
+            marginBottom: 10,
+            borderBottomWidth: 1,
+            borderBottomColor: '#f2f2f2',
+            paddingBottom: 5,
+            width:'80%'
         
     
     },    

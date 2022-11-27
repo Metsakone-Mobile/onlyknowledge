@@ -1,11 +1,12 @@
 import { View, Text, Image, TouchableOpacity, Modal, ScrollView, SafeAreaView} from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
 import { EvilIcons } from '@expo/vector-icons';
 import MyProfileStyles from './MyProfileStyles'
+import { useFocusEffect } from '@react-navigation/native'
 
 
 
@@ -37,11 +38,12 @@ export default function MyProfile({navigation}) {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(
+    useCallback(() => {
     getUserInfo()
   }, [])
 
-
+  )
 
 
 //<Text key={index} style={myProfileStyles.listSubjects}> {subjects}</Text>
@@ -55,7 +57,7 @@ export default function MyProfile({navigation}) {
       showsVerticalScrollIndicator={false}>
         
         <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
-        <Text style={myProfileStyles.mainTitle}>{name}</Text>
+        <Text style={myProfileStyles.mainTitle}>{username}</Text>
         
         <Text style={myProfileStyles.label}> user ID:{loggedUserID}</Text>
         <View style={myProfileStyles.btnWrapper}>
