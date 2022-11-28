@@ -1,20 +1,26 @@
-import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, Button, Alert} from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextInput,SafeAreaView, ScrollView, ImageBackground, Alert} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER, updateDoc, collection } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import EditProfileStyles from './EditProfileStyles'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 import CustomButton from '../../Customs/CustomButton'
+import * as ImagePicker from 'expo-image-picker'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function EditProfile() {
+
+export default function EditProfile({ navigation, route}) {
+
 
   const { loggedUserID } = useContext(AuthContext)
 
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
-  const [photoURL, setPhotoURL] = useState ('')
+  const [image,setImage]= useState(null)
+  const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
 
+  let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dapbyrfgw/image/upload';
 
   const getUserInfo = async () => {
     console.log(loggedUserID)
@@ -23,6 +29,7 @@ export default function EditProfile() {
 
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
+      setPhotoURL(docSnap.data().photoURL)
     } else {
       console.log("Penus")
     }
@@ -34,50 +41,111 @@ export default function EditProfile() {
   }, [])
 
 
+   const OpenImagePicker = async () => {
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (permissionResult.granted === false) {
+        Alert.alert('Permission to access camera roll is required!');
+        return;
+  }
+    let pickerResult = await ImagePicker.launchImageLibraryAsync({
+    allowsEditing: true,
+    aspect: [4, 3],
+    base64: true
+   });
+      if (!pickerResult.cancelled ===true) {
+        setImage({ image: pickerResult.uri });
+
+      //muutetaan kuvan muoto
+        let base64Img = `data:image/jpg;base64,${pickerResult.base64}`;
+        
+        let data = {
+          "file": base64Img,
+          "upload_preset": "wr3ifdpb",
+        }
+
+    fetch(CLOUDINARY_URL, {
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+    }).then(async r => {
+        let data = await r.json()
+
+       console.log(data.secure_url)
+       setPhotoURL( data.secure_url)
+    }).catch(err=>console.log(err))
+    }
+  }
+ 
+ 
   const updateUser = async () => {
      const docRef = updateDoc(doc(firestore, USER, loggedUserID), {
       name: name,
       username: username,
-      email: email
-    }).then(()=>{
-      console.log ('User is updated')
+      email: email,
+      photoURL: photoURL,
+      
+    }).then(()=> {
       Alert.alert ('Profile is updated!',
       'Your profile has been updated successfully.')
     
     }).catch((error) => {
       console.log('ounou');
-    })       
+    })  
+    navigation.goBack()
+
 }
 
 
  
   return (
-    <View style={EditProfileStyles.container}>
-
-      <Text style={EditProfileStyles.mainTitle}>MY DETAILS: </Text>
-        <View style= {EditProfileStyles.innerContainer}>
-          <TextInput style={EditProfileStyles.inputField}
-              placeholder='name' 
-              value={name}
-              onChangeText={(name) => {setName(name)}}
-            />
-          <TextInput style={EditProfileStyles.inputField}
-            placeholder='username' 
-            value={username}
-            onChangeText={(username) => {setUsername(username)}}
-            />
-
-          <TextInput  style={EditProfileStyles.inputField}
-            placeholder='email' 
-            value={email}
-            onChangeText={(email) => {setEmail(email)}}
-            />
-        </View>
-
-           <Pressable onPress={updateUser}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} > 
+      <ScrollView style={EditProfileStyles.container}
+      contentContainerStyle={{justifyContent: 'space-between',  alignItems: 'center' }}
+      showsVerticalScrollIndicator={false}>
+      <View style= {{marginTop:20}}>
+        <TouchableOpacity>
+          <ImageBackground source={{uri: photoURL }}
+            style={{ width: 100,height: 100,}}
+            imageStyle={{ borderRadius: 6}}>
+            <View style={EditProfileStyles.pictureContainer}>
+              <MaterialCommunityIcons
+                onPress={OpenImagePicker}
+                name="camera"   style={EditProfileStyles.EditPicture}
+                size={35}
+                color="#fff"/>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
+      </View>
+      <View>
+         <Text style={{marginTop: 10, fontSize: 24,}}> </Text>
+      </View>
+      <View style={EditProfileStyles.inputField}>
+        <TextInput 
+          placeholder="name"
+          value={username}
+          onChangeText={(name) => {setName(name)}}
+          style={EditProfileStyles.inputStyle}
+          />
+      </View>
+      <View style={EditProfileStyles.inputField}>
+        <TextInput 
+          placeholder="username"
+          value={username}
+          onChangeText={(username) => {setUsername(username)}}
+          style={EditProfileStyles.inputStyle}
+          />
+      </View>
+       
+      <Pressable onPress={updateUser}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}
       </Pressable>
+    
+    </ScrollView>
+  </SafeAreaView>
 
-    </View>
+
   )
 }
