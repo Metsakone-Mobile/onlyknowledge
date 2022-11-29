@@ -7,6 +7,7 @@ import SubjectButton from '../../Customs/SubjectButton'
 import ProfileDescription from '../../Customs/ProfileDescription'
 import * as ImagePicker from 'expo-image-picker'
 import SignUpStyles from './SignUpStyles'
+import Title from '../../Customs/TextWrappers/Title'
 
 // A component where a new user can create an account.
 
@@ -108,12 +109,7 @@ const OpenImagePicker = async () => {
 
   return (
     <SafeAreaView style={signUpStyles.container}>
-      <Text style={signUpStyles.mainTitle}>ONLY KNOWLEDGE</Text>
-      {
-        favoriteSubjects.map((sub, i) => (
-          <Text key={i}>{sub}</Text>
-        ))
-      }
+      <Title text="Only Knowledge" />
       <ScrollView contentContainerStyle={signUpStyles.signUpContainer} bounces={false}>
             <TextInput style={signUpStyles.inputField} 
             placeholder='Name' 
@@ -164,8 +160,7 @@ const OpenImagePicker = async () => {
                   <Image source={ {uri: photoURL}} style={SignUpStyles.profilePic} />
                 </View>
                 <Text style={signUpStyles.profileText}>Choose profile picture</Text>
-             </TouchableOpacity>
-          
+              </TouchableOpacity>
             </View>
             </View>
             <ProfileDescription setProfileDescription={setProfileDescription}/>
@@ -178,7 +173,7 @@ const OpenImagePicker = async () => {
         <Modal
         animationType='fade'
         visible={modalVisible}
-        onRequestClose= {close}
+        onRequestClose={close}
         >
             <View style={signUpStyles.modalContainer}>
                 <View style={signUpStyles.modalView}>

@@ -1,6 +1,8 @@
 import { View, Text, ScrollView, Pressable} from 'react-native'
 import { useFocusEffect} from '@react-navigation/native'
 import CustomButton2 from '../../Customs/CustomButton2'
+import Title from '../../Customs/TextWrappers/Title'
+import Heading from '../../Customs/TextWrappers/Heading'
 import styles from './AnswerQuickQuestionStyles'
 import React, { useCallback, useState } from 'react'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
@@ -44,7 +46,9 @@ export default function MyOpenQuestionsScreen({navigation}) {
     return (
         <View style={styles.container}>
             <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-            <Text style={styles.mainTitle}>Open questions</Text>
+            <Title text="Only Knowledge" />
+            <Heading text="Open questions" />
+            <View style={{alignItems: 'center'}}>
             {openQuestions.map(question => (
                 <View style={styles.questionCard} key={question.question_input}>
                     <Text style={styles.questionText}>Asked by: {question.name}</Text>
@@ -58,6 +62,7 @@ export default function MyOpenQuestionsScreen({navigation}) {
                     </View>
                 </View>
             ))}
+            </View>
             </ScrollView>
         </View>
       )

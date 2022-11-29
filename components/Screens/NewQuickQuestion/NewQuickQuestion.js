@@ -4,7 +4,8 @@ import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection } f
 import quickQuestionStyles from './NewQuickQuestionStyles'
 import { AuthContext } from '../../../context/AuthContext'
 import CustomButton from '../../Customs/CustomButton'
-
+import Title from '../../Customs/TextWrappers/Title'
+import Heading from '../../Customs/TextWrappers/Heading'
 
 
 export default function NewQuickQuestion() {
@@ -46,8 +47,8 @@ export default function NewQuickQuestion() {
 
   return (
     <ScrollView contentContainerStyle={quickQuestionStyles.container}>
-      <Text style={quickQuestionStyles.mainTitle}>Quick Question</Text>
-
+      <Title text="Only Knowledge" />
+      <Heading text='New quick question' />
       <View style={quickQuestionStyles.innerContainer}>
         <TextInput
           style={quickQuestionStyles.questionBox}

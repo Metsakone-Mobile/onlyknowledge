@@ -1,26 +1,27 @@
 import { View, Text, Pressable } from 'react-native'
 import React from 'react'
 import homeScreenStyles from './HomeScreenStyles'
+import CustomButton from '../../Customs/CustomButton'
+import Title from '../../Customs/TextWrappers/Title'
 
 export default function HomeScreen({ navigation }) {
 
+  const goToFindATutor = () => {
+    navigation.navigate('Find a tutor')
+  }
 
+  const goToQuickQuestion = () => {
+    navigation.navigate('Quick question navigator')
+  }
   return (
     <View style={homeScreenStyles.container}>
-      <Text style={homeScreenStyles.mainTitle}>Only Knowledge</Text>
-      <View style={homeScreenStyles.innerContainer}>
-        <Pressable
-          style={homeScreenStyles.pressable}>
-          <Text
-            style={homeScreenStyles.label}
-            onPress={() => navigation.navigate('Find a tutor')}>Find a tutor</Text>
+      <Title text="Only Knowledge" />
+        <Pressable onPress={goToFindATutor} style={{margin: 40}}>
+          {(state) => <CustomButton pressed={state.pressed} buttonText='Find a tutor' />}
         </Pressable>
-        <Pressable
-          style={homeScreenStyles.pressable}
-          onPress={() => navigation.navigate('Quick question navigator')}>
-          <Text style={homeScreenStyles.label}>Quick question</Text>
-        </Pressable>
-      </View>
+        <Pressable onPress={goToQuickQuestion} style={{margin: 20}}>
+          {(state) => <CustomButton pressed={state.pressed} buttonText='Quick question' />}
+        </Pressable> 
     </View>
   )
 }

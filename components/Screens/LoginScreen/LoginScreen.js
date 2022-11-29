@@ -4,6 +4,7 @@ import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import React, { useState, useContext } from 'react'
 import loginStyles from './LoginScreenStyles'
 import CustomButton from '../../Customs/CustomButton'
+import Title from '../../Customs/TextWrappers/Title'
 import { AuthContext } from '../../../context/AuthContext'
 
 // A user with an existing account can log in.
@@ -49,7 +50,7 @@ export default function LoginScreen() {
 
   return (
     <View style={loginStyles.container}>
-      <Text style={loginStyles.mainTitle}>ONLY KNOWLEDGE</Text>
+      <Title text="Only Knowledge" />
         <View style={loginStyles.loginContainer}>
             <TextInput style={loginStyles.inputField} 
             placeholder='Enter email address' 
