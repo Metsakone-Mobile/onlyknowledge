@@ -7,11 +7,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         padding: 20,
     },
-    mainTitle: {
-        marginTop: 50,
-        fontSize: 36,
-        marginBottom: 80
-    }, 
     inputField: {
         minHeight: 150,
         width: '100%',
@@ -19,7 +14,6 @@ export default StyleSheet.create({
         marginBottom: 20,
         backgroundColor: '#fff',
         borderRadius: 10,
-        borderWidth: 1,
         fontSize:20,
     },
     label: {
@@ -29,7 +23,7 @@ export default StyleSheet.create({
     questionContainer: {
         width: '100%',
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
     },
     questionText: {
         fontSize: 24,

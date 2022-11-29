@@ -1,6 +1,9 @@
 import { View, Text, TextInput, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useState, useContext } from 'react'
 import CustomButton from '../../Customs/CustomButton'
+import Title from '../../Customs/TextWrappers/Title'
+import Heading from '../../Customs/TextWrappers/Heading'
+import Label from '../../Customs/TextWrappers/Label'
 import { firestore, doc, updateDoc, USER, getDoc } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import styles from './GiveAnswerStyles'
@@ -38,22 +41,25 @@ export default function GiveAnswerScreen({ navigation, route}) {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.mainTitle}>Spread your wisdom</Text>
-      <Text style={styles.label}>The question</Text>  
-      <View style={styles.questionContainer}>
-      <Text style={styles.questionText}>{route.params?.q}</Text>
-      </View>
-      <Text style={styles.label}>The Answer</Text>
-      <TextInput style={styles.inputField}
-        placeholder='The answer is...'
-        multiline={true}
-        value={answer}
-        onChangeText={text => setAnswer(text)}
-      />
-      <Pressable onPress={submitAnswer}>
-        {(state) => <CustomButton pressed={state.pressed} buttonText='Submit answer' />}
-      </Pressable>
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView>
+        <Title text="Only Knowledge" />
+        <Heading text="Spread your wisdom" />
+        <Label text="The question:" sizeOfFont={28} />  
+        <View style={styles.questionContainer}>
+        <Text style={styles.questionText}>{route.params?.q}</Text>
+        </View>
+        <Label text="The answer:" sizeOfFont={28} />
+        <TextInput style={styles.inputField}
+          placeholder='The answer is...'
+          multiline={true}
+          value={answer}
+          onChangeText={text => setAnswer(text)}
+        />
+        <Pressable onPress={submitAnswer}>
+          {(state) => <CustomButton pressed={state.pressed} buttonText='Submit answer' />}
+        </Pressable>
+      </ScrollView>
+    </View>
   )
 }

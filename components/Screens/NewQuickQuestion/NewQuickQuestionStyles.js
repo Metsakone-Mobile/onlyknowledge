@@ -8,17 +8,13 @@ export default StyleSheet.create({
         marginBottom: 20,
         backgroundColor: '#fff',
         borderRadius: 10,
-        borderWidth: 1,
         fontSize:20,
     },
     container: {
         flex: 1,
         backgroundColor: '#e5e5e5',
         alignItems: 'center',
-      },
-      mainTitle: {
-          marginTop: 50,
-          fontSize: 36,
+        paddingTop: 20,
       },
       innerContainer: {
           marginTop: 40,

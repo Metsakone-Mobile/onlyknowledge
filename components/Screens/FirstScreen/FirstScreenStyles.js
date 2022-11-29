@@ -24,7 +24,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'baseline'
-    },    container: {
+    },    
+        container: {
         flex: 1,
         backgroundColor: '#e5e5e5',
         alignItems: 'center',

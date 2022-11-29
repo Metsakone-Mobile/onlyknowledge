@@ -5,6 +5,7 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#e5e5e5',
         alignItems: 'center',
+        paddingTop: 20
     },
     mainTitle: {
         marginTop: 50,
@@ -16,7 +17,9 @@ export default StyleSheet.create({
         width: '80%',
         backgroundColor: '#f5f2eb',
         paddingLeft: 20,
+        paddingRight: 20,
         paddingTop: 5,
-        marginBottom: 20,
+        marginBottom: 10,
+        marginTop: 20
     },
 })
