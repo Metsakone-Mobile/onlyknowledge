@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from 'react-native'
 import React from 'react'
 import homeScreenStyles from './HomeScreenStyles'
-import CustomButton from '../../Customs/CustomButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
 
 export default function HomeScreen({ navigation }) {

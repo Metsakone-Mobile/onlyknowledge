@@ -3,14 +3,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection } from '../../../firebase/Config'
 import quickQuestionStyles from './NewQuickQuestionStyles'
 import { AuthContext } from '../../../context/AuthContext'
-import CustomButton from '../../Customs/CustomButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
+import SubjectChoicePanel from '../../Customs/SubjectChoicePanel'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
+import Label from '../../Customs/TextWrappers/Label'
 
 
 export default function NewQuickQuestion() {
   const [question_input, setQuestion_Input] = useState('');
-  const [question_field, setQuestion_Field] = useState('');
+  const [subjects, setSubjects] = useState([])
   const [name, setName] = useState('');
   const { loggedUserID } = useContext(AuthContext)
 
@@ -41,6 +43,7 @@ export default function NewQuickQuestion() {
       name: name,
       userId: loggedUserID,
       answered: false,
+      subjects: subjects,
       date: new Date().toLocaleDateString()
     });
     }
@@ -52,11 +55,13 @@ export default function NewQuickQuestion() {
       <View style={quickQuestionStyles.innerContainer}>
         <TextInput
           style={quickQuestionStyles.questionBox}
-          placeholder='Start typing...'
+          placeholder='Type your question...'
           multiline={true}
           numberOfLines={30}
           onChangeText={text => setQuestion_Input(text)} />
       </View>
+      <Label text="Question is about:" sizeOfFont={28} />
+      <SubjectChoicePanel favoriteSubjects={subjects} setFavoriteSubjects={setSubjects} />
       <Pressable onPress={saveQuestion}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit'} />}
       </Pressable>

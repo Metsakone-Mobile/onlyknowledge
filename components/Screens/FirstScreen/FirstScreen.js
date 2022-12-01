@@ -1,8 +1,8 @@
 import { SafeAreaView, View, Text, Image, Pressable, Button, ScrollView } from 'react-native'
 import React from 'react'
 import firstScreenStyles from './FirstScreenStyles'
-import CustomButton from '../../Customs/CustomButton'
-import PrettyButton from '../../Customs/PrettyButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
+import PrettyButton from '../../Customs/Buttons/PrettyButton'
 import Title from '../../Customs/TextWrappers/Title'
 
 // The first screen to be shown when the app is launched.

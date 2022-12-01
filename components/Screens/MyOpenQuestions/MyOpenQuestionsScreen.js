@@ -1,8 +1,9 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import styles from './MyOpenQuestionsStyles'
 import React, { useEffect, useState, useContext } from 'react'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
+import MyOpenQuestionCard from '../../Customs/QuestionCards/MyOpenQuestionCard'
 import { AuthContext } from '../../../context/AuthContext'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
 
@@ -26,6 +27,7 @@ export default function MyOpenQuestionsScreen() {
           userId: doc.data().userId,
           date: doc.data().date,
           questionId: doc.id,
+          subjects: doc.data().subjects
         }
         tempOpenQuestions.push(formedQuestion)
     })
@@ -42,17 +44,15 @@ export default function MyOpenQuestionsScreen() {
     return <View><Text>Loading...</Text></View>
   } else {
     return (
+      <ScrollView style={{backgroundColor: '#e5e5e5'}}>
         <View style={styles.container}>
           <Title text="Only Knowledge" />
           <Heading text="My open questions" />
            {openQuestions.map(question => (
-            <View style={styles.questionCard} key={question.question_input}>
-                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{question.date}</Text>
-                <Text style={{fontWeight: 'bold'}}>Question:</Text>
-                <Text>{question.question_input}</Text>
-            </View>
+              <MyOpenQuestionCard key={question.questionId} question={question} />
            ))}
         </View>
+        </ScrollView> 
       )
   }
   

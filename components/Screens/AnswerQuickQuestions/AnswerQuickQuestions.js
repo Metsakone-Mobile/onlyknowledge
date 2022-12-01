@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Pressable} from 'react-native'
 import { useFocusEffect} from '@react-navigation/native'
-import CustomButton2 from '../../Customs/CustomButton2'
+import AnswerQuestionCard from '../../Customs/QuestionCards/AnswerQuestionCard'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
 import styles from './AnswerQuickQuestionStyles'
@@ -25,7 +25,8 @@ export default function MyOpenQuestionsScreen({navigation}) {
             name: doc.data().name,
             question_input: doc.data().question_input,
             userId: doc.data().userId,
-            questionId: doc.id
+            questionId: doc.id,
+            subjects: doc.data().subjects
           }
         tempOpenQuestions.push(formedQuestion)
     })
@@ -40,31 +41,22 @@ export default function MyOpenQuestionsScreen({navigation}) {
     }, [])
   )
 
+  const goGiveAnswer = (question) => {
+    navigation.navigate('Give answer', {q : question.question_input, qID : question.questionId})
+  }
   if(isLoaded === false) {
     return <View><Text>Loading...</Text></View>
   } else {
     return (
+      <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-            <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
             <Title text="Only Knowledge" />
             <Heading text="Open questions" />
-            <View style={{alignItems: 'center'}}>
             {openQuestions.map(question => (
-                <View style={styles.questionCard} key={question.question_input}>
-                    <Text style={styles.questionText}>Asked by: {question.name}</Text>
-                    <Text style={styles.questionText}>Asked on: {question.date}</Text>
-                    <Text style={{fontWeight: 'bold', fontSize: 18}}>Question:</Text>
-                    <Text style={{fontSize: 18}}>{question.question_input}</Text>
-                    <View style={{flex: 1, alignItems: 'center'}}>
-                    <Pressable onPress={() => navigation.navigate('Give answer', {q : question.question_input, qID : question.questionId})}>
-                        {(state) =>  <CustomButton2 pressed={state.pressed} buttonText='I know this' /> }
-                    </Pressable>
-                    </View>
-                </View>
+                <AnswerQuestionCard key={question.questionId} question={question} goGiveAnswer={() => goGiveAnswer(question)}/>
             ))}
-            </View>
-            </ScrollView>
         </View>
+        </ScrollView> 
       )
   }
   

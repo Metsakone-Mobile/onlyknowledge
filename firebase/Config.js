@@ -1,11 +1,9 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
-import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot, database, where, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot, database, where, getDocs, updateDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-
-
-
+  
 }
 
   initializeApp(firebaseConfig)
@@ -32,5 +30,6 @@ const firebaseConfig = {
     QUESTIONS,
     SUBJECTS,
     where,
-    getDocs
+    getDocs,
+    updateDoc
   }

@@ -2,8 +2,8 @@ import { View, SafeAreaView, Text, TextInput, Pressable, Button, Modal, ScrollVi
 import React, { useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword, firestore, setDoc, doc, USER } from '../../../firebase/Config'
 import signUpStyles from './SignUpStyles'
-import CustomButton from '../../Customs/CustomButton'
-import SubjectButton from '../../Customs/SubjectButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
+import SubjectChoicePanel from '../../Customs/SubjectChoicePanel'
 import ProfileDescription from '../../Customs/ProfileDescription'
 import * as ImagePicker from 'expo-image-picker'
 import SignUpStyles from './SignUpStyles'
@@ -151,7 +151,7 @@ const OpenImagePicker = async () => {
             </View>
             <Text style={signUpStyles.label}>Favorite subjects</Text>
             <View style={signUpStyles.buttonContainer}>
-            <SubjectButton favoriteSubjects={favoriteSubjects} setFavoriteSubjects={setFavoriteSubjects}/>
+            <SubjectChoicePanel favoriteSubjects={favoriteSubjects} setFavoriteSubjects={setFavoriteSubjects}/>
             </View>
             <View style={signUpStyles.container}>
             <View style={SignUpStyles.ProfilepicView}>

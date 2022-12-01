@@ -4,7 +4,7 @@ import { firestore, doc, getDoc, USER, updateDoc, collection } from '../../../fi
 import { AuthContext } from '../../../context/AuthContext'
 import EditProfileStyles from './EditProfileStyles'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
-import CustomButton from '../../Customs/CustomButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
 import * as ImagePicker from 'expo-image-picker'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

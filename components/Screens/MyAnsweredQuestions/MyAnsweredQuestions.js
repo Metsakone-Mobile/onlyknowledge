@@ -1,8 +1,9 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import styles from './MyAnsweredQuestionsStyles'
 import React, { useEffect, useState, useContext } from 'react'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
+import MyClosedQuestionCard from '../../Customs/QuestionCards/MyClosedQuestionCard'
 import { AuthContext } from '../../../context/AuthContext'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
 
@@ -43,21 +44,15 @@ export default function MyOpenQuestionsScreen() {
     return <View><Text>Loading...</Text></View>
   } else {
     return (
+      <ScrollView style={{backgroundColor: '#e5e5e5'}}>
         <View style={styles.container}>
           <Title text="Only Knowledge" />
           <Heading text="My closed questions" />
            {openQuestions.map(question => (
-            <View style={styles.questionCard} key={question.question_input}>
-                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{question.date}</Text>
-                <Text style={{fontWeight: 'bold'}}>Question:</Text>
-                <Text>{question.question_input}</Text>
-                <Text style={{fontWeight: 'bold'}}>Answer:</Text>
-                <Text>{question.answer}</Text>
-                <Text>Answered by: {question.answeredBy}</Text>
-            </View>
+              <MyClosedQuestionCard key={question.question_input} question={question} />
            ))}
         </View>
+      </ScrollView> 
       )
   }
-  
 }
