@@ -1,6 +1,6 @@
 import { View, Text, TextInput, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useState, useContext } from 'react'
-import CustomButton from '../../Customs/CustomButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
 import Label from '../../Customs/TextWrappers/Label'
@@ -28,10 +28,12 @@ export default function GiveAnswerScreen({ navigation, route}) {
 
   useEffect(() => {
     getUserInfo()
+    console.log(route.params?.qID)
   }, [])
 
   const submitAnswer = async() => {
     const questionToAnswerRef = doc(firestore, 'Questions', route.params?.qID)
+    console.log(questionToAnswerRef)
     await updateDoc(questionToAnswerRef, {
         answer: answer,
         answered: true,

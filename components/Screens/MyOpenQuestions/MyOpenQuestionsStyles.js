@@ -12,14 +12,4 @@ export default StyleSheet.create({
         fontSize: 36,
         marginBottom: 80
     }, 
-    questionCard: {
-        minHeight: 120,
-        width: '80%',
-        backgroundColor: '#f5f2eb',
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 5,
-        marginBottom: 10,
-        marginTop: 20
-    },
 })

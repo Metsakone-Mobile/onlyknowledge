@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from 'react-native'
 import React, { useContext } from 'react'
 import styles from './QuickQuestionMainStyles'
-import CustomButton from '../../Customs/CustomButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
 import { AuthContext } from '../../../context/AuthContext'
 

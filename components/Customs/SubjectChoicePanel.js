@@ -1,8 +1,7 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
-import subjectButtonStyles from './SubjectButtonStyles'
 
-export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) { 
+export default function SubjectChoicePanel({favoriteSubjects, setFavoriteSubjects}) { 
 
   const [subjects, setSubjects] = useState([
     {
@@ -43,11 +42,9 @@ export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) {
       if(chosenSubject.isChosen){
         chosenFavorites.push(chosenSubject.value)
         setFavoriteSubjects(chosenFavorites)
-        console.log('chosen favorites with addition: ', chosenFavorites)
       } else if(!chosenSubject.isChosen){
         chosenFavorites = chosenFavorites.filter(favorite => favorite !== chosenSubject.value)
         setFavoriteSubjects(chosenFavorites)
-        console.log('chosen favorites with reduction: ', chosenFavorites)
       }
     }
   }
@@ -55,13 +52,44 @@ export default function SubjectButton({favoriteSubjects, setFavoriteSubjects}) {
   return (
     <>
       {subjects.map((subject) => (
-        <View key={subject.value} style={subjectButtonStyles.subjectButtonContainer}>
-            <Text style={subjectButtonStyles.label}>{subject.label}</Text>
-            <Pressable style={subjectButtonStyles.unChecked} onPress={() => handlePress(subject)}>
-                {subject.isChosen === true && handlePress && <View style={subjectButtonStyles.checked} />}
+        <View key={subject.value} style={styles.subjectButtonContainer}>
+            <Text style={styles.label}>{subject.label}</Text>
+            <Pressable style={styles.unChecked} onPress={() => handlePress(subject)}>
+                {subject.isChosen === true && handlePress && <View style={styles.checked} />}
             </Pressable>
         </View>
     ))}
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  subjectButtonContainer: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      width: '80%',
+      marginTop: 12,
+  },
+  unChecked: {
+      height: 40,
+      width: 40,
+      borderRadius: 10,
+      borderWidth: 3,
+      borderColor: '#000',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  checked: {
+      width: 30,
+      height: 30,
+      borderRadius: 5,
+      backgroundColor: '#eca04d'
+  },
+  label: {
+      marginTop: 5,
+      fontSize: 24,
+      color: '#000',
+      fontWeight: 'bold',
+  }
+})

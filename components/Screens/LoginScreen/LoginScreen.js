@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from '../../../firebase/Config'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import React, { useState, useContext } from 'react'
 import loginStyles from './LoginScreenStyles'
-import CustomButton from '../../Customs/CustomButton'
+import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
 import { AuthContext } from '../../../context/AuthContext'
 

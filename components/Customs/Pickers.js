@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker'
 import { AuthContext } from '../../context/AuthContext';
 import { firestore, setDoc, addDoc, doc, getDoc, QUESTIONS, USER, collection, SUBJECTS, database } from '../../firebase/Config'
-import CustomButton from './CustomButton';
+import CustomButton from './Buttons/CustomButton';
 
 export default function Pickers() {
 

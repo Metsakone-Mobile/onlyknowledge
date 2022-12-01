@@ -7,13 +7,4 @@ export default StyleSheet.create({
         alignItems: 'center',
         paddingTop: 20
     },
-    questionCard: {
-        minHeight: 120,
-        width: '80%',
-        backgroundColor: '#f5f2eb',
-        paddingLeft: 20,
-        paddingTop: 5,
-        marginBottom: 10,
-        marginTop: 20
-    },
 })
