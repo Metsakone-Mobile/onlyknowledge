@@ -13,6 +13,7 @@ export default function GiveAnswerScreen({ navigation, route}) {
   const { loggedUserID } = useContext(AuthContext)
   const [answer, setAnswer] = useState('')
   const [username, setUsername] = useState('')  
+  const [tokens, setTokens] = useState(null)
 
   const getUserInfo = async () => {
     console.log(loggedUserID)
@@ -21,6 +22,7 @@ export default function GiveAnswerScreen({ navigation, route}) {
 
     if (docSnap.exists()) {
       setUsername(docSnap.data().username)
+      setTokens(docSnap.data().tokens)
     } else {
       console.log("Voe mavon silimä")
     }
@@ -38,6 +40,14 @@ export default function GiveAnswerScreen({ navigation, route}) {
         answer: answer,
         answered: true,
         answeredBy: username
+    })
+    rewardTokens()
+  }
+
+  const rewardTokens = async() => {
+    const userRef = doc(firestore, USER, loggedUserID)
+    await updateDoc(userRef, {
+      tokens: tokens + 3
     })
     navigation.goBack()
   }

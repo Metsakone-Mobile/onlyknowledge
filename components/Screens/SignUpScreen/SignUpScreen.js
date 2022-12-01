@@ -56,7 +56,8 @@ export default function SignUpScreen({ navigation }) {
       isTutor: isTutor,
       favoriteSubjects: favoriteSubjects,
       profileDescription: profileDescription,
-      photoURL: photoURL
+      photoURL: photoURL,
+      tokens: 14
     }).catch(err => console.log(err))
   }        
 

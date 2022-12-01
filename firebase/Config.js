@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } f
 import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot, database, where, getDocs, updateDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-  
+
 }
 
   initializeApp(firebaseConfig)
