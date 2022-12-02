@@ -2,11 +2,18 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create ({
+   
     container: {
       flex:1,
-      backgroundColor: '#e5e5e5',
-    
+      justifyContent:'center',
+      alignItems:'center' ,
+      backgroundColor: '#fcf4e8',
       width:'100%'
+     },
+     
+    innerContainer:{
+      width:'90%',
+      marginBottom:15,
     },
     profilePic:{
         width: 150,
@@ -14,7 +21,6 @@ export default StyleSheet.create ({
         borderRadius: 150 / 2,
         marginTop: 20,
     },
-
     mainTitle: {
       fontSize: 30, 
       marginBottom:10,
@@ -22,10 +28,18 @@ export default StyleSheet.create ({
       
       },  
       label: {
+        marginTop:10,
         fontSize: 15, 
-        marginBottom:10,
+        marginBottom:5,
+        fontWeight: '600',
        
       },  
+      aboutUser:{
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#666',
+        textAlign: 'center'
+      },
       listSubjects: {
       fontSize: 14,
       marginBottom: 20,
@@ -78,7 +92,7 @@ export default StyleSheet.create ({
     },
     btn:{
       borderColor: '#FF9800',
-      backgroundColor:'#f5f5f5',
+      backgroundColor: '#fcf4e8',
       borderWidth: 2,
       borderRadius: 3,
       paddingVertical: 8,

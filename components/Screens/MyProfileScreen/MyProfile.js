@@ -16,6 +16,7 @@ export default function MyProfile({navigation}) {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
+  const [profileDescription, setProfileDescription] = useState('')
   const [subjects, setSubjects] = useState([])
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
 
@@ -33,6 +34,7 @@ export default function MyProfile({navigation}) {
       setUsername(docSnap.data().username)
       setSubjects(docSnap.data().favoriteSubjects)
       setPhotoURL(docSnap.data().photoURL)
+      setProfileDescription(docSnap.data().profileDescription)
     } else {
       console.log("Voe mavon silimä")
     }
@@ -46,16 +48,13 @@ export default function MyProfile({navigation}) {
   )
 
 
+
+
   return (  
   <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} >
-    <ScrollView  style={MyProfileStyles.container}
-      contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
-      showsVerticalScrollIndicator={false}>
-        
+    <View style={myProfileStyles.container}>
       <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
-      <Text style={myProfileStyles.mainTitle}>{username}</Text>
-        
-      <Text style={myProfileStyles.label}> user ID:{loggedUserID}</Text>
+      <Text style={myProfileStyles.mainTitle}>{name}</Text>
       <View style={myProfileStyles.btnWrapper}>
         <TouchableOpacity style={myProfileStyles.btn}
           onPress={() => {navigation.navigate('Edit Profile')}}>
@@ -66,20 +65,29 @@ export default function MyProfile({navigation}) {
           <Text style={{color: '#000000'}}>Logout</Text>
         </TouchableOpacity>
       </View>
+      <ScrollView  style={MyProfileStyles.innerContainer}
+        contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
+        showsVerticalScrollIndicator={false}>
+     
+      <View style={myProfileStyles.innerContainer}>
+        <Text style={myProfileStyles.label}> ABOUT ME</Text>
+        <Text style={myProfileStyles.aboutUser}>{profileDescription}</Text>
+      </View>
       <Text>My Favorite subjects:</Text>
       <View style={{width: '80%'}}>
         <Pickers/>
       </View>
 
-     {/*  <View style={myProfileStyles.subjectsContainer}>
+      <View style={myProfileStyles.subjectsContainer}>
         {subjects.map((favoriteSubjects, index) =>{
           return(
           <Text key={index} style={myProfileStyles.listSubjects}> {favoriteSubjects}</Text>);
         })}
+ 
+      </View> 
 
-      </View> */}
-
-    </ScrollView>
+      </ScrollView> 
+    </View>
   </SafeAreaView>
 
   )
