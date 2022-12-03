@@ -15,7 +15,7 @@ export default StyleSheet.create({
         width:'100%',
         height: 450 ,
         padding:30,
-        backgroundColor: '#ffca99',
+        backgroundColor: '#ffdab8',
               
     },
     containerDetails:{
