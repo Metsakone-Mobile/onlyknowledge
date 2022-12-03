@@ -13,8 +13,10 @@ export default StyleSheet.create({
     },
     upperContainer:{
         width:'100%',
-        height: 450 ,
+        height: '60%' ,
         padding:30,
+        alignItems: 'center',
+        justifyContent:'center',
         backgroundColor: '#ffdab8',
               
     },
