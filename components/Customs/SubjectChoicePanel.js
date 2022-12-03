@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   unChecked: {
       height: 40,
       width: 40,
-      borderRadius: 10,
+      borderRadius: '50%',
       borderWidth: 3,
       borderColor: '#000',
       alignItems: 'center',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   checked: {
       width: 30,
       height: 30,
-      borderRadius: 5,
+      borderRadius: '50%',
       backgroundColor: '#eca04d'
   },
   label: {
