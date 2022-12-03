@@ -14,8 +14,8 @@ export default function Circles() {
 const styles= StyleSheet.create({
     circle1: {
         position: 'absolute',
-        right: '-69%',
-        top: '-50%',
+        right: 69,
+        top: 50,
         height: 700,
         width: 700,
         borderRadius: 350,
@@ -23,8 +23,8 @@ const styles= StyleSheet.create({
     },
     circle2: {
         position: 'absolute',
-        bottom: '-20%',
-        left: '-20%',
+        bottom: 20,
+        left: 20,
         backgroundColor: '#f7884d',
         width: 300,
         height: 300,
@@ -32,8 +32,8 @@ const styles= StyleSheet.create({
     },
     circle3: {
         position: 'absolute',
-        top: '60%',
-        right: '10%',
+        top: 60,
+        right: 10,
         width: 150,
         height: 150,
         borderRadius: 75,

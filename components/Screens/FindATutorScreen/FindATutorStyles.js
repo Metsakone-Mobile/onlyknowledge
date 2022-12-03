@@ -12,8 +12,9 @@ export const findATutorStyles = StyleSheet.create({
         marginBottom: 80
     }, 
     tutorCard: {
+      opacity: 0.5,
         minHeight: 120,
-        width: '80%',
+        width: '50%',
         backgroundColor: '#f5f0f0',
         paddingLeft: 20,
         paddingTop: 5,

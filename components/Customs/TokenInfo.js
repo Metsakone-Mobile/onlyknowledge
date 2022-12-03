@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons'
 export default function TokenInfo({username, tokens}) {
 
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'strech', }}>
+    <View style={{ justifyContent: 'center', alignItems: 'stretch', }}>
       <Heading text="Welcome to tutoring app! " />
       <Heading text={username} />
       <AntDesign name="heart" size={64} color="#a8030e" />

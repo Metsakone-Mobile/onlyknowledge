@@ -4,8 +4,9 @@ import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapsho
 
 const firebaseConfig = {
 
-}
+  
 
+}
   initializeApp(firebaseConfig)
   const firestore = getFirestore()
 
