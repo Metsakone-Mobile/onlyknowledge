@@ -5,6 +5,7 @@ import quickQuestionStyles from './NewQuickQuestionStyles'
 import { AuthContext } from '../../../context/AuthContext'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import SubjectChoicePanel from '../../Customs/SubjectChoicePanel'
+import Circles from '../../Customs/Decoratives/Circles'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
 import Label from '../../Customs/TextWrappers/Label'
@@ -65,6 +66,7 @@ export default function NewQuickQuestion({navigation}) {
 
   return (
     <ScrollView contentContainerStyle={quickQuestionStyles.container}>
+      <Circles />
       <Title text="Only Knowledge" />
       <Heading text='New quick question' />
       <View style={quickQuestionStyles.innerContainer}>

@@ -7,9 +7,4 @@ export default StyleSheet.create({
         alignItems: 'center',
         paddingTop: 20
     },
-    mainTitle: {
-        marginTop: 50,
-        fontSize: 36,
-        marginBottom: 80
-    }, 
 })

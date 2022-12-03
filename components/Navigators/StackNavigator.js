@@ -14,7 +14,7 @@ export default function StackNavigator() {
 
   return (
     <Stack.Navigator>
-        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}} />
         <Stack.Screen name='Find a tutor' component={FindATutor} />
         <Stack.Screen name='Quick question navigator' component={QuickQuestionNavigator} options={{headerShown: false}} />
     </Stack.Navigator>

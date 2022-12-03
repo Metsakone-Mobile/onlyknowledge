@@ -3,6 +3,7 @@ import styles from './MyAnsweredQuestionsStyles'
 import React, { useEffect, useState, useContext } from 'react'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
+import Circles from '../../Customs/Decoratives/Circles'
 import MyClosedQuestionCard from '../../Customs/QuestionCards/MyClosedQuestionCard'
 import { AuthContext } from '../../../context/AuthContext'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
@@ -44,15 +45,16 @@ export default function MyOpenQuestionsScreen() {
     return <View><Text>Loading...</Text></View>
   } else {
     return (
-      <ScrollView style={{backgroundColor: '#e5e5e5'}}>
-        <View style={styles.container}>
-          <Title text="Only Knowledge" />
-          <Heading text="My closed questions" />
-           {openQuestions.map(question => (
-              <MyClosedQuestionCard key={question.question_input} question={question} />
-           ))}
-        </View>
-      </ScrollView> 
+      <View style={styles.container}>
+        <Circles />
+        <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+            <Title text="Only Knowledge" />
+            <Heading text="My closed questions" />
+            {openQuestions.map(question => (
+                <MyClosedQuestionCard key={question.questionId} question={question} />
+            ))}
+        </ScrollView> 
+      </View>
       )
   }
 }

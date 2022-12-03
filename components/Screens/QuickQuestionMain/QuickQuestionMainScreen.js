@@ -3,7 +3,10 @@ import React, { useContext } from 'react'
 import styles from './QuickQuestionMainStyles'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
+import Circles from '../../Customs/Decoratives/Circles'
 import { AuthContext } from '../../../context/AuthContext'
+
+
 
 export default function QuickQuestionMainScreen({navigation}) {
 
@@ -25,8 +28,10 @@ export default function QuickQuestionMainScreen({navigation}) {
     navigation.navigate('Answer questions')
   }
 
+
   return (
     <View style={styles.container}>
+      <Circles />
       <Title text="Only Knowledge" />
       <View style={{flex: 1, marginTop: 40}}>
       <Pressable style={{margin: 20}} onPress={goToNewQuestion}>

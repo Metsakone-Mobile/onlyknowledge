@@ -4,6 +4,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
 import MyOpenQuestionCard from '../../Customs/QuestionCards/MyOpenQuestionCard'
+import Circles from '../../Customs/Decoratives/Circles'
 import { AuthContext } from '../../../context/AuthContext'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
 
@@ -44,15 +45,17 @@ export default function MyOpenQuestionsScreen() {
     return <View><Text>Loading...</Text></View>
   } else {
     return (
-      <ScrollView style={{backgroundColor: '#e5e5e5'}}>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <Circles />
+        <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
           <Title text="Only Knowledge" />
           <Heading text="My open questions" />
            {openQuestions.map(question => (
               <MyOpenQuestionCard key={question.questionId} question={question} />
            ))}
-        </View>
+
         </ScrollView> 
+      </View> 
       )
   }
   

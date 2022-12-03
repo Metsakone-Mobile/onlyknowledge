@@ -35,7 +35,6 @@ export default StyleSheet.create({
         fontSize: 36,
     },
     container: {
-        flex: 1,
         backgroundColor: '#f5f0f0',
         alignItems: 'center',
         paddingTop: 20,
