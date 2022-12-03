@@ -4,6 +4,7 @@ import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
 import Label from '../../Customs/TextWrappers/Label'
+import Circles from '../../Customs/Decoratives/Circles'
 import { firestore, doc, updateDoc, USER, getDoc } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import styles from './GiveAnswerStyles'
@@ -54,6 +55,7 @@ export default function GiveAnswerScreen({ navigation, route}) {
 
   return (
     <View style={styles.container}>
+      <Circles />
       <ScrollView>
         <Title text="Only Knowledge" />
         <Heading text="Spread your wisdom" />

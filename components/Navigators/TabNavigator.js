@@ -15,12 +15,13 @@ export default function TabNavigator() {
 
     <Tab.Navigator>
       <Tab.Screen
-        name='Home'
+        name='Main'
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" color={color} size={20} />
           ),
-          headerShown: false
+          headerShown: false,
+          title: 'Home'
         }} component={StackNavigator} />
 
       <Tab.Screen name='Notifications'

@@ -26,7 +26,8 @@ export default function AnswerQuestionCard({question, goGiveAnswer}) {
 const styles = StyleSheet.create({
     questionCard: {
         minHeight: 120,
-        width: '80%',
+        width: '100%',
+        borderRadius: 10,
         backgroundColor: '#f5f2eb',
         paddingLeft: 20,
         paddingRight: 20,

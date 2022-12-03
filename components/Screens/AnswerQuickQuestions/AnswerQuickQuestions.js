@@ -3,6 +3,7 @@ import { useFocusEffect} from '@react-navigation/native'
 import AnswerQuestionCard from '../../Customs/QuestionCards/AnswerQuestionCard'
 import Title from '../../Customs/TextWrappers/Title'
 import Heading from '../../Customs/TextWrappers/Heading'
+import Circles from '../../Customs/Decoratives/Circles'
 import styles from './AnswerQuickQuestionStyles'
 import React, { useCallback, useState } from 'react'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
@@ -48,15 +49,16 @@ export default function MyOpenQuestionsScreen({navigation}) {
     return <View><Text>Loading...</Text></View>
   } else {
     return (
-      <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
+      <View style={styles.container} >
+        <Circles />
+        <ScrollView style={{flex:1}} showsVerticalScrollIndicator={false}>
             <Title text="Only Knowledge" />
             <Heading text="Open questions" />
             {openQuestions.map(question => (
                 <AnswerQuestionCard key={question.questionId} question={question} goGiveAnswer={() => goGiveAnswer(question)}/>
             ))}
-        </View>
-        </ScrollView> 
+        </ScrollView>
+        </View> 
       )
   }
   

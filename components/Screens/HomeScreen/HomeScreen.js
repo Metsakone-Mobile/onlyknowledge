@@ -49,7 +49,7 @@ export default function HomeScreen({ navigation }) {
   )
 
   return (
-<SafeAreaView>
+<SafeAreaView style={{backgroundColor: '#ffca99'}}>
     <View style={homeScreenStyles.upperContainer}>
       <View style={homeScreenStyles.layout}></View>
         <View style={homeScreenStyles.circle1}></View>
@@ -68,7 +68,7 @@ export default function HomeScreen({ navigation }) {
     </View>
     </View>
 
-   <ScrollView>
+
     <View style={homeScreenStyles.container}>
      
         <Pressable onPress={goToFindATutor} style={{margin: 15}}>
@@ -79,7 +79,7 @@ export default function HomeScreen({ navigation }) {
         </Pressable>
         
     </View>
-    </ScrollView> 
+
   </SafeAreaView>
   )
 }
