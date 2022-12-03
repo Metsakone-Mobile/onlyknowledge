@@ -6,6 +6,7 @@ import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
 import MyProfileStyles from './MyProfileStyles'
 import { useFocusEffect } from '@react-navigation/native'
+import Circles from '../../Customs/Decoratives/Circles'
 
 
 
@@ -50,9 +51,10 @@ export default function MyProfile({navigation}) {
 
 
   return (  
-  <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} >
-    <View style={myProfileStyles.container}>
-      <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
+<SafeAreaView style={{flex: 1}} >
+  <View style={myProfileStyles.container}>
+    <View style={myProfileStyles.circle}></View>
+    <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
       <Text style={myProfileStyles.mainTitle}>{name}</Text>
       <View style={myProfileStyles.btnWrapper}>
         <TouchableOpacity style={myProfileStyles.btn}
@@ -64,28 +66,30 @@ export default function MyProfile({navigation}) {
           <Text style={{color: '#000000'}}>Logout</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView  style={MyProfileStyles.innerContainer}
-        contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
-        showsVerticalScrollIndicator={false}>
+  <ScrollView  style={MyProfileStyles.innerContainer}
+    contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
+    showsVerticalScrollIndicator={false}>
      
-      <View style={myProfileStyles.innerContainer}>
-        <Text style={myProfileStyles.label}> ABOUT ME</Text>
-        <Text style={myProfileStyles.aboutUser}>{profileDescription} </Text>
-      </View>
+    <View style={myProfileStyles.innerContainer}>
+      <Text style={myProfileStyles.label}> ABOUT ME</Text>
+      <Text style={myProfileStyles.aboutUser}>{profileDescription} </Text>
+      <Pickers/>
+    </View>
+      {/*
       <Text>My Favorite subjects:</Text>
       <View style={{width: '80%'}}>
-        <Pickers/>
+   
       </View>
 
-      <View style={myProfileStyles.subjectsContainer}>
+    <View style={myProfileStyles.subjectsContainer}>
         {subjects.map((favoriteSubjects, index) =>{
           return(
           <Text key={index} style={myProfileStyles.listSubjects}> {favoriteSubjects}</Text>);
         })}
  
-      </View> 
-
-      </ScrollView> 
+    </View> 
+ */}
+    </ScrollView> 
     </View>
   </SafeAreaView>
 

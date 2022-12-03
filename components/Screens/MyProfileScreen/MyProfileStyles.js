@@ -105,4 +105,13 @@ export default StyleSheet.create ({
       width: '100%',
       marginBottom: 10,
     },
+    circle: {
+      position:'absolute',
+      width: 500,
+      height: 500,
+      borderRadius: 250,
+      backgroundColor:'#f9b87b',
+      top: -200,
+      bottom: 150,
+    },
 })
