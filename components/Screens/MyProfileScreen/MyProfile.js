@@ -4,7 +4,6 @@ import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
-import { EvilIcons } from '@expo/vector-icons';
 import MyProfileStyles from './MyProfileStyles'
 import { useFocusEffect } from '@react-navigation/native'
 
@@ -71,7 +70,7 @@ export default function MyProfile({navigation}) {
      
       <View style={myProfileStyles.innerContainer}>
         <Text style={myProfileStyles.label}> ABOUT ME</Text>
-        <Text style={myProfileStyles.aboutUser}>{profileDescription}</Text>
+        <Text style={myProfileStyles.aboutUser}>{profileDescription} </Text>
       </View>
       <Text>My Favorite subjects:</Text>
       <View style={{width: '80%'}}>

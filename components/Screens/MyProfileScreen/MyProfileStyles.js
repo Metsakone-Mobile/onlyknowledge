@@ -7,13 +7,13 @@ export default StyleSheet.create ({
       flex:1,
       justifyContent:'center',
       alignItems:'center' ,
-      backgroundColor: '#fcf4e8',
+      backgroundColor: '#f5f0f0',
       width:'100%'
      },
      
     innerContainer:{
       width:'90%',
-      marginBottom:15,
+      marginBottom:15
     },
     profilePic:{
         width: 150,
@@ -38,7 +38,7 @@ export default StyleSheet.create ({
         fontSize: 12,
         fontWeight: '600',
         color: '#666',
-        textAlign: 'center'
+        textAlign: 'justify'
       },
       listSubjects: {
       fontSize: 14,
@@ -92,7 +92,7 @@ export default StyleSheet.create ({
     },
     btn:{
       borderColor: '#FF9800',
-      backgroundColor: '#fcf4e8',
+      backgroundColor: '#f5f0f0',
       borderWidth: 2,
       borderRadius: 3,
       paddingVertical: 8,

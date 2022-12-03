@@ -15,7 +15,7 @@ export default function TabNavigator() {
 
     <Tab.Navigator>
       <Tab.Screen
-        name='Main'
+        name='Home'
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" color={color} size={20} />

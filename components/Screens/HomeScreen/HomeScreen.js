@@ -1,12 +1,16 @@
-import { View, ScrollView, Pressable } from 'react-native'
+import { View, ScrollView, Pressable, SafeAreaView, Text, Image } from 'react-native'
 import React, { useState, useContext, useCallback } from 'react'
 import { useFocusEffect } from '@react-navigation/native'
 import { firestore, doc, USER, getDoc } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import homeScreenStyles from './HomeScreenStyles'
 import CustomButton from '../../Customs/Buttons/CustomButton'
-import Title from '../../Customs/TextWrappers/Title'
 import TokenInfo from '../../Customs/TokenInfo'
+
+
+
+
+
 
 export default function HomeScreen({ navigation }) {
 
@@ -45,22 +49,37 @@ export default function HomeScreen({ navigation }) {
   )
 
   return (
-    <ScrollView style={{backgroundColor: '#e5e5e5'}}>
-    <View style={homeScreenStyles.container}>
-      <Title text="Only Knowledge" />
-        <Pressable onPress={goToFindATutor} style={{margin: 30}}>
-          {(state) => <CustomButton pressed={state.pressed} buttonText='Find a tutor' />}
-        </Pressable>
-        <Pressable onPress={goToQuickQuestion} style={{margin: 15}}>
-          {(state) => <CustomButton pressed={state.pressed} buttonText='Quick question' />}
-        </Pressable>
-        {
+<SafeAreaView>
+    <View style={homeScreenStyles.upperContainer}>
+      <View style={homeScreenStyles.layout}></View>
+        <View style={homeScreenStyles.circle1}></View>
+        <View style={homeScreenStyles.circle2}></View>
+        <View style={{flex:1, alignItems:'center', justifyContent: 'center'}}>
+    </View>
+    <View style={homeScreenStyles.containerDetails}>
+     
+      {
           isLoaded ? 
           <TokenInfo username={username} tokens={tokens}/>
           :
           null
         } 
+        <Text style={{fontSize: 20, marginTop:10}}> Select an option below to start</Text>
     </View>
-    </ScrollView>
+    </View>
+
+   <ScrollView>
+    <View style={homeScreenStyles.container}>
+     
+        <Pressable onPress={goToFindATutor} style={{margin: 15}}>
+          {(state) => <CustomButton pressed={state.pressed} buttonText='FIND A TUTOR' />}
+        </Pressable>
+        <Pressable onPress={goToQuickQuestion} style={{margin: 15}}>
+          {(state) => <CustomButton pressed={state.pressed} buttonText='QUICK QUESTION' />}
+        </Pressable>
+        
+    </View>
+    </ScrollView> 
+  </SafeAreaView>
   )
 }

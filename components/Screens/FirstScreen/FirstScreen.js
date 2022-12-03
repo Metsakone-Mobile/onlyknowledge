@@ -20,7 +20,7 @@ export default function FirstScreen({navigation}) {
     return (
       <SafeAreaView style={firstScreenStyles.container}>
         <ScrollView>
-          <Title text="Only Knowledge" />
+         <Title/>
           <Image
             style={firstScreenStyles.image}
             source={require('../../../assets/first_screen_bg_img.png')}

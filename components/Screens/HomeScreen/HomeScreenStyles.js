@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 
+
 export default StyleSheet.create({
     pressable: {
         margin: 20,
@@ -10,14 +11,24 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#ECA04D'
     },
+    upperContainer:{
+        width:'100%',
+        height: 450 ,
+        padding:30,
+        backgroundColor: '#ffca99',
+              
+    },
+    containerDetails:{
+        alignItems: 'center',
+        justifyContent:'center',
+        marginBottom:15,
+
+    
+    },
     label: {
         fontSize: 24,
         fontWeight: 'bold',
-    },
-    innerContainer: {
-        marginTop: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
+    
     },
     mainTitle: {
         marginTop: 50,
@@ -25,8 +36,41 @@ export default StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#e5e5e5',
+        backgroundColor: '#f5f0f0',
         alignItems: 'center',
         paddingTop: 20,
       },
+ layout:{
+
+    position: 'absolute',
+    width: 273,
+    height: 248,
+    left: -70,
+    top: -51,
+    
+    
+ },
+      circle1:{
+        position:'absolute',
+        width: 200,
+        height: 200,
+        borderRadius: 200 / 2,
+        backgroundColor:'#f9b87b',
+        left: -90,
+        right: '26.74%',
+        top: -20,
+        bottom: '0%',
+      },
+      circle2:{
+        position:'absolute',
+        width: 200,
+        height: 200,
+        borderRadius: 200 / 2,
+        backgroundColor:'#eca04d',
+        left: 10,
+        right: '0%',
+        top: -90,
+        bottom: '19,35%',
+    
+      }
 })

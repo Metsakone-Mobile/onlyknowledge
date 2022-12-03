@@ -7,6 +7,7 @@ import CustomButton from '../../Customs/Buttons/CustomButton'
 import Title from '../../Customs/TextWrappers/Title'
 import { AuthContext } from '../../../context/AuthContext'
 
+
 // A user with an existing account can log in.
 
 export default function LoginScreen() {
@@ -50,7 +51,7 @@ export default function LoginScreen() {
 
   return (
     <View style={loginStyles.container}>
-      <Title text="Only Knowledge" />
+      <Title/>
         <View style={loginStyles.loginContainer}>
             <TextInput style={loginStyles.inputField} 
             placeholder='Enter email address' 
@@ -65,7 +66,7 @@ export default function LoginScreen() {
             onChangeText={text => setPassword(text)}
             />
         </View>
-        <Pressable onPress={login}>
+        <Pressable onPress={login} >
             {(state) => <CustomButton pressed={state.pressed} buttonText={'Login'} />}
         </Pressable>
 

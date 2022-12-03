@@ -12,13 +12,13 @@ export default function Heading({text}) {
   if(!loadedFont){
     return (
       <View style={{alignItems: 'center'}}>
-        <Text style={{fontSize: 36}}>{text}</Text>
+        <Text style={{fontSize: 30}}>{text}</Text>
       </View>
     )
   }else {
     return (
           <View style={{alignItems: 'center'}}>
-            <Text style={{fontSize: 36, fontFamily: 'PridiRegular'}}>{text}</Text>
+            <Text style={{fontSize: 20, fontFamily: 'PridiRegular'}}>{text}</Text>
           </View>
       )
   }
