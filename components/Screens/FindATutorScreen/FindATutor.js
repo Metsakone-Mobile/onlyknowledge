@@ -4,6 +4,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import { firestore, collection, query, where, getDocs, USER  } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import styles, { findATutorStyles } from './FindATutorStyles'
+import Circles from '../../Customs/Decoratives/Circles'
 
 
 
@@ -70,7 +71,9 @@ export default function FindATutor() {
     } else {
   return (
     <ScrollView>
+      
     <View style={findATutorStyles.container}>
+    <Circles />
       <Text>Käyttäjä: {name}</Text>
           <Text>Tutors:</Text>
            {tutor.map(tutor => (
