@@ -2,13 +2,13 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     messageBox: {
-        backgroundColor: '#e5e5e5',
+        backgroundColor: '#f5f0f0',
         margin: 10,
         padding: 15
     },
     container: {
         flex: 1,
-        backgroundColor: '#e5e5e5',
+        backgroundColor: '#f5f0f0',
         alignItems: 'center',
       },
       mainTitle: {

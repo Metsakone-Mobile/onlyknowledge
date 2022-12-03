@@ -9,6 +9,7 @@ export default function Pickers() {
 
 const { loggedUserID } = useContext(AuthContext)
 const [name, setName] = useState('')
+const [subjects, setSubjects] = useState()
 
 
 const getUserInfo = async () => {
@@ -19,6 +20,7 @@ const getUserInfo = async () => {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setName(docSnap.data().name)
+      setSubjects(docSnap.data().favoriteSubjects)
       
     } else {
       console.log("Penus")

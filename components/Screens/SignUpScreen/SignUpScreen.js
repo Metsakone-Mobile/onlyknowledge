@@ -9,6 +9,7 @@ import * as ImagePicker from 'expo-image-picker'
 import SignUpStyles from './SignUpStyles'
 import Title from '../../Customs/TextWrappers/Title'
 
+
 // A component where a new user can create an account.
 
 export default function SignUpScreen({ navigation }) {
@@ -110,7 +111,7 @@ const OpenImagePicker = async () => {
 
   return (
     <SafeAreaView style={signUpStyles.container}>
-      <Title text="Only Knowledge" />
+      <Title/>
       <ScrollView contentContainerStyle={signUpStyles.signUpContainer} bounces={false}>
             <TextInput style={signUpStyles.inputField} 
             placeholder='Name' 

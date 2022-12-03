@@ -17,14 +17,19 @@ const styles = StyleSheet.create({
   customButton: {
       backgroundColor: '#eca04d',
       borderRadius: 45,
-      alignItems: 'center'
+      alignItems: 'center',
+      width: 300
+  
   },
   buttonText: {
-      fontSize: 24,
+      fontSize: 20,
       marginLeft: 50,
       marginRight: 50,
       marginTop: 20,
       marginBottom: 20,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+   
+   
+      
   }
 })
