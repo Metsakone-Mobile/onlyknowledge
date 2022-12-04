@@ -1,4 +1,5 @@
 import React from 'react'
+import {Text} from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import NewQuickQuestion from '../Screens/NewQuickQuestion/NewQuickQuestion'
 import QuickQuestionMainScreen from '../Screens/QuickQuestionMain/QuickQuestionMainScreen'
@@ -7,6 +8,7 @@ import MyAnsweredQuestions from '../Screens/MyAnsweredQuestions/MyAnsweredQuesti
 import AnswerQuickQuestions from '../Screens/AnswerQuickQuestions/AnswerQuickQuestions'
 import GiveAnswerScreen from '../Screens/GiveAnswerScreen/GiveAnswerScreen'
 import Heading from '../Customs/TextWrappers/Heading'
+import Tokens from '../Customs/TokenInfo'
 import { AntDesign } from '@expo/vector-icons'
 
 
@@ -39,6 +41,9 @@ export default function StackNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackHome} />
+            ),
+            headerRight: () => (
+              <Tokens />
             )      
           }}
           />
@@ -56,6 +61,9 @@ export default function StackNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackToQuickQuestion} />
+            ),
+            headerRight: () => (
+              <Tokens />
             )      
           }}
           />
@@ -73,6 +81,9 @@ export default function StackNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackToQuickQuestion} />
+            ),
+            headerRight: () => (
+              <Tokens />
             )      
           }}
           />
@@ -90,6 +101,9 @@ export default function StackNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackToQuickQuestion} />
+            ),
+            headerRight: () => (
+              <Tokens />
             )      
           }}
           />
@@ -107,6 +121,9 @@ export default function StackNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackToQuickQuestion} />
+            ),
+            headerRight: () => (
+              <Tokens />
             )      
           }}
           />
@@ -124,7 +141,10 @@ export default function StackNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackToQuickQuestion} />
-            )      
+            ),
+            headerRight: () => (
+              <Tokens />
+            )    
           }}
           />
     </Stack.Navigator>

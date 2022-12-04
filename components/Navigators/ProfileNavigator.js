@@ -14,8 +14,6 @@ return(
     <Stack.Navigator >
         <Stack.Screen name=' My Profile' component={MyProfile} />
         <Stack.Screen name='Edit Profile'component={EditProfile}/>
-
-
     </Stack.Navigator>
 
 )

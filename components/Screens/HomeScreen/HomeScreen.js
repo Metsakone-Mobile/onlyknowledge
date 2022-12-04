@@ -6,7 +6,6 @@ import { AuthContext } from '../../../context/AuthContext'
 import homeScreenStyles from './HomeScreenStyles'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import CustomButton3 from '../../Customs/Buttons/CustomButton3'
-import TokenInfo from '../../Customs/TokenInfo'
 import Title from '../../Customs/TextWrappers/Title'
 
 
@@ -18,7 +17,6 @@ export default function HomeScreen({ navigation }) {
 
   const { loggedUserID } = useContext(AuthContext)
   const [username, setUsername] = useState('')
-  const [tokens, setTokens] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
   const getUserInfo = async() => {
@@ -27,7 +25,6 @@ export default function HomeScreen({ navigation }) {
 
     if(docSnap.exists()) {
       setUsername(docSnap.data().username)
-      setTokens(docSnap.data().tokens)
       setIsLoaded(true)
     } else {
       console.log(`can't find user with id ${loggedUserID}`)
@@ -52,20 +49,12 @@ export default function HomeScreen({ navigation }) {
 
   return (
 <SafeAreaView style={{   backgroundColor:'#ffdab8'}}>
-<Title text="Only Knowledge" />
+<Title text1='only' text2='KNOWLEDGE' />
   <View style={homeScreenStyles.upperContainer}>
     <Image source={require('../../../assets/Kuva1.png')}
     style={{width:'80%', height:'80%'}}/>
     <View style={{flex:1, alignItems:'center', justifyContent: 'center'}}>
       <Text style={{fontSize: 20, marginTop:10}}> Select an option below to start</Text>
-
-     {/*  {
-          isLoaded ? 
-          <TokenInfo username={username} tokens={tokens}/>
-          :
-          null
-        }  */}
-  
     </View>
     </View>
     <ScrollView>
@@ -79,6 +68,5 @@ export default function HomeScreen({ navigation }) {
     </View>
     </ScrollView> 
   </SafeAreaView>
-
   )
 }
