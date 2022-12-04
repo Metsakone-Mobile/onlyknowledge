@@ -14,8 +14,8 @@ export default function EditProfile({ navigation, route}) {
 
   const { loggedUserID } = useContext(AuthContext)
 
-  const [name, setName] = useState('')
-  const [username, setUsername] = useState('')
+  const [userData, setUserData] = useState('')
+  const [subjects, setSubjects] = useState([])
   const [email,setEmail] = useState('')
   const [image,setImage]= useState(null)
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
@@ -30,6 +30,7 @@ export default function EditProfile({ navigation, route}) {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setPhotoURL(docSnap.data().photoURL)
+      setUserData(docSnap.data())
     } else {
       console.log("Penus")
     }
@@ -81,9 +82,10 @@ export default function EditProfile({ navigation, route}) {
  
   const updateUser = async () => {
      const docRef = updateDoc(doc(firestore, USER, loggedUserID), {
-      name: name,
-      username: username,
-      email: email,
+      name: userData.name,
+      username: userData.username,
+      email: userData.email,
+      favoriteSubjects: userData.favoriteSubjects,
       photoURL: photoURL,
       
     }).then(()=> {
@@ -125,16 +127,16 @@ export default function EditProfile({ navigation, route}) {
       <View style={EditProfileStyles.inputField}>
         <TextInput 
           placeholder="name"
-          value={username}
-          onChangeText={(name) => {setName(name)}}
+          value={userData ? userData.name : '' }
+          onChangeText={(txt) => setUserData({...userData, name: txt})}
           style={EditProfileStyles.inputStyle}
           />
       </View>
       <View style={EditProfileStyles.inputField}>
         <TextInput 
           placeholder="username"
-          value={username}
-          onChangeText={(username) => {setUsername(username)}}
+          value={userData ? userData.username : '' }
+          onChangeText={(txt) => setUserData({...userData, username: txt})}
           style={EditProfileStyles.inputStyle}
           />
       </View>

@@ -48,11 +48,11 @@ export default function HomeScreen({ navigation }) {
   )
 
   return (
-<SafeAreaView style={{   backgroundColor:'#ffdab8'}}>
-<Title text1='only' text2='KNOWLEDGE' />
+<SafeAreaView >
   <View style={homeScreenStyles.upperContainer}>
+  <Title text1='only' text2='KNOWLEDGE' />
     <Image source={require('../../../assets/Kuva1.png')}
-    style={{width:'80%', height:'80%'}}/>
+    style={{width:'80%', height:'70%'}}/>
     <View style={{flex:1, alignItems:'center', justifyContent: 'center'}}>
       <Text style={{fontSize: 20, marginTop:10}}> Select an option below to start</Text>
     </View>
