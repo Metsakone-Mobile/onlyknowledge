@@ -7,6 +7,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import * as ImagePicker from 'expo-image-picker'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Radiobutton from '../../Customs/Buttons/RadioButton'
 
 
 export default function EditProfile({ navigation, route}) {
@@ -15,7 +16,8 @@ export default function EditProfile({ navigation, route}) {
   const { loggedUserID } = useContext(AuthContext)
 
   const [userData, setUserData] = useState('')
-  const [subjects, setSubjects] = useState([])
+  const [favoriteSubjects, setFavoriteSubjects] = useState([])
+  const [choice, setChoice] = useState()
   const [email,setEmail] = useState('')
   const [image,setImage]= useState(null)
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
@@ -30,6 +32,7 @@ export default function EditProfile({ navigation, route}) {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setPhotoURL(docSnap.data().photoURL)
+      setFavoriteSubjects(docSnap.data().favoriteSubjects)
       setUserData(docSnap.data())
     } else {
       console.log("Penus")
@@ -85,7 +88,7 @@ export default function EditProfile({ navigation, route}) {
       name: userData.name,
       username: userData.username,
       email: userData.email,
-      favoriteSubjects: userData.favoriteSubjects,
+      favoriteSubjects: favoriteSubjects,
       photoURL: photoURL,
       
     }).then(()=> {
@@ -140,6 +143,23 @@ export default function EditProfile({ navigation, route}) {
           style={EditProfileStyles.inputStyle}
           />
       </View>
+      <View >
+      {/* {favoriteSubjects.map((Subject, index) =>{
+        return(
+        <Text key={index} style={{ fontSize: 12,
+          fontWeight: '600',
+          color: '#666',
+          textAlign: 'justify'}}> {favoriteSubjects}</Text>
+        )})}
+ */}
+       
+      </View>
+
+        {favoriteSubjects.map(subject =>(
+      <Radiobutton key={subject.index }favoriteSubjects={favoriteSubjects}
+        onpress ={(index) => {setChoice(index)}}  />
+        ))}
+
        
       <Pressable onPress={updateUser}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}

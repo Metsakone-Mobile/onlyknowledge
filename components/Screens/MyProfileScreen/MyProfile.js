@@ -86,12 +86,12 @@ export default function MyProfile({navigation}) {
         return(
         <Text key={index} style={myProfileStyles.aboutUser}> {favoriteSubjects}</Text>
         )})}
-
+{/* 
               <Pressable onPress={()=> {setModalVisible(true)}}>
               <Entypo name="pencil" size={24} color="black" />
-             </Pressable>
+             </Pressable> */}
             </View>
-      
+{/*       
           <Modal
           animationType='slide'
           visible ={modalVisible}
@@ -122,7 +122,7 @@ export default function MyProfile({navigation}) {
                 <Text style={{marginTop: 50, color:'#333', fontWeight: 'bold'}}>KIINNI</Text>
             </Pressable>
           </View>
-        </Modal>
+        </Modal> */}
    
        
       </ScrollView> 
