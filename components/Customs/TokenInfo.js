@@ -1,19 +1,46 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import React, { useState, useContext, useCallback } from 'react'
+import { useFocusEffect } from '@react-navigation/native'
 import Heading from './TextWrappers/Heading'
 import Label from './TextWrappers/Label'
-import { AntDesign } from '@expo/vector-icons'
+import { firestore, doc, USER, getDoc } from '../../firebase/Config'
+import { AuthContext } from '../../context/AuthContext'
 
-export default function TokenInfo({username, tokens}) {
+export default function TokenInfo() {
+
+  const [tokens, setTokens] = useState(null)
+  const { loggedUserID } = useContext(AuthContext)
+
+  const getTokenInfo = async() => {
+    const docRef = doc(firestore, 'user', loggedUserID)
+    const docSnap = await getDoc(docRef)
+
+    if(docSnap.exists()) {
+      setTokens(docSnap.data().tokens)
+    } else {
+      console.log(`can't find tokens with id ${loggedUserID}`)
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      if(loggedUserID){
+        getTokenInfo()
+      }
+    }, [loggedUserID, tokens])
+  )  
 
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'stretch', }}>
-      <Heading text="Welcome to tutoring app! " />
-      <Heading text={username} />
-      <AntDesign name="heart" size={64} color="#a8030e" />
-      <Label text="You have" sizeOfFont={16} />
-      <Label text={tokens} sizeOfFont={42} color='#a8030e' />
-      <Label text="tokens." sizeOfFont={32} />
+    <View style={{marginRight: 20, alignItems: 'center'}}>
+    <Text style={{fontSize: 18}}>Tokens</Text>
+    <Text style={[styles.tokenText, {color: tokens > 4 ? '#23029e' : '#9e020a'}]}>{tokens}</Text>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  tokenText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  }
+})

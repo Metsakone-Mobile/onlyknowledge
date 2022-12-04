@@ -4,7 +4,7 @@ import TextWrapperStyles from './TextWrapperStyles'
 
 import { useFonts } from 'expo-font'
 
-export default function Title({text}) {
+export default function Title({text1, text2}) {
 
   const [loadedFont] = useFonts({                                 
     BlackOpsOne: require('../../../assets/fonts/BlackOpsOne-Regular.ttf'),
@@ -16,15 +16,14 @@ export default function Title({text}) {
   if(!loadedFont){
     return (
       <View style={{alignItems: 'center'}}>
-        <Text style={{fontSize: 42}}>{text}</Text>
+        <Text style={{fontSize: 42}}>{text1} {text2}</Text>
       </View>
     )
   }else {
     return (
           <View style={TextWrapperStyles.Title}>
-            <Text style={{fontSize: 35, color: '#eca04d',fontFamily: "ParisienneRegular"}}>only</Text>
-            <Text style={{fontSize: 35, fontFamily: "BlackOpsOne"}}>KNOWLEDGE</Text>
-            
+            <Text style={{fontSize: 35, color: '#eca04d',fontFamily: "ParisienneRegular"}}>{text1}</Text>
+            <Text style={{fontSize: 35, fontFamily: "BlackOpsOne"}}>{text2}</Text>
           </View>
       )
   }
