@@ -49,7 +49,7 @@ export default StyleSheet.create ({
       justifyContent: "center",
       backgroundColor: '#ffff',
       padding: 20,
-      width: '50%',
+      width: '100%',
       borderRadius: 25
       
     },
