@@ -62,8 +62,6 @@ const getUserInfo = async () => {
 
     {label: 'Math', value: 'math'},
     {label: 'Physics', value: 'physics'},
-    
-
     {label: 'Biology', value: 'biology'},
     {label: 'Chemistry', value: 'chemistry'},
 
