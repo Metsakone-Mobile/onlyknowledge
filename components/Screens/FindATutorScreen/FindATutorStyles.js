@@ -4,7 +4,9 @@ export const findATutorStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f5f0f0',
+        justifyContent: 'center',
         alignItems: 'center',
+        padding: 5,
     },
     mainTitle: {
         marginTop: 50,
@@ -12,15 +14,16 @@ export const findATutorStyles = StyleSheet.create({
         marginBottom: 80
     }, 
     tutorCard: {
-      opacity: 0.5,
+      opacity: 0.9,
         minHeight: 120,
-        width: '50%',
+        width: '90%',
         backgroundColor: '#f5f0f0',
         paddingLeft: 20,
         paddingTop: 5,
+        marginTop:20,
         marginBottom: 20,
         borderWidth: 1,
-        borderRadius: 25
+        borderRadius: 45
     },
     profilePic:{
         width: 150,
@@ -39,16 +42,17 @@ export const findATutorStyles = StyleSheet.create({
         marginBottom: 3
        
       },
+      searchBox:{
+        width: "80%",
+        borderWidth: 1,
+        
+        backgroundColor: "white",
+        opacity: 0.9,
+        borderRadius:25,
+        paddingBottom: 10,
+    },
+
+      
     
 })
 
-/*searchBar: {
-        borderWidth: 1,
-        borderRadius: 10,
-        padding: 4,
-        marginTop: 20,
-        marginBottom: 20,
-        backgroundColor: '#fff',
-        width: 300,
-        fontSize: 24
-    },*/
