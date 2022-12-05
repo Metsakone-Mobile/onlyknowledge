@@ -7,17 +7,17 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import * as ImagePicker from 'expo-image-picker'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Radiobutton from '../../Customs/Buttons/RadioButton'
 
 
-export default function EditProfile({ navigation, route}) {
-
+export default function EditProfile({ navigation}) {
 
   const { loggedUserID } = useContext(AuthContext)
 
   const [userData, setUserData] = useState('')
-  const [subjects, setSubjects] = useState([])
   const [email,setEmail] = useState('')
   const [image,setImage]= useState(null)
+  const [subjects, setSubjects] = useState([])
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
 
   let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dapbyrfgw/image/upload';
@@ -30,6 +30,7 @@ export default function EditProfile({ navigation, route}) {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setPhotoURL(docSnap.data().photoURL)
+      setSubjects(docSnap.data().favoriteSubjects)
       setUserData(docSnap.data())
     } else {
       console.log("Penus")
@@ -38,7 +39,6 @@ export default function EditProfile({ navigation, route}) {
 
   useEffect(() => {
     getUserInfo()
-  
   }, [])
 
 
@@ -85,7 +85,7 @@ export default function EditProfile({ navigation, route}) {
       name: userData.name,
       username: userData.username,
       email: userData.email,
-      favoriteSubjects: userData.favoriteSubjects,
+      favoriteSubjects: subjects,
       photoURL: photoURL,
       
     }).then(()=> {
@@ -140,6 +140,18 @@ export default function EditProfile({ navigation, route}) {
           style={EditProfileStyles.inputStyle}
           />
       </View>
+      <View>
+ 
+  
+      </View>
+
+      
+      <Radiobutton subjects={subjects}
+      onPress ={(value) =>  
+      { subjects.includes(value) ? setSubjects (subjects.filter(subject => subject !==value)) : setSubjects([...subjects, value])}}/>
+        
+      
+
        
       <Pressable onPress={updateUser}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}
