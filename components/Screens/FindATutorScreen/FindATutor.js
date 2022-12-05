@@ -3,9 +3,9 @@ import React, {useState, useEffect, useContext} from 'react'
 
 import { firestore, collection, query, where, getDocs, USER, doc, getDoc  } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
-import styles, { findATutorStyles } from './FindATutorStyles'
+import { findATutorStyles } from './FindATutorStyles'
 import Circles from '../../Customs/Decoratives/Circles'
-import { Searchbar } from 'react-native-paper';
+
 import Search from '../../Customs/Search/Search'
 
 
@@ -19,7 +19,6 @@ export default function FindATutor() {
     const [tutor, setTutor] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const [name, setName] = useState('')
-    const [input, setInput] = useState("");
     const [filteredvalues, setFilteredvalues] =useState([])
 
 
@@ -36,6 +35,7 @@ export default function FindATutor() {
             profileDescription: doc.data().profileDescription,
             favoriteSubjects: doc.data().favoriteSubjects,
             userId: doc.data().userId,
+            photoURL: doc.data().photoURL,
             
             
           }
@@ -85,23 +85,29 @@ export default function FindATutor() {
       return <View><Text>Loading...</Text></View>
     } else {
   return (
-    <ScrollView>
+    
       
     <View style={findATutorStyles.container}>
     <Circles />
       <Text>Käyttäjä: {name}</Text>
           <Text>Tutors:</Text>
 
-          <Search executeSearch={executeSearch} />
+          <View style={findATutorStyles.searchBox}>
+          <Search
+           executeSearch={executeSearch} />
+           </View>
 
+          
           <FlatList
+          
+          nestedScrollEnabled
           data={filteredvalues}
           renderItem={({item}) => (
 			
-            <View style={findATutorStyles.tutorCard} 
+             <View style={findATutorStyles.tutorCard} 
               key={item.name}>
                 <View>
-                  <Image style={findATutorStyles.profilePic} />
+                  <Image style={findATutorStyles.profilePic} source={{uri: item.photoURL}}/>
                 </View>
                 <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
                 <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
@@ -119,7 +125,7 @@ export default function FindATutor() {
 
           
         </View>
-        </ScrollView>
+       
   )
            }
 }
