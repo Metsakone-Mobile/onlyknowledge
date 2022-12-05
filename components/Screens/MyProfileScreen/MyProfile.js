@@ -51,12 +51,7 @@ export default function MyProfile({navigation}) {
   )
 
 
-  const close = () => {
-    setModalVisible(false)
   
-  }
-  
-
   return (  
 <SafeAreaView style={{flex: 1}} >
   <View style={myProfileStyles.container}>

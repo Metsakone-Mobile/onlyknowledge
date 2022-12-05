@@ -10,16 +10,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Radiobutton from '../../Customs/Buttons/RadioButton'
 
 
-export default function EditProfile({ navigation, route}) {
-
+export default function EditProfile({ navigation}) {
 
   const { loggedUserID } = useContext(AuthContext)
 
   const [userData, setUserData] = useState('')
-  const [favoriteSubjects, setFavoriteSubjects] = useState([])
-  const [choice, setChoice] = useState()
   const [email,setEmail] = useState('')
   const [image,setImage]= useState(null)
+  const [subjects, setSubjects] = useState([])
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
 
   let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dapbyrfgw/image/upload';
@@ -32,7 +30,7 @@ export default function EditProfile({ navigation, route}) {
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
       setPhotoURL(docSnap.data().photoURL)
-      setFavoriteSubjects(docSnap.data().favoriteSubjects)
+      setSubjects(docSnap.data().favoriteSubjects)
       setUserData(docSnap.data())
     } else {
       console.log("Penus")
@@ -41,7 +39,6 @@ export default function EditProfile({ navigation, route}) {
 
   useEffect(() => {
     getUserInfo()
-  
   }, [])
 
 
@@ -88,7 +85,7 @@ export default function EditProfile({ navigation, route}) {
       name: userData.name,
       username: userData.username,
       email: userData.email,
-      favoriteSubjects: favoriteSubjects,
+      favoriteSubjects: subjects,
       photoURL: photoURL,
       
     }).then(()=> {
@@ -143,22 +140,17 @@ export default function EditProfile({ navigation, route}) {
           style={EditProfileStyles.inputStyle}
           />
       </View>
-      <View >
-      {/* {favoriteSubjects.map((Subject, index) =>{
-        return(
-        <Text key={index} style={{ fontSize: 12,
-          fontWeight: '600',
-          color: '#666',
-          textAlign: 'justify'}}> {favoriteSubjects}</Text>
-        )})}
- */}
-       
+      <View>
+ 
+  
       </View>
 
-        {favoriteSubjects.map(subject =>(
-      <Radiobutton key={subject.index }favoriteSubjects={favoriteSubjects}
-        onpress ={(index) => {setChoice(index)}}  />
-        ))}
+      
+      <Radiobutton subjects={subjects}
+      onPress ={(value) =>  
+      { subjects.includes(value) ? setSubjects (subjects.filter(subject => subject !==value)) : setSubjects([...subjects, value])}}/>
+        
+      
 
        
       <Pressable onPress={updateUser}>

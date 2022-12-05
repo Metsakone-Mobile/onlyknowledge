@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo} from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
@@ -8,10 +8,37 @@ import React from 'react'
  * @param options Array containing displayed texts and values for radiobutton
  * @param onPress Used to forward selected value to the component using this radiobutton component --> (you need to be able to read radiobutton selection)
  */
-export default function Radiobutton({favoriteSubjects, onPress}) {
+export default function Radiobutton({subjects, onPress}) {
+
+const data = useMemo(() => [
+  {
+    label: 'Math',
+    value: 'Math',
+    selected: subjects.includes('Math'),
+  },
+  {
+    label: 'Physics',
+    value: 'Physics',
+    selected: subjects.includes('Physics'),
+
+  },
+  {
+    label: 'Biology',
+    value: 'Biology',
+    selected: subjects.includes('Biology'),
+  
+  },
+  {
+    label: 'Chemistry',
+    value: 'Chemistry',
+    selected: subjects.includes('Chemistry'),
+ 
+  }
+], [subjects])
+
+  
 
   //State variable for value of the radiobutton
-const [value, setValue] = useState(null)
 
 /**
  * Function for handling radiobutton selection. State variable is updated and selection is forwarded
@@ -21,17 +48,17 @@ const [value, setValue] = useState(null)
 
 
 const handleRadiobuttonPress =(selectedValue)=> {
-    setValue(selectedValue);
     onPress(selectedValue);
 }
   return (
     <>
     {
-      favoriteSubjects.map((subject)=> (
-        <View key={subject} style={styles.buttonContainer}>{/* one option at a time */}
+
+        data.map((subject) =>(
+        <View key={subject.value} style={styles.buttonContainer}>{/* one option at a time */}
           <Text style={styles.label}>{subject.label}</Text>
           <Pressable style={styles.circle} onPress= {()=> handleRadiobuttonPress(subject.value)}>
-            {value === subject.value && <View style={styles.checkedCircle}/>}
+            {subject.selected && <View style={styles.checkedCircle}/>}
           </Pressable>
         
 
