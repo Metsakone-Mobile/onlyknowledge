@@ -1,10 +1,12 @@
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, FlatList } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 
-import { firestore, collection, query, where, getDocs, USER  } from '../../../firebase/Config'
+import { firestore, collection, query, where, getDocs, USER, doc, getDoc  } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import styles, { findATutorStyles } from './FindATutorStyles'
 import Circles from '../../Customs/Decoratives/Circles'
+import { Searchbar } from 'react-native-paper';
+import Search from '../../Customs/Search/Search'
 
 
 
@@ -17,6 +19,8 @@ export default function FindATutor() {
     const [tutor, setTutor] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const [name, setName] = useState('')
+    const [input, setInput] = useState("");
+    const [filteredvalues, setFilteredvalues] =useState([])
 
 
 
@@ -32,15 +36,15 @@ export default function FindATutor() {
             profileDescription: doc.data().profileDescription,
             favoriteSubjects: doc.data().favoriteSubjects,
             userId: doc.data().userId,
-            photoURL: doc.data().photoURL,
+            
             
           }
           availableTutors.push(tutorSearch)
       })
       setTutor(availableTutors)
       setIsLoaded(true)
-      console.log(availableTutors)
-      console.log(photoURL)
+      
+      
     }  
   
     useEffect(() => {
@@ -48,7 +52,7 @@ export default function FindATutor() {
     }, [])
 
     const getUserInfo = async () => {
-      console.log(loggedUserID)
+      
       const docRef = doc(firestore, USER, loggedUserID)
       const docSnap = await getDoc(docRef)
   
@@ -63,6 +67,17 @@ export default function FindATutor() {
     useEffect(() => {
       getUserInfo()
     }, [])
+
+    
+
+    const executeSearch = (search) =>{
+      console.log("täällä on" + tutor)
+      const searchArray = tutor.filter((item) => item.tutor.startsWith(search));
+      setFilteredvalues(searchArray)
+
+    }
+
+    
     
     
     
@@ -76,24 +91,67 @@ export default function FindATutor() {
     <Circles />
       <Text>Käyttäjä: {name}</Text>
           <Text>Tutors:</Text>
-           {tutor.map(tutor => (
-            
+
+          <Search executeSearch={executeSearch} />
+
+          <FlatList
+          data={filteredvalues}
+          renderItem={({item}) => (
+			
             <View style={findATutorStyles.tutorCard} 
-              key={tutor.name}>
+              key={item.name}>
                 <View>
-                  <Image style={findATutorStyles.profilePic} source={{uri: tutor.photoURL}}/>
+                  <Image style={findATutorStyles.profilePic} />
                 </View>
-                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{tutor.profileDescription}</Text>
+                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
                 <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
                 
-                <Text style={findATutorStyles.tutorname}>{tutor.tutor}</Text>
+                <Text style={findATutorStyles.tutorname}>{item.tutor}</Text>
                 <Text style={findATutorStyles.tutornamehHader}>Subjects I teach:</Text>
                 
-                <Text style={findATutorStyles.tutorname}>{tutor.favoriteSubjects}</Text>
+                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects}</Text>
             </View>
-           ))}
+            
+           )}
+          
+           />
+
+
+          
         </View>
         </ScrollView>
   )
            }
 }
+
+/*<View style={findATutorStyles.tutorCard} 
+              key={item.name}>
+                <View>
+                  <Image style={findATutorStyles.profilePic} />
+                </View>
+                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
+                <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
+                
+                <Text style={findATutorStyles.tutorname}>{item.tutor}</Text>
+                <Text style={findATutorStyles.tutornamehHader}>Subjects I teach:</Text>
+                
+                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects}</Text>
+            </View> */
+
+
+            /*<Searchbar placeholder="Search" 
+          onChangeText={(text) => {setInput(text)}} value={input} />
+
+          <FlatList
+          data={filteredvalues}
+          renderItem={({item}) => (
+			
+            <View>
+            <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
+                
+            <Text style={findATutorStyles.tutorname}>{item.tutor}</Text>
+            </View>
+            
+           )}
+           keyExtractor={(item) => "" + item.tutor}
+           />*/
