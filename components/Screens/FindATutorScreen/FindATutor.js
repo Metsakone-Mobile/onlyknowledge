@@ -33,7 +33,9 @@ export default function FindATutor() {
           const tutorSearch = {
             tutor: doc.data().name,
             profileDescription: doc.data().profileDescription,
-            favoriteSubjects: doc.data().favoriteSubjects,
+            favoriteSubjects1: doc.data().favoriteSubjects[0],
+            favoriteSubjects2: doc.data().favoriteSubjects[1],
+
             userId: doc.data().userId,
             photoURL: doc.data().photoURL,
             
@@ -78,6 +80,8 @@ export default function FindATutor() {
 
     
 
+
+    // hakee kaikesta & for each looppi favorite subjects
     const executeSearch = (search) =>{
       console.log("täällä on" + tutor)
       const searchArray = tutor.filter((item) => item.tutor.startsWith(search));
@@ -129,7 +133,8 @@ export default function FindATutor() {
 
                 
                 
-                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects}</Text>
+                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects1}</Text>
+                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects2}</Text>
             </View>
             </View>
             
