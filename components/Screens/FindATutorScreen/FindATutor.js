@@ -1,6 +1,6 @@
 import { View, Text, Image, ScrollView, FlatList } from 'react-native'
-import React, {useState, useEffect, useContext} from 'react'
-
+import React, {useState, useEffect, useContext, useCallback} from 'react'
+import { useFocusEffect} from '@react-navigation/native'
 import { firestore, collection, query, where, getDocs, USER, doc, getDoc  } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import { findATutorStyles } from './FindATutorStyles'
@@ -38,18 +38,25 @@ export default function FindATutor() {
             photoURL: doc.data().photoURL,
             
             
+            
           }
           availableTutors.push(tutorSearch)
       })
       setTutor(availableTutors)
+      setFilteredvalues(availableTutors)
       setIsLoaded(true)
       
       
+      
     }  
+
+    useFocusEffect(
+      useCallback(() => {
+        getTutors()
+      }, [])
+    )
   
-    useEffect(() => {
-      getTutors()
-    }, [])
+    
 
     const getUserInfo = async () => {
       
@@ -66,6 +73,7 @@ export default function FindATutor() {
   
     useEffect(() => {
       getUserInfo()
+      
     }, [])
 
     
@@ -89,8 +97,7 @@ export default function FindATutor() {
       
     <View style={findATutorStyles.container}>
     <Circles />
-      <Text>Käyttäjä: {name}</Text>
-          <Text>Tutors:</Text>
+      
 
           <View style={findATutorStyles.searchBox}>
           <Search
@@ -103,10 +110,15 @@ export default function FindATutor() {
           nestedScrollEnabled
           data={filteredvalues}
           renderItem={({item}) => (
+
+            
+
+            <View>
+            
 			
              <View style={findATutorStyles.tutorCard} 
               key={item.name}>
-                <View>
+                <View style={findATutorStyles.profilePicContainer}>
                   <Image style={findATutorStyles.profilePic} source={{uri: item.photoURL}}/>
                 </View>
                 <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
@@ -114,8 +126,11 @@ export default function FindATutor() {
                 
                 <Text style={findATutorStyles.tutorname}>{item.tutor}</Text>
                 <Text style={findATutorStyles.tutornamehHader}>Subjects I teach:</Text>
+
+                
                 
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects}</Text>
+            </View>
             </View>
             
            )}
