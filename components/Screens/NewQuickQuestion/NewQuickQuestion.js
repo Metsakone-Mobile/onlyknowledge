@@ -74,7 +74,6 @@ export default function NewQuickQuestion({navigation}) {
           style={quickQuestionStyles.questionBox}
           placeholder='Type your question...'
           multiline={true}
-          numberOfLines={30}
           onChangeText={text => setQuestion_Input(text)} />
       </View>
       <Label text="Question is about:" sizeOfFont={28} />

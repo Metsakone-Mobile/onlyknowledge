@@ -28,7 +28,7 @@ export default function App() {
     } else {
       return (
         <NavigationContainer>
-          <AuthContext.Provider value={{loggedUserID, isUserTutor}}>
+          <AuthContext.Provider value={{loggedUserID, isUserTutor, setIsLogged}}>
           <TabNavigator />
           </AuthContext.Provider>
         </NavigationContainer>

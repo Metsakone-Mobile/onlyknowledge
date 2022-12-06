@@ -1,6 +1,7 @@
 import { View, Text, Image, TouchableOpacity, Modal, ScrollView, SafeAreaView, Button, Pressable} from 'react-native'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
+import { getAuth, signOut } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Pickers from '../../Customs/Pickers'
@@ -14,7 +15,7 @@ import { Entypo } from '@expo/vector-icons';
 
 export default function MyProfile({navigation}) {
 
-  const { loggedUserID } = useContext(AuthContext)
+  const { loggedUserID, setIsLogged } = useContext(AuthContext)
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
@@ -50,6 +51,15 @@ export default function MyProfile({navigation}) {
 
   )
 
+  const logout = () => {
+    const auth = getAuth()
+    signOut(auth).then(() => {
+      setIsLogged(false)
+      console.log('logged out')
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   
   return (  
@@ -64,7 +74,7 @@ export default function MyProfile({navigation}) {
         <Text style={{color: '#000000'}}>Edit Profile</Text>
       </TouchableOpacity>
       <TouchableOpacity style={myProfileStyles.btn} 
-        onPress={() => logout()}>
+        onPress={logout}>
           <Text style={{color: '#000000'}}>Logout</Text>
       </TouchableOpacity>
     </View>
