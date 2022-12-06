@@ -11,6 +11,7 @@ export default StyleSheet.create({
         fontSize:20,
     },
     container: {
+        
         flex: 1,
         backgroundColor: '#e5e5e5',
         alignItems: 'center',
