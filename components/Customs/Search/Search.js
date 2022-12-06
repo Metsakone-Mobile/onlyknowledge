@@ -12,7 +12,7 @@ const [search, setSearch] = useState ('')
         onChangeText={text => setSearch(text)}
         placeholder="Search..."
         returnKeyType="search"
-        onSubmitEditing={() => executeSearch(search)}
+        onSelectionChange={() => executeSearch(search)}
         />
     
   )
