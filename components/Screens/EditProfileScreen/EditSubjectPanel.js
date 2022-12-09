@@ -1,13 +1,9 @@
-import { useState, useMemo} from 'react'
+import { useMemo} from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
 
-/**
- * Componens displays radiobutton.
- * @param options Array containing displayed texts and values for radiobutton
- * @param onPress Used to forward selected value to the component using this radiobutton component --> (you need to be able to read radiobutton selection)
- */
+
 export default function Radiobutton({subjects, onPress}) {
 
 const data = useMemo(() => [
@@ -38,15 +34,6 @@ const data = useMemo(() => [
 
   
 
-  //State variable for value of the radiobutton
-
-/**
- * Function for handling radiobutton selection. State variable is updated and selection is forwarded
- * the component that is using this Radiobutton component is using onPress- props.
- * @param selectedValue of the radiobutton.
- */
-
-
 const handleRadiobuttonPress =(selectedValue)=> {
     onPress(selectedValue);
 }
@@ -74,7 +61,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'flex-start',
-      width: '100%',
+      width: '80%',
       marginBottom: 10,
       paddingLeft: 30,
       paddingRight: 30,
@@ -96,7 +83,7 @@ const styles = StyleSheet.create({
         width: 15,
         height: 15,
         borderRadius: 7,
-        backgroundColor: '#000',
+        backgroundColor: '#eca04d',
     }
   });
   

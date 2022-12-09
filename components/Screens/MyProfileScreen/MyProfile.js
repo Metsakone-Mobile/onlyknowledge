@@ -1,14 +1,11 @@
-import { View, Text, Image, TouchableOpacity, Modal, ScrollView, SafeAreaView, Button, Pressable} from 'react-native'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { View, Text, Image, TouchableOpacity, ScrollView, SafeAreaView} from 'react-native'
+import React, { useCallback, useContext, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { getAuth, signOut } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
-import Pickers from '../../Customs/Pickers'
 import MyProfileStyles from './MyProfileStyles'
 import { useFocusEffect } from '@react-navigation/native'
-import DropDownPicker from 'react-native-dropdown-picker'
-import { Entypo } from '@expo/vector-icons';
 
 
 
@@ -91,50 +88,12 @@ export default function MyProfile({navigation}) {
         return(
         <Text key={index} style={myProfileStyles.aboutUser}> {favoriteSubjects}</Text>
         )})}
-{/* 
-              <Pressable onPress={()=> {setModalVisible(true)}}>
-              <Entypo name="pencil" size={24} color="black" />
-             </Pressable> */}
-            </View>
-{/*       
-          <Modal
-          animationType='slide'
-          visible ={modalVisible}
-          onRequestClose={close}
-          >
-          
-          <View style={{
-            marginTop: 100,
-            padding: 20,
-            backgroundColor: 'red',
-            justifyContent:'center',
-            alignItems: 'center',
-            shadowColor: '#333',
-            shadowOffset:{
-              width: 0,
-              height: 2
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5
-             }}>
 
-            <Text> This is modal</Text>
-            <Pressable
-              onPress={() => {
-                setModalVisible(false)
-              }}>
-                <Text style={{marginTop: 50, color:'#333', fontWeight: 'bold'}}>KIINNI</Text>
-            </Pressable>
-          </View>
-        </Modal> */}
-   
-       
-      </ScrollView> 
+    </View>
+  </ScrollView> 
 
-   
-   </View>
-  </SafeAreaView>
+  </View>
+</SafeAreaView>
       
 )
 }
