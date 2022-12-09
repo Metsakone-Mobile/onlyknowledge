@@ -1,8 +1,9 @@
 import React from 'react'
-import {Text} from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
+import HomeScreen from '../Screens/HomeScreen/HomeScreen'
+import FindATutor from '../Screens/FindATutorScreen/FindATutor'
 import NewQuickQuestion from '../Screens/NewQuickQuestion/NewQuickQuestion'
-import QuickQuestionMainScreen from '../Screens/QuickQuestionMain/QuickQuestionMainScreen'
+import QuickQuestionMain from '../Screens/QuickQuestionMain/QuickQuestionMain'
 import MyOpenQuestionsScreen from '../Screens/MyOpenQuestions/MyOpenQuestionsScreen'
 import MyAnsweredQuestions from '../Screens/MyAnsweredQuestions/MyAnsweredQuestions'
 import AnswerQuickQuestions from '../Screens/AnswerQuickQuestions/AnswerQuickQuestions'
@@ -13,7 +14,7 @@ import { AntDesign } from '@expo/vector-icons'
 
 
 
-export default function StackNavigator({navigation}) {
+export default function MainNavigator({navigation}) {
 
   const Stack = createStackNavigator()
 
@@ -28,8 +29,39 @@ export default function StackNavigator({navigation}) {
   return (
     <Stack.Navigator>
         <Stack.Screen 
+        name='Home' 
+        component={HomeScreen}
+        options={{
+          headerTitle: '',
+          headerStyle: {backgroundColor: '#ffdab8'},
+          headerRight: () => (
+            <Tokens />
+          )      
+        }}
+        />
+        <Stack.Screen 
+          name='Find a tutor' 
+          component={FindATutor}
+          options={{
+            headerStyle: {backgroundColor: '#ffca99'},
+            headerTitle: () => (
+              <Heading text="Find a tutor" size={24} />
+            ),
+            headerLeft: () => (
+              <AntDesign 
+              style={{marginLeft: 10}}
+              name="arrowleft" 
+              size={36}
+              onPress={goBackHome} />
+            ),
+            headerRight: () => (
+              <Tokens />
+            )      
+          }}
+        />
+        <Stack.Screen 
           name='Quick question' 
-          component={QuickQuestionMainScreen}
+          component={QuickQuestionMain}
           options={{
             headerStyle: {backgroundColor: '#ffca99'},
             headerTitle: () => (

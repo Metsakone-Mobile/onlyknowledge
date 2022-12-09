@@ -8,7 +8,7 @@ import { AuthContext } from '../../../context/AuthContext'
 
 
 
-export default function QuickQuestionMainScreen({navigation}) {
+export default function QuickQuestionMain({navigation}) {
 
   const { isUserTutor } = useContext(AuthContext)
 

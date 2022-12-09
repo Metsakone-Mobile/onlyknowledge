@@ -72,7 +72,7 @@ export default function GiveAnswerScreen({ navigation, route}) {
           value={answer}
           onChangeText={text => setAnswer(text)}
         />
-        <Pressable onPress={submitAnswer}>
+        <Pressable onPress={submitAnswer} style={{width: '100%', alignItems: 'center'}}>
           {(state) => <CustomButton pressed={state.pressed} buttonText='Submit answer' />}
         </Pressable>
       </ScrollView>
