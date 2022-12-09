@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ProfileNavigator from './ProfileNavigator'
-import StackNavigator from './StackNavigator'
+import MainNavigator from './MainNavigator'
 import NotificationsNavigator from './NotificationsNavigator'
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
@@ -21,7 +21,7 @@ export default function TabNavigator() {
           ),
           headerShown: false,
           title: 'Home'
-        }} component={StackNavigator} />
+        }} component={MainNavigator} />
 
       <Tab.Screen name='NotificationsNavigator'
         options={{

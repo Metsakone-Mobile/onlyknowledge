@@ -69,8 +69,8 @@ export default function Notifications({navigation}) {
             <Title text1="only" text2='KNOWLEDGE' />
             <Heading text="Notifications" />
             {closedQuestions.map(question => (
-              <TouchableOpacity onPress={() => goSeeAnswer(question.questionId)}>
-                  <NotificationCard key={question.questionId} notificationDetails={question} />
+              <TouchableOpacity onPress={() => goSeeAnswer(question.questionId)} key={question.questionId}>
+                  <NotificationCard notificationDetails={question} />
               </TouchableOpacity>
             ))}
           </ScrollView> 

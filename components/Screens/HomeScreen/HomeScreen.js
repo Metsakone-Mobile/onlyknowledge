@@ -20,7 +20,7 @@ export default function HomeScreen({ navigation }) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const getUserInfo = async() => {
-    const docRef = doc(firestore, 'user', loggedUserID)
+    const docRef = doc(firestore, USER, loggedUserID)
     const docSnap = await getDoc(docRef)
 
     if(docSnap.exists()) {
@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }) {
   }
 
   const goToQuickQuestion = () => {
-    navigation.navigate('Quick question navigator')
+    navigation.navigate('Quick question')
   }
 
   useFocusEffect(
