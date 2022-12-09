@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function CustomButton({buttonText, pressed}) {
   return (
-    <View style={[styles.customButton, pressed && {backgroundColor: '#0c0275'}]}>
+    <View style={[styles.customButton, pressed && {backgroundColor: '#a8fa84'}]}>
       <Text style={styles.buttonText}>{buttonText}</Text>
     </View>
   )

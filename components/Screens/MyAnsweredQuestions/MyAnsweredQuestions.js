@@ -8,9 +8,9 @@ import MyClosedQuestionCard from '../../Customs/QuestionCards/MyClosedQuestionCa
 import { AuthContext } from '../../../context/AuthContext'
 import { firestore, collection, query, where, getDocs } from '../../../firebase/Config'
 
-export default function MyOpenQuestionsScreen() {
+export default function MyAnsweredQuestions({route}) {
     const { loggedUserID } = useContext(AuthContext)
-
+    const [focusedQuestion, setFocusedQuestion] = useState('')
     const [openQuestions, setOpenQuestions] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -28,7 +28,8 @@ export default function MyOpenQuestionsScreen() {
           name: doc.data().name,
           question_input: doc.data().question_input,
           userId: doc.data().userId,
-          questionId: doc.id
+          questionId: doc.id,
+          date: doc.data().date
         }
         tempAnsweredQuestions.push(formedQuestion)
     })
@@ -39,6 +40,10 @@ export default function MyOpenQuestionsScreen() {
 
   useEffect(() => {
     getOpenQuestions()
+    if(route.params?.fromNotifications){
+      setFocusedQuestion(route.params?.fromNotifications)
+      console.log("QID", route.params?.fromNotifications)
+    }
   }, [])
 
   if(isLoaded === false) {
@@ -47,11 +52,14 @@ export default function MyOpenQuestionsScreen() {
     return (
       <View style={styles.container}>
         <Circles />
-        <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+        <ScrollView style={{flex: 1, width: '100%'}} showsVerticalScrollIndicator={false}>
             <Title text="Only Knowledge" />
             <Heading text="My closed questions" />
             {openQuestions.map(question => (
-                <MyClosedQuestionCard key={question.questionId} question={question} />
+                <MyClosedQuestionCard 
+                key={question.questionId} 
+                question={question}
+                isFocused={question.questionId === focusedQuestion ? true : false} />
             ))}
         </ScrollView> 
       </View>

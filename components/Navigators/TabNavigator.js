@@ -2,8 +2,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ProfileNavigator from './ProfileNavigator'
 import StackNavigator from './StackNavigator'
-import MyProfile from '../Screens/MyProfileScreen/MyProfile'
-import Notifications from '../Screens/NotificationScreen/Notifications'
+import NotificationsNavigator from './NotificationsNavigator'
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 export default function TabNavigator() {
@@ -24,12 +23,14 @@ export default function TabNavigator() {
           title: 'Home'
         }} component={StackNavigator} />
 
-      <Tab.Screen name='Notifications'
+      <Tab.Screen name='NotificationsNavigator'
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="notification" color={color} size={20} />
           ),
-        }} component={Notifications} />
+          headerShown: false,
+          title: 'Notifications'
+        }} component={NotificationsNavigator} />
 
       <Tab.Screen name='My Profile'
         options={{

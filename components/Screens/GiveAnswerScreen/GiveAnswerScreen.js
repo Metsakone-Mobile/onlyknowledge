@@ -40,7 +40,9 @@ export default function GiveAnswerScreen({ navigation, route}) {
     await updateDoc(questionToAnswerRef, {
         answer: answer,
         answered: true,
-        answeredBy: username
+        answeredBy: username,
+        answerDate: new Date().toLocaleDateString(),
+        answerViewed: false
     })
     rewardTokens()
   }
@@ -56,7 +58,7 @@ export default function GiveAnswerScreen({ navigation, route}) {
   return (
     <View style={styles.container}>
       <Circles />
-      <ScrollView>
+      <ScrollView style={{flex: 1, width: '100%'}}>
         <Title text="Only Knowledge" />
         <Heading text="Spread your wisdom" />
         <Label text="The question:" sizeOfFont={28} />  
