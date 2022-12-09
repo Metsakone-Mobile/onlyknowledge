@@ -21,6 +21,8 @@ export default StyleSheet.create ({
     },
     
     inputField: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         marginTop: 15,
         marginBottom: 10,
         borderBottomWidth: 1,
@@ -32,7 +34,16 @@ export default StyleSheet.create ({
     inputStyle: {
         flex: 1, 
         paddingLeft: 10,
-        color: '#333333'
+        fontSize: 15,
+        justifyContent:'flex-end'
+
     },    
+    base:{
+        backgroundColor:'#eca04d',
+        width: '100%',
+        height: 110,
+        marginTop:15,
+        position:'absolute'
+    }
 
 })

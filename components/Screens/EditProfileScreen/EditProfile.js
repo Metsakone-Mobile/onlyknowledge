@@ -7,7 +7,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import * as ImagePicker from 'expo-image-picker'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Radiobutton from '../../Customs/Buttons/RadioButton'
+import Radiobutton from './EditSubjectPanel'
 
 
 export default function EditProfile({ navigation}) {
@@ -106,6 +106,7 @@ export default function EditProfile({ navigation}) {
       <ScrollView style={EditProfileStyles.container}
       contentContainerStyle={{justifyContent: 'space-between',  alignItems: 'center' }}
       showsVerticalScrollIndicator={false}>
+      <View style={EditProfileStyles.base}></View>
       <View style= {{marginTop:20}}>
         <TouchableOpacity>
           <ImageBackground source={{uri: photoURL }}
@@ -117,6 +118,7 @@ export default function EditProfile({ navigation}) {
                 name="camera"   style={EditProfileStyles.EditPicture}
                 size={35}
                 color="#fff"/>
+
             </View>
           </ImageBackground>
         </TouchableOpacity>
@@ -125,14 +127,16 @@ export default function EditProfile({ navigation}) {
          <Text style={{marginTop: 10, fontSize: 24,}}> </Text>
       </View>
       <View style={EditProfileStyles.inputField}>
+        <Text style={{color: '#333333', fontSize: 14}}>NAME </Text>
         <TextInput 
           placeholder="name"
           value={userData ? userData.name : '' }
           onChangeText={(txt) => setUserData({...userData, name: txt})}
-          style={EditProfileStyles.inputStyle}
+          style={EditProfileStyles.inputStyle} 
           />
       </View>
       <View style={EditProfileStyles.inputField}>
+      <Text style={{color: '#333333', fontSize: 14,}}>USERNAME </Text>
         <TextInput 
           placeholder="username"
           value={userData ? userData.username : '' }
@@ -140,11 +144,20 @@ export default function EditProfile({ navigation}) {
           style={EditProfileStyles.inputStyle}
           />
       </View>
-      <View>
- 
-  
+      <View style={EditProfileStyles.inputField}>
+      <Text style={{color: '#333333', fontSize: 14 }}>EMAIL </Text>
+        <TextInput 
+          placeholder="email"
+          value={userData ? userData.email : '' }
+          onChangeText={(txt) => setUserData({...userData, email: txt})}
+          style={EditProfileStyles.inputStyle}
+          />
       </View>
 
+      <View style={{marginLeft: 20, width:'80%',marginBottom: 15}} >
+       <Text>Change favorite subject</Text>
+      </View>
+      
       
       <Radiobutton subjects={subjects}
       onPress ={(value) =>  
