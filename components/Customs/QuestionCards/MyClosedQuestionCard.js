@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-export default function MyClosedQuestionCard({question}) {
+export default function MyClosedQuestionCard({question, isFocused}) {
   return (
-    <View style={styles.questionCard} key={question.question_input}>
+    <View style={[styles.questionCard, isFocused && {backgroundColor: '#a8fa84'}]} key={question.question_input}>
                 <Text style={{fontWeight: 'bold', marginBottom: 5}}>{question.date}</Text>
                 <Text style={{fontWeight: 'bold'}}>Question:</Text>
                 <Text>{question.question_input}</Text>

@@ -47,7 +47,7 @@ export default function MyOpenQuestionsScreen() {
     return (
       <View style={styles.container}>
         <Circles />
-        <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+        <ScrollView style={{flex: 1, width: '100%'}} showsVerticalScrollIndicator={false}>
           <Title text="Only Knowledge" />
           <Heading text="My open questions" />
            {openQuestions.map(question => (
