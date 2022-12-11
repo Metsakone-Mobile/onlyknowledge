@@ -1,9 +1,9 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
 import { getFirestore, collection, doc, addDoc, getDoc, setDoc, query, onSnapshot, database, where, getDocs, updateDoc, orderBy } from 'firebase/firestore'
-
 const firebaseConfig = {
 
+ 
 }
 
   initializeApp(firebaseConfig)
