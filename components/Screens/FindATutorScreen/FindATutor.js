@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView, FlatList } from 'react-native'
+import { View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native'
 import React, {useState, useEffect, useContext, useCallback} from 'react'
 import { useFocusEffect} from '@react-navigation/native'
 import { firestore, collection, query, where, getDocs, USER, doc, getDoc  } from '../../../firebase/Config'
@@ -12,10 +12,9 @@ import Search from '../../Customs/Search/Search'
 
 
 
-export default function FindATutor() {
+export default function FindATutor({navigation}) {
 
   const { loggedUserID } = useContext(AuthContext)
-
     const [tutor, setTutor] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const [name, setName] = useState('')
@@ -29,26 +28,39 @@ export default function FindATutor() {
     
       const querySnapShot = await getDocs(q)
       let availableTutors = []
+      
       querySnapShot.forEach((doc) => {
           const tutorSearch = {
             tutor: doc.data().name,
             profileDescription: doc.data().profileDescription,
+            searchvalue: doc.data().favoriteSubjects[0] 
+            + doc.data().favoriteSubjects[1]
+            + doc.data().favoriteSubjects[2]
+            + doc.data().favoriteSubjects[3]
+            + doc.data().name
+            + doc.data().profileDescription,
             favoriteSubjects1: doc.data().favoriteSubjects[0],
             favoriteSubjects2: doc.data().favoriteSubjects[1],
-
+            favoriteSubjects3: doc.data().favoriteSubjects[2],
+            favoriteSubjects4: doc.data().favoriteSubjects[3],
+            
             userId: doc.data().userId,
             photoURL: doc.data().photoURL,
             
             
             
+
           }
+          
+        
           availableTutors.push(tutorSearch)
       })
       setTutor(availableTutors)
       setFilteredvalues(availableTutors)
+      
       setIsLoaded(true)
-      
-      
+
+
       
     }  
 
@@ -84,11 +96,12 @@ export default function FindATutor() {
     // hakee kaikesta & for each looppi favorite subjects
     const executeSearch = (search) =>{
       console.log("täällä on" + tutor)
-      const searchArray = tutor.filter((item) => item.tutor.startsWith(search));
+      const searchArray = tutor.filter((item) => item.searchvalue.includes(search));
       setFilteredvalues(searchArray)
 
     }
 
+    
     
     
     
@@ -122,9 +135,14 @@ export default function FindATutor() {
 			
              <View style={findATutorStyles.tutorCard} 
               key={item.name}>
+                
                 <View style={findATutorStyles.profilePicContainer}>
+                <TouchableOpacity
+                onPress={() => {navigation.navigate('Tutor Profile')}}>
                   <Image style={findATutorStyles.profilePic} source={{uri: item.photoURL}}/>
+                  </TouchableOpacity>
                 </View>
+                
                 <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
                 <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
                 
@@ -135,6 +153,8 @@ export default function FindATutor() {
                 
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects1}</Text>
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects2}</Text>
+                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects3}</Text>
+                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects4}</Text>
             </View>
             </View>
             
