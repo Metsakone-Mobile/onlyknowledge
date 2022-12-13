@@ -8,6 +8,7 @@ import MyOpenQuestionsScreen from '../Screens/MyOpenQuestions/MyOpenQuestionsScr
 import MyAnsweredQuestions from '../Screens/MyAnsweredQuestions/MyAnsweredQuestions'
 import AnswerQuickQuestions from '../Screens/AnswerQuickQuestions/AnswerQuickQuestions'
 import GiveAnswerScreen from '../Screens/GiveAnswerScreen/GiveAnswerScreen'
+import TutorProfile from '../Screens/TutorProfileScreen/TutorProfile';
 import Heading from '../Customs/TextWrappers/Heading'
 import Tokens from '../Customs/TokenInfo'
 import { AntDesign } from '@expo/vector-icons'
@@ -20,6 +21,10 @@ export default function MainNavigator({navigation}) {
 
   const goBackToQuickQuestion = () => {
     navigation.navigate('Quick question')
+  }
+
+  const goBackToFindATutor = () => {
+    navigation.navigate('Find a tutor')
   }
 
   const goBackHome = () => {
@@ -100,6 +105,26 @@ export default function MainNavigator({navigation}) {
             )      
           }}
           />
+        <Stack.Screen 
+          name='Tutor Profile' 
+          component={TutorProfile}
+          options={{
+            headerStyle: {backgroundColor: '#ffca99'},
+            headerTitle: () => (
+              <Heading text="Tutor profile" size={24} />
+            ),
+            headerLeft: () => (
+              <AntDesign 
+              style={{marginLeft: 10}}
+              name="arrowleft" 
+              size={36}
+              onPress={goBackToFindATutor} />
+            ),
+            headerRight: () => (
+              <Tokens />
+            )      
+          }}
+          />  
         <Stack.Screen 
           name='My answered questions' 
           component={MyAnsweredQuestions}

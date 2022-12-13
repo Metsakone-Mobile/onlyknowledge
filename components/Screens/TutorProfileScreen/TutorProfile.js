@@ -14,14 +14,14 @@ import Search from '../../Customs/Search/Search'
 
 
 
-export default function TutorProfile({navigate}) {
+export default function TutorProfile({route}) {
 
   
   const { loggedUserID } = useContext(AuthContext)
     const [tutor, setTutor] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const [name, setName] = useState('')
-    const email = 'joonas@joonas.fi'
+    const [ email, setEmail] = useState(route.params?.email)
     
 
 
@@ -37,12 +37,6 @@ export default function TutorProfile({navigate}) {
           const tutorSearch = {
             tutor: doc.data().name,
             profileDescription: doc.data().profileDescription,
-            searchvalue: doc.data().favoriteSubjects[0] 
-            + doc.data().favoriteSubjects[1]
-            + doc.data().favoriteSubjects[2]
-            + doc.data().favoriteSubjects[3]
-            + doc.data().name
-            + doc.data().profileDescription,
             favoriteSubjects1: doc.data().favoriteSubjects[0],
             favoriteSubjects2: doc.data().favoriteSubjects[1],
             favoriteSubjects3: doc.data().favoriteSubjects[2],

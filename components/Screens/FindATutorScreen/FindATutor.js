@@ -44,7 +44,7 @@ export default function FindATutor({navigation}) {
             favoriteSubjects2: doc.data().favoriteSubjects[1],
             favoriteSubjects3: doc.data().favoriteSubjects[2],
             favoriteSubjects4: doc.data().favoriteSubjects[3],
-            
+            email: doc.data().email,
             userId: doc.data().userId,
             photoURL: doc.data().photoURL,
             
@@ -142,7 +142,7 @@ export default function FindATutor({navigation}) {
                 
                 <View style={findATutorStyles.profilePicContainer}>
                 <TouchableOpacity
-                onPress={() => {navigation.navigate('Tutor Profile')}}>
+                onPress={() => {navigation.navigate('Tutor Profile', { email : item.email })}}>
                   <Image style={findATutorStyles.profilePic} source={{uri: item.photoURL}}/>
                   </TouchableOpacity>
                 </View>
