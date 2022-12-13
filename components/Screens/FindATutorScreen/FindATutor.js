@@ -19,6 +19,7 @@ export default function FindATutor({navigation}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [name, setName] = useState('')
     const [filteredvalues, setFilteredvalues] =useState([])
+    const [tutorId, setTutorId] = useState('')
 
 
 
@@ -59,7 +60,9 @@ export default function FindATutor({navigation}) {
       setFilteredvalues(availableTutors)
       
       setIsLoaded(true)
-
+      
+      setTutorId(availableTutors.userId)
+      console.log("perkele" + tutorId)
 
       
     }  
@@ -98,6 +101,7 @@ export default function FindATutor({navigation}) {
       console.log("täällä on" + tutor)
       const searchArray = tutor.filter((item) => item.searchvalue.includes(search));
       setFilteredvalues(searchArray)
+      
 
     }
 

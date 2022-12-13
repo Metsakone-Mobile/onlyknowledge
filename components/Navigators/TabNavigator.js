@@ -39,6 +39,11 @@ export default function TabNavigator() {
           ),
           headerShown: false
         }} component={ProfileNavigator} />
+
+        
     </Tab.Navigator>
+
+    
+    
   )
 }
