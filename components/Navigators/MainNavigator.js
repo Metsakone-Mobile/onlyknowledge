@@ -28,6 +28,7 @@ export default function MainNavigator({navigation}) {
 
   return (
     <Stack.Navigator>
+      
         <Stack.Screen 
         name='Home' 
         component={HomeScreen}
