@@ -22,6 +22,7 @@ export default function TutorProfile({route}) {
     const [name, setName] = useState('')
     const [ email, setEmail] = useState(route.params?.email)
     
+    
 
 
 
@@ -40,7 +41,7 @@ export default function TutorProfile({route}) {
             favoriteSubjects2: doc.data().favoriteSubjects[1],
             favoriteSubjects3: doc.data().favoriteSubjects[2],
             favoriteSubjects4: doc.data().favoriteSubjects[3],
-            
+            tutoringTimes: doc.data().tutoringTimes,
             userId: doc.data().userId,
             photoURL: doc.data().photoURL,
             
@@ -123,19 +124,15 @@ export default function TutorProfile({route}) {
                 <Text style={tutorProfileStyles.tutorname}>{item.favoriteSubjects4}</Text>
 
                 <Text style={tutorProfileStyles.tutornamehHader}>Book available times:</Text>
-
-                
-                
-            {tutor.map(item =>(
-              <View key={item.name} style={tutorProfileStyles.slotcontainer}>
-                
-                <Text style={tutorProfileStyles.timeslotcontainer}>TÄNNE VOI MAPPAA VAPAAT AJAT {item.tutor}</Text>
-                <Text style={tutorProfileStyles.timeslotcontainer}>TÄNNE VOI MAPPAA VAPAAT AJAT {item.tutor}</Text>
-                </View>
-
-                
+              <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
+              {item.tutoringTimes.filter(tutoringTime => tutoringTime.isAvailable === true)
+              .map((tutoringTime, i) =>(
+                <TouchableOpacity key={i} style={tutorProfileStyles.tutoringTimeBtn}>
+                  <Text>{tutoringTime.date}</Text>
+                  <Text>{tutoringTime.time}</Text>
+                </TouchableOpacity>
             ))}
-          
+              </ScrollView>  
 
 
                 </View>

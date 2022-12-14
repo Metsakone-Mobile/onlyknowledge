@@ -8,13 +8,9 @@ export default StyleSheet.create ({
       justifyContent:'center',
       alignItems:'center' ,
       backgroundColor: '#f5f0f0',
-      width:'100%'
+      width:'100%',
+      padding: 20
      },
-     
-    innerContainer:{
-      width:'90%',
-      marginBottom:15
-    },
     profilePic:{
         width: 150,
         height: 150,
@@ -22,27 +18,25 @@ export default StyleSheet.create ({
         marginTop: 20,
     },
     mainTitle: {
-      fontSize: 30, 
-      marginBottom:10,
-      marginTop: 10,
-      
-      },  
-      label: {
-        marginTop:10,
-        fontSize: 15, 
-        marginBottom:5,
-        fontWeight: '600',
-       
-      },  
-      aboutUser:{
-        fontSize: 12,
-        fontWeight: '600',
-        color: '#666',
-        textAlign: 'justify'
-      },
-      listSubjects: {
-      fontSize: 14,
-      marginBottom: 20,
+    fontSize: 30, 
+    marginBottom:10,
+    marginTop: 10,
+    },  
+    label: {
+    marginTop:10,
+    fontSize: 15, 
+    marginBottom:5,
+    fontWeight: '600',
+    },  
+    aboutUser:{
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#666',
+    textAlign: 'justify'
+    },
+    listSubjects: {
+    fontSize: 14,
+    marginBottom: 20,
     },
     subjectsContainer: {
       marginTop: 19,
@@ -51,7 +45,6 @@ export default StyleSheet.create ({
       padding: 20,
       width: '50%',
       borderRadius: 25
-      
     },
     placeHolder:{
       flexDirection: 'row',
@@ -60,26 +53,6 @@ export default StyleSheet.create ({
       borderBottomWidth: 1,
       borderBottomColor: '#f2f2f2',
 
-    },
-    textInput:{
-      borderColor: "gray",
-      width: "80%",
-      height: "200%",
-      borderWidth: 1,
-      borderRadius: 10,
-      paddingLeft: 10,
-    },
-    
-    textboxContainer:{
-      width: '80%',
-      marginBottom:20,
-      marginTop:40,
-      padding:1,
-      alignItems:'flex-start',
-      justifyContent:'flex-start'
-    },
-    textbox:{
-      width: '80%',
     },
     textDetails:{
       width: 300,

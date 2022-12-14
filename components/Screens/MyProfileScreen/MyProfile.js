@@ -4,7 +4,9 @@ import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { getAuth, signOut } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
-import MyProfileStyles from './MyProfileStyles'
+import Label from '../../Customs/TextWrappers/Label'
+import Heading from '../../Customs/TextWrappers/Heading'
+import MarkAvailableTimes from '../../Customs/MarkAvailableTimes'
 import { useFocusEffect } from '@react-navigation/native'
 
 
@@ -12,7 +14,7 @@ import { useFocusEffect } from '@react-navigation/native'
 
 export default function MyProfile({navigation}) {
 
-  const { loggedUserID, setIsLogged } = useContext(AuthContext)
+  const { loggedUserID, setIsLogged, isUserTutor } = useContext(AuthContext)
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
@@ -44,8 +46,7 @@ export default function MyProfile({navigation}) {
   useFocusEffect(
     useCallback(() => {
     getUserInfo()
-  }, [])
-
+    }, [])
   )
 
   const logout = () => {
@@ -57,29 +58,25 @@ export default function MyProfile({navigation}) {
       console.log(err)
     })
   }
-
   
   return (  
 <SafeAreaView style={{flex: 1}} >
-  <View style={myProfileStyles.container}>
+  <ScrollView contentContainerStyle={myProfileStyles.container}>
     <View style={myProfileStyles.circle}></View>
     <Image style={myProfileStyles.profilePic} source={{uri:photoURL}}/>
-    <Text style={myProfileStyles.mainTitle}>{username}</Text>
+    <Label sizeOfFont={28} text={username} />
     <View style={myProfileStyles.btnWrapper}>
       <TouchableOpacity style={myProfileStyles.btn}
       onPress={() => {navigation.navigate('Edit Profile')}}>
-        <Text style={{color: '#000000'}}>Edit Profile</Text>
+        <Text>Edit Profile</Text>
       </TouchableOpacity>
       <TouchableOpacity style={myProfileStyles.btn} 
         onPress={logout}>
-          <Text style={{color: '#000000'}}>Logout</Text>
+          <Text>Logout</Text>
       </TouchableOpacity>
     </View>
-  <ScrollView  style={MyProfileStyles.innerContainer}
-    contentContainerStyle={{justifyContent: 'center',  alignItems: 'center' }}
-    showsVerticalScrollIndicator={false}>
-    <View style={myProfileStyles.innerContainer}>
-    <Text style={myProfileStyles.label}>NAME</Text>
+    <View style={{flex: 1, width: '100%'}}>
+      <Text style={myProfileStyles.label}>NAME</Text>
       <Text style={myProfileStyles.aboutUser}>{name} </Text>
       <Text style={myProfileStyles.label}>ABOUT ME</Text>
       <Text style={myProfileStyles.aboutUser}>{profileDescription} </Text>
@@ -88,11 +85,11 @@ export default function MyProfile({navigation}) {
         return(
         <Text key={index} style={myProfileStyles.aboutUser}> {favoriteSubjects}</Text>
         )})}
-
-    </View>
-  </ScrollView> 
-
-  </View>
+    </View>    
+    {isUserTutor && 
+    <MarkAvailableTimes />
+    }
+  </ScrollView>
 </SafeAreaView>
       
 )
