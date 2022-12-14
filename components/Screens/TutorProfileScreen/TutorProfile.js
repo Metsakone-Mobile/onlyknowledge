@@ -3,12 +3,11 @@ import React, {useState, useEffect, useContext, useCallback} from 'react'
 import { useFocusEffect} from '@react-navigation/native'
 import { firestore, collection, query, where, getDocs, USER, doc, getDoc  } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
-import { findATutorStyles } from '../FindATutorScreen/FindATutorStyles'
 import Circles from '../../Customs/Decoratives/Circles'
 import { tutorProfileStyles } from './TutorProfileStyles'
 
 
-import Search from '../../Customs/Search/Search'
+
 
 
 
@@ -97,12 +96,8 @@ export default function TutorProfile({route}) {
       
     <View style={tutorProfileStyles.container}>
     <Circles />
-      
 
-          
-
-            
-
+    
            
             {tutor.map(item => (
 			
@@ -118,18 +113,33 @@ export default function TutorProfile({route}) {
                 <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
                 <Text style={tutorProfileStyles.tutornamehHader}>Tutor:</Text>
                 
+                
                 <Text style={tutorProfileStyles.tutorname}>{item.tutor}</Text>
                 <Text style={tutorProfileStyles.tutornamehHader}>Subjects I teach:</Text>
-
-                
                 
                 <Text style={tutorProfileStyles.tutorname}>{item.favoriteSubjects1}</Text>
                 <Text style={tutorProfileStyles.tutorname}>{item.favoriteSubjects2}</Text>
                 <Text style={tutorProfileStyles.tutorname}>{item.favoriteSubjects3}</Text>
                 <Text style={tutorProfileStyles.tutorname}>{item.favoriteSubjects4}</Text>
 
-                <Text style={tutorProfileStyles.tutornamehHader}>Available times:</Text>
-            </View>
+                <Text style={tutorProfileStyles.tutornamehHader}>Book available times:</Text>
+
+                
+                
+            {tutor.map(item =>(
+              <View key={item.name} style={tutorProfileStyles.slotcontainer}>
+                
+                <Text style={tutorProfileStyles.timeslotcontainer}>TÄNNE VOI MAPPAA VAPAAT AJAT {item.tutor}</Text>
+                <Text style={tutorProfileStyles.timeslotcontainer}>TÄNNE VOI MAPPAA VAPAAT AJAT {item.tutor}</Text>
+                </View>
+
+                
+            ))}
+          
+
+
+                </View>
+            
             
 
             ))}

@@ -19,7 +19,7 @@ export default function FindATutor({navigation}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [name, setName] = useState('')
     const [filteredvalues, setFilteredvalues] =useState([])
-    const [tutorId, setTutorId] = useState('')
+    
 
 
 
@@ -61,8 +61,7 @@ export default function FindATutor({navigation}) {
       
       setIsLoaded(true)
       
-      setTutorId(availableTutors.userId)
-      console.log("perkele" + tutorId)
+      
 
       
     }  
@@ -154,11 +153,12 @@ export default function FindATutor({navigation}) {
                 <Text style={findATutorStyles.tutornamehHader}>Subjects I teach:</Text>
 
                 
-                
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects1}</Text>
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects2}</Text>
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects3}</Text>
                 <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects4}</Text>
+
+
             </View>
             </View>
             
@@ -173,35 +173,3 @@ export default function FindATutor({navigation}) {
   )
            }
 }
-
-/*<View style={findATutorStyles.tutorCard} 
-              key={item.name}>
-                <View>
-                  <Image style={findATutorStyles.profilePic} />
-                </View>
-                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{item.profileDescription}</Text>
-                <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
-                
-                <Text style={findATutorStyles.tutorname}>{item.tutor}</Text>
-                <Text style={findATutorStyles.tutornamehHader}>Subjects I teach:</Text>
-                
-                <Text style={findATutorStyles.tutorname}>{item.favoriteSubjects}</Text>
-            </View> */
-
-
-            /*<Searchbar placeholder="Search" 
-          onChangeText={(text) => {setInput(text)}} value={input} />
-
-          <FlatList
-          data={filteredvalues}
-          renderItem={({item}) => (
-			
-            <View>
-            <Text style={findATutorStyles.tutornamehHader}>Tutor:</Text>
-                
-            <Text style={findATutorStyles.tutorname}>{item.tutor}</Text>
-            </View>
-            
-           )}
-           keyExtractor={(item) => "" + item.tutor}
-           />*/
