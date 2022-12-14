@@ -15,6 +15,7 @@ export const tutorProfileStyles = StyleSheet.create({
         marginBottom: 80
     }, 
     tutorCard: {
+      flex: 1,
       opacity: 0.9,
         height: "80%",
         width: "80%",
@@ -50,16 +51,23 @@ export const tutorProfileStyles = StyleSheet.create({
         marginBottom: 3
        
       },
-      searchBox:{
-        width: 260,
-        height: 50,
+      timeslotcontainer:{
+        width: "90%",
+        height: "20%",
         borderWidth: 1,
-        padding: 10,
+        padding: 5,
         backgroundColor: "white",
         opacity: 0.9,
-        borderRadius:25,
-        paddingBottom: 10,
+        borderRadius:5,
+        margin: 3,
+        
     },
+    slotcontainer:{
+
+      margin: 5,
+    
+      
+  },
 
       
     

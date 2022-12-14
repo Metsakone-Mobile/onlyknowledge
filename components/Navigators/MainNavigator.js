@@ -111,7 +111,7 @@ export default function MainNavigator({navigation}) {
           options={{
             headerStyle: {backgroundColor: '#ffca99'},
             headerTitle: () => (
-              <Heading text="Tutor profile" size={24} />
+              <Heading text="Tutor Profile" size={24} />
             ),
             headerLeft: () => (
               <AntDesign 
