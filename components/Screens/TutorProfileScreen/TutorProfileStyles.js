@@ -21,11 +21,13 @@ export const tutorProfileStyles = StyleSheet.create({
         width: "80%",
         backgroundColor: '#f5f0f0',
         paddingLeft: 20,
+        paddingRight: 20,
         paddingTop: 5,
+        paddingBottom: 5,
         marginTop:20,
         marginBottom: 20,
         borderWidth: 1,
-        borderRadius: 45
+        borderRadius: 45,
     },
     profilePic:{
         width: 150,
@@ -51,9 +53,7 @@ export const tutorProfileStyles = StyleSheet.create({
         marginBottom: 3
        
       },
-      timeslotcontainer:{
-        width: "90%",
-        height: "20%",
+      tutoringTimeBtn:{
         borderWidth: 1,
         padding: 5,
         backgroundColor: "white",
