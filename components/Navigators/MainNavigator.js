@@ -12,6 +12,7 @@ import TutorProfile from '../Screens/TutorProfileScreen/TutorProfile';
 import Heading from '../Customs/TextWrappers/Heading'
 import Tokens from '../Customs/TokenInfo'
 import { AntDesign } from '@expo/vector-icons'
+import ConfirmBooking from '../Screens/ConfrimBookingScreen/ConfirmBooking'
 
 
 
@@ -25,6 +26,10 @@ export default function MainNavigator({navigation}) {
 
   const goBackToFindATutor = () => {
     navigation.navigate('Find a tutor')
+  }
+
+  const goBackToTutorProfile = () => {
+    navigation.navigate('Tutor Profile')
   }
 
   const goBackHome = () => {
@@ -119,6 +124,26 @@ export default function MainNavigator({navigation}) {
               name="arrowleft" 
               size={36}
               onPress={goBackToFindATutor} />
+            ),
+            headerRight: () => (
+              <Tokens />
+            )      
+          }}
+          />
+          <Stack.Screen 
+          name='Confirm Booking' 
+          component={ConfirmBooking}
+          options={{
+            headerStyle: {backgroundColor: '#ffca99'},
+            headerTitle: () => (
+              <Heading text="Confirm Booking" size={24} />
+            ),
+            headerLeft: () => (
+              <AntDesign 
+              style={{marginLeft: 10}}
+              name="arrowleft" 
+              size={36}
+              onPress={goBackToTutorProfile} />
             ),
             headerRight: () => (
               <Tokens />

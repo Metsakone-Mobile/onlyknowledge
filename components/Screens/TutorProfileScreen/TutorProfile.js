@@ -13,7 +13,7 @@ import { tutorProfileStyles } from './TutorProfileStyles'
 
 
 
-export default function TutorProfile({route}) {
+export default function TutorProfile({route, navigation}) {
 
   
   const { loggedUserID } = useContext(AuthContext)
@@ -44,6 +44,7 @@ export default function TutorProfile({route}) {
             tutoringTimes: doc.data().tutoringTimes,
             userId: doc.data().userId,
             photoURL: doc.data().photoURL,
+            email: doc.data().email,
             
             
             
@@ -127,7 +128,7 @@ export default function TutorProfile({route}) {
               <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
               {item.tutoringTimes.filter(tutoringTime => tutoringTime.isAvailable === true)
               .map((tutoringTime, i) =>(
-                <TouchableOpacity key={i} style={tutorProfileStyles.tutoringTimeBtn}>
+                <TouchableOpacity key={i} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {tutoringDate: tutoringTime.date}, {tutoringTime: tutoringTime.time}, { email : tutoringTime.email })}}>
                   <Text>{tutoringTime.date}</Text>
                   <Text>{tutoringTime.time}</Text>
                 </TouchableOpacity>
