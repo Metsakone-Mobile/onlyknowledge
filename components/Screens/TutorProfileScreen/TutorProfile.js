@@ -76,50 +76,33 @@ export default function TutorProfile({route, navigation}) {
       return year + month + day + hours + minutes
     }
     
-    if(isLoaded === false) {
-      return <View><Text>Loading...</Text></View>
-    } else {
+if(isLoaded === false) {
+   return <View><Text>Loading...</Text></View>
+} else {
   return (
-    
-      
     <View style={tutorProfileStyles.container}>
     <Circles />
-
-    
-           
-            
-			
-             <View style={tutorProfileStyles.tutorCard} >
-
-                
-                <View style={tutorProfileStyles.profilePicContainer}>
-                
-                  <Image style={tutorProfileStyles.profilePic} source={{uri: tutor.photoURL}}/>
-                  
-                </View>
-                
-                <Text style={{fontWeight: 'bold', marginBottom: 5}}>{tutor.profileDescription}</Text>
-                <Text style={tutorProfileStyles.tutornamehHader}>Tutor:</Text>
-                
-                
-                <Text style={tutorProfileStyles.tutorname}>{tutor.username}</Text>
-                <Text style={tutorProfileStyles.tutornamehHader}>Subjects I teach:</Text>
-                <Text>{tutor.favoriteSubjects.map(subject => subject + '\n')}</Text>
-                <Text style={tutorProfileStyles.tutornamehHader}>Book available times:</Text>
-              <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
-              {tutoringTimes.map(tutoringTime =>(
-                <TouchableOpacity key={tutoringTime.bookingId} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {bookingId: tutoringTime.bookingId, date: tutoringTime.date, time: tutoringTime.time, tutorUsername: tutor.username})}}>
-                  <Text>{tutoringTime.date}</Text>
-                  <Text>{tutoringTime.time}</Text>
-                </TouchableOpacity>
-            ))}
-              </ScrollView>  
-                </View>
+      <View style={tutorProfileStyles.tutorCard} >            
+        <View style={tutorProfileStyles.profilePicContainer}>
+          <Image style={tutorProfileStyles.profilePic} source={{uri: tutor.photoURL}}/>
         </View>
-       
+        <Text style={{fontWeight: 'bold', marginBottom: 5}}>{tutor.profileDescription}</Text>
+        <Text style={tutorProfileStyles.tutornamehHader}>Tutor:</Text>
+        <Text style={tutorProfileStyles.tutorname}>{tutor.username}</Text>
+        <Text style={tutorProfileStyles.tutornamehHader}>Subjects I teach:</Text>
+        <Text>{tutor.favoriteSubjects.map(subject => subject + '\n')}</Text>
+        <Text style={tutorProfileStyles.tutornamehHader}>Book available times:</Text>
+          <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
+            {tutoringTimes.map(tutoringTime =>(
+              <TouchableOpacity key={tutoringTime.bookingId} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {bookingId: tutoringTime.bookingId, date: tutoringTime.date, time: tutoringTime.time, tutorUsername: tutor.username})}}>
+                <Text>{tutoringTime.date}</Text>
+                <Text>{tutoringTime.time}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>  
+        </View>
+      </View>    
   )
-           }
-
-
-          }
+}
+}
 
