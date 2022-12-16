@@ -13,10 +13,12 @@ export default function ConfirmBooking({route, navigation}) {
 
   const { loggedUserID } = useContext(AuthContext)
 
-  const [userData, setUserData] = useState('')
-  const [ email, setEmail] = useState(route.params?.email)
-  const [tutorDate, setTutordate] = useState(route.params?.tutorDate)
-  const [tutorTime, setTutortime] = useState(route.params?.tutorTime)
+  const [userData, setUserData] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [bookingId, setBookingId] = useState(route.params?.bookingId)
+  const [tutorUsername, setTutorUsername] = useState(route.params?.tutorUsername)
+  const [tutorDate, setTutordate] = useState(route.params?.date)
+  const [tutorTime, setTutortime] = useState(route.params?.time)
 
 
   const getUserInfo = async () => {
@@ -26,8 +28,8 @@ export default function ConfirmBooking({route, navigation}) {
 
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
-      
       setUserData(docSnap.data())
+      setIsLoaded(true)
     } else {
       console.log("Penus")
     }
@@ -35,30 +37,25 @@ export default function ConfirmBooking({route, navigation}) {
 
   useEffect(() => {
     getUserInfo()
-    
   }, [])
- 
-  const updateUser = async () => {
-     const docRef = updateDoc(doc(firestore, USER, loggedUserID), {
-      name: userData.name,
-      username: userData.username,
-      email: userData.email,
-      favoriteSubjects: subjects,
-      photoURL: photoURL,
-      
-    }).then(()=> {
-      Alert.alert ('Booking ok!',
-      'You booked jiphiii')
-    
-    }).catch((error) => {
-      console.log('ounou');
-    })  
-    navigation.goBack()
 
+
+const confirmBooking = () => {
+  const docRef = updateDoc(doc(firestore, 'Bookings', bookingId), {
+    isAvailable: false,
+    tutor: tutorUsername,
+    student: userData.username,
+  }).then(()=> {
+    Alert.alert (`Successfully booked tutoring with ${tutorUsername}`)
+    navigation.goBack()
+  }).catch(error => {
+    Alert.alert('Something went wrong.')
+  })  
 }
 
-
- 
+if(!isLoaded){
+  <View><Text>Loading...</Text></View>
+} else {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} > 
     <Circles/>
@@ -67,11 +64,11 @@ export default function ConfirmBooking({route, navigation}) {
       showsVerticalScrollIndicator={false}>
       <View style={ConfirmBookingStyles.container}></View>
       
-      <Text> Tässä tutorin EMAIL käyttöön: {email}</Text>
+      <Text> Confirm booking a time with: {tutorUsername}</Text>
         <Text style={ConfirmBookingStyles.tutornamehHader}>Date: {tutorDate}</Text>
         <Text style={ConfirmBookingStyles.tutornamehHader}>Time: {tutorTime}</Text>
       
-      <Pressable onPress={updateUser}>
+      <Pressable onPress={confirmBooking}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Book!'} />}
       </Pressable>
     
@@ -80,4 +77,6 @@ export default function ConfirmBooking({route, navigation}) {
 
 
   )
+ }
+  
 }

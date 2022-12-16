@@ -45,15 +45,9 @@ export default function FindATutor({navigation}) {
             favoriteSubjects3: doc.data().favoriteSubjects[2],
             favoriteSubjects4: doc.data().favoriteSubjects[3],
             email: doc.data().email,
-            userId: doc.data().userId,
+            userId: doc.id,
             photoURL: doc.data().photoURL,
-            
-            
-            
-
           }
-          
-        
           availableTutors.push(tutorSearch)
       })
       setTutor(availableTutors)
@@ -141,7 +135,7 @@ export default function FindATutor({navigation}) {
                 
                 <View style={findATutorStyles.profilePicContainer}>
                 <TouchableOpacity
-                onPress={() => {navigation.navigate('Tutor Profile', { email : item.email })}}>
+                onPress={() => {navigation.navigate('Tutor Profile', { tutorID : item.userId })}}>
                   <Image style={findATutorStyles.profilePic} source={{uri: item.photoURL}}/>
                   </TouchableOpacity>
                 </View>
