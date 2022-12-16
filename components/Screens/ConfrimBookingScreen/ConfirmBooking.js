@@ -14,7 +14,6 @@ export default function ConfirmBooking({route, navigation}) {
   const { loggedUserID } = useContext(AuthContext)
 
   const [userData, setUserData] = useState('')
-  const [image,setImage]= useState(null)
   const [ email, setEmail] = useState(route.params?.email)
   const [tutorDate, setTutordate] = useState(route.params?.tutorDate)
   const [tutorTime, setTutortime] = useState(route.params?.tutorTime)
@@ -27,8 +26,7 @@ export default function ConfirmBooking({route, navigation}) {
 
     if (docSnap.exists()) {
       console.log("Doc data: ", docSnap.data())
-      setPhotoURL(docSnap.data().photoURL)
-      setSubjects(docSnap.data().favoriteSubjects)
+      
       setUserData(docSnap.data())
     } else {
       console.log("Penus")
@@ -37,6 +35,7 @@ export default function ConfirmBooking({route, navigation}) {
 
   useEffect(() => {
     getUserInfo()
+    
   }, [])
  
   const updateUser = async () => {
@@ -48,8 +47,8 @@ export default function ConfirmBooking({route, navigation}) {
       photoURL: photoURL,
       
     }).then(()=> {
-      Alert.alert ('Profile is updated!',
-      'Your profile has been updated successfully.')
+      Alert.alert ('Booking ok!',
+      'You booked jiphiii')
     
     }).catch((error) => {
       console.log('ounou');
@@ -68,9 +67,9 @@ export default function ConfirmBooking({route, navigation}) {
       showsVerticalScrollIndicator={false}>
       <View style={ConfirmBookingStyles.container}></View>
       
-      <Text>TÄNNE VOI TUODA TIETOJA + {tutorDate} + {tutorTime} + {email}</Text>
-
-      <Text>{tutorDate} + {tutorTime} + {email}</Text>
+      <Text> Tässä tutorin EMAIL käyttöön: {email}</Text>
+        <Text style={ConfirmBookingStyles.tutornamehHader}>Date: {tutorDate}</Text>
+        <Text style={ConfirmBookingStyles.tutornamehHader}>Time: {tutorTime}</Text>
       
       <Pressable onPress={updateUser}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Book!'} />}
