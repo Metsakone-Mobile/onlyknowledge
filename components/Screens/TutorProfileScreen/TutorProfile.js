@@ -128,7 +128,7 @@ export default function TutorProfile({route, navigation}) {
               <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
               {item.tutoringTimes.filter(tutoringTime => tutoringTime.isAvailable === true)
               .map((tutoringTime, i) =>(
-                <TouchableOpacity key={i} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {tutoringDate: tutoringTime.date}, {tutoringTime: tutoringTime.time}, { email : tutoringTime.email })}}>
+                <TouchableOpacity key={i} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {tutorDate: tutoringTime.date, tutorTime: tutoringTime.time, email : item.email })}}>
                   <Text>{tutoringTime.date}</Text>
                   <Text>{tutoringTime.time}</Text>
                 </TouchableOpacity>
