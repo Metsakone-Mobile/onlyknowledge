@@ -1,7 +1,7 @@
 import { View, Text, Platform, Pressable, Alert } from 'react-native'
 import React, { useState, useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { firestore, doc, USER, updateDoc, arrayUnion } from '../../firebase/Config'
+import { firestore, addDoc, collection } from '../../firebase/Config'
 import Heading from './TextWrappers/Heading'
 import Label from './TextWrappers/Label'
 import CustomButton2 from './Buttons/CustomButton2'
@@ -23,15 +23,22 @@ export default function MarkAvailableTimes() {
   }
 
   const addAvailability = () => {
-    const docRef = updateDoc(doc(firestore, USER, loggedUserID), {
-        tutoringTimes: arrayUnion({ date: date.toLocaleDateString(), time: time.toLocaleTimeString() , isAvailable: true})
+   /* const docRef = updateDoc(doc(firestore, USER, loggedUserID), {
+        tutoringTimes: arrayUnion({ date: date.toLocaleDateString(), time: time.toLocaleTimeString() , isAvailable: true, tutorID: loggedUserID})
       }).then(()=> {
         Alert.alert ('Availability added!')
       }).catch(error => {
         console.log('Damn..');
-      })  
+      })  */
+      const docRef = addDoc(collection(firestore, "Bookings"), {
+        date: date.toLocaleDateString(),
+        time: time.toLocaleTimeString(),
+        tutorID: loggedUserID,
+        isAvailable: true
+      });
       setDate(new Date())
       setTime(new Date())
+      Alert.alert('Appointment added!')
   }
 
 
