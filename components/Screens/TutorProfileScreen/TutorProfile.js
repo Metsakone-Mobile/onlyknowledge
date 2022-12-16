@@ -1,8 +1,7 @@
-import { View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native'
-import React, {useState, useEffect, useContext, useCallback} from 'react'
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import React, {useState, useEffect, useCallback} from 'react'
 import { useFocusEffect} from '@react-navigation/native'
-import { firestore, collection, query, where, getDocs, USER, doc, getDoc, docSnap  } from '../../../firebase/Config'
-import { AuthContext } from '../../../context/AuthContext'
+import { firestore, collection, query, where, getDocs, USER, doc, getDoc } from '../../../firebase/Config'
 import Circles from '../../Customs/Decoratives/Circles'
 import { tutorProfileStyles } from './TutorProfileStyles'
 
@@ -15,11 +14,8 @@ import { tutorProfileStyles } from './TutorProfileStyles'
 
 export default function TutorProfile({route, navigation}) {
 
-  
-  const { loggedUserID } = useContext(AuthContext)
     const [tutor, setTutor] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
-    const [name, setName] = useState('')
     const [ tutorID, setTutorID] = useState(route.params?.tutorID)
     const [tutoringTimes, setTutoringTimes] = useState([])
     
@@ -41,16 +37,8 @@ export default function TutorProfile({route, navigation}) {
           tempAvailableTimes.push(availability)
       })
       console.log(tempAvailableTimes)
-      setTutoringTimes(tempAvailableTimes)
+      setTutoringTimes(tempAvailableTimes.sort((time1, time2) => dateToSeconds(time1.date, time1.time) - dateToSeconds(time2.date, time2.time)))
     } 
-
-    /*useFocusEffect(
-      useCallback(() => {
-        getTutors()
-      }, [])
-    )*/
-  
-    
 
     const getTutorInfo = async () => {
       
@@ -77,6 +65,16 @@ export default function TutorProfile({route, navigation}) {
       }, [])
     )
     
+    const dateToSeconds = (date, time) => {
+      console.log(date)
+      console.log(time)
+      const year = Number(date.slice(6, date.length)) * 31556926
+      const month = Number(date.slice(3, 5)) * 2629743
+      const day = Number(date.slice(0, 2)) * 604800
+      const hours = Number(time.slice(0, 2)) * 3600
+      const minutes = Number(time.slice(3, 5)) * 60
+      return year + month + day + hours + minutes
+    }
     
     if(isLoaded === false) {
       return <View><Text>Loading...</Text></View>
@@ -109,8 +107,8 @@ export default function TutorProfile({route, navigation}) {
                 <Text>{tutor.favoriteSubjects.map(subject => subject + '\n')}</Text>
                 <Text style={tutorProfileStyles.tutornamehHader}>Book available times:</Text>
               <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
-              {tutoringTimes.map((tutoringTime, i) =>(
-                <TouchableOpacity key={i} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {bookingId: tutoringTime.bookingId, date: tutoringTime.date, time: tutoringTime.time, tutorUsername: tutor.username})}}>
+              {tutoringTimes.map(tutoringTime =>(
+                <TouchableOpacity key={tutoringTime.bookingId} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {bookingId: tutoringTime.bookingId, date: tutoringTime.date, time: tutoringTime.time, tutorUsername: tutor.username})}}>
                   <Text>{tutoringTime.date}</Text>
                   <Text>{tutoringTime.time}</Text>
                 </TouchableOpacity>
