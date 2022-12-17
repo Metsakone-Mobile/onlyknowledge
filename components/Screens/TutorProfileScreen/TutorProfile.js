@@ -3,7 +3,8 @@ import React, {useState, useEffect, useCallback} from 'react'
 import { useFocusEffect} from '@react-navigation/native'
 import { firestore, collection, query, where, getDocs, USER, doc, getDoc } from '../../../firebase/Config'
 import Circles from '../../Customs/Decoratives/Circles'
-import { tutorProfileStyles } from './TutorProfileStyles'
+import styles from './TutorProfileStyles'
+import { dateToSeconds } from '../../../utils/functions'
 
 
 
@@ -65,36 +66,26 @@ export default function TutorProfile({route, navigation}) {
       }, [])
     )
     
-    const dateToSeconds = (date, time) => {
-      console.log(date)
-      console.log(time)
-      const year = Number(date.slice(6, date.length)) * 31556926
-      const month = Number(date.slice(3, 5)) * 2629743
-      const day = Number(date.slice(0, 2)) * 604800
-      const hours = Number(time.slice(0, 2)) * 3600
-      const minutes = Number(time.slice(3, 5)) * 60
-      return year + month + day + hours + minutes
-    }
     
 if(isLoaded === false) {
    return <View><Text>Loading...</Text></View>
 } else {
   return (
-    <View style={tutorProfileStyles.container}>
+    <View style={styles.container}>
     <Circles />
-      <View style={tutorProfileStyles.tutorCard} >            
-        <View style={tutorProfileStyles.profilePicContainer}>
-          <Image style={tutorProfileStyles.profilePic} source={{uri: tutor.photoURL}}/>
+      <View style={styles.tutorCard} >            
+        <View style={styles.profilePicContainer}>
+          <Image style={styles.profilePic} source={{uri: tutor.photoURL}}/>
         </View>
         <Text style={{fontWeight: 'bold', marginBottom: 5}}>{tutor.profileDescription}</Text>
-        <Text style={tutorProfileStyles.tutornamehHader}>Tutor:</Text>
-        <Text style={tutorProfileStyles.tutorname}>{tutor.username}</Text>
-        <Text style={tutorProfileStyles.tutornamehHader}>Subjects I teach:</Text>
+        <Text style={styles.tutornamehHader}>Tutor:</Text>
+        <Text style={styles.tutorname}>{tutor.username}</Text>
+        <Text style={styles.tutornamehHader}>Subjects I teach:</Text>
         <Text>{tutor.favoriteSubjects.map(subject => subject + '\n')}</Text>
-        <Text style={tutorProfileStyles.tutornamehHader}>Book available times:</Text>
-          <ScrollView style={{flex: 1}}showsVerticalScrollIndicator={false}>
+        <Text style={styles.tutornamehHader}>Book available times:</Text>
+          <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
             {tutoringTimes.map(tutoringTime =>(
-              <TouchableOpacity key={tutoringTime.bookingId} style={tutorProfileStyles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {bookingId: tutoringTime.bookingId, date: tutoringTime.date, time: tutoringTime.time, tutorUsername: tutor.username})}}>
+              <TouchableOpacity key={tutoringTime.bookingId} style={styles.tutoringTimeBtn} onPress={() => {navigation.navigate('Confirm Booking', {bookingId: tutoringTime.bookingId, date: tutoringTime.date, time: tutoringTime.time, tutorUsername: tutor.username})}}>
                 <Text>{tutoringTime.date}</Text>
                 <Text>{tutoringTime.time}</Text>
               </TouchableOpacity>

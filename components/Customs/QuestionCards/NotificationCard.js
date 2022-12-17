@@ -17,8 +17,8 @@ export default function NotificationCard({notificationDetails, bookingNotificati
   } else if(bookingNotificationDetails){
     return (
       <View style={styles.notificationBox}>
-        <Heading text="Booking made!" />  
-        <Text numberOfLines={1}>{bookingNotificationDetails.student} made an appointment on {bookingNotificationDetails.date}</Text>
+        <Heading text="Booking!" />  
+        <Text numberOfLines={1}>{bookingNotificationDetails.student} booked a session with you on {bookingNotificationDetails.date}</Text>
       </View>
     )
     

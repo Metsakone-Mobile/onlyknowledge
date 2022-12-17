@@ -45,6 +45,7 @@ const confirmBooking = () => {
     isAvailable: false,
     tutor: tutorUsername,
     student: userData.username,
+    studentID: loggedUserID,
     seenByTutor: false
   }).then(()=> {
     Alert.alert (`Successfully booked tutoring with ${tutorUsername}`)

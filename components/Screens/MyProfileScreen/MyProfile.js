@@ -1,12 +1,12 @@
-import { View, Text, Image, TouchableOpacity, ScrollView, SafeAreaView} from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, SafeAreaView, Modal} from 'react-native'
 import React, { useCallback, useContext, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { getAuth, signOut } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Label from '../../Customs/TextWrappers/Label'
-import Heading from '../../Customs/TextWrappers/Heading'
-import MarkAvailableTimes from '../../Customs/MarkAvailableTimes'
+import MyAppointments from './MyAppointments/MyAppointments'
+import MarkAvailableTimes from './MarkAvailableTimes/MarkAvailableTimes'
 import { useFocusEffect } from '@react-navigation/native'
 
 
@@ -18,11 +18,10 @@ export default function MyProfile({navigation}) {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [email,setEmail] = useState('')
-  const [modalVisible, setModalVisible] = useState(false)
   const [profileDescription, setProfileDescription] = useState('')
   const [subjects, setSubjects] = useState([])
   const [photoURL, setPhotoURL] = useState ('https://res.cloudinary.com/dapbyrfgw/image/upload/v1669032383/blank-profile-picture_drj6hi.webp')
-
+  const [ modalVisible, setModalVisible ] = useState(false)
 
 
   const getUserInfo = async () => {
@@ -86,9 +85,19 @@ export default function MyProfile({navigation}) {
         <Text key={index} style={myProfileStyles.aboutUser}> {favoriteSubjects}</Text>
         )})}
     </View>    
+    <TouchableOpacity onPress={() => setModalVisible(true)}>
+      <Text>Show appointments</Text>
+    </TouchableOpacity>
     {isUserTutor && 
-    <MarkAvailableTimes />
+    <MarkAvailableTimes loggedUserID={loggedUserID}/>
     }
+    <Modal
+      animationType='slide'
+      transparent={true}
+      visible={modalVisible}  
+    >
+      <MyAppointments loggedUserID={loggedUserID} setModalVisible={setModalVisible} isUserTutor={isUserTutor} />
+    </Modal>
   </ScrollView>
 </SafeAreaView>
       
