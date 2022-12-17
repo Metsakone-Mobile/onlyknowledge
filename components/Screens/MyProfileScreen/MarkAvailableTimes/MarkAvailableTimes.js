@@ -43,7 +43,7 @@ export default function MarkAvailableTimes({loggedUserID}) {
   return (
     <View style={{flex: 1, justifyContent: 'center', paddingLeft: 20, paddingRight: 20, paddingBottom: 20}}>
         <View style={{flex: 1, alignItems: 'center'}}>
-        <Label sizeOfFont={28} text='Add new tutoring time'/>
+        <Label sizeOfFont={28} text='Add a new availability' color='#f9b87b'/>
             <View style={{flexDirection: 'row', alignContent: 'space-between', justifyContent: 'space-around', padding: 20 }}>
                 <Label text='Select date' sizeOfFont={24} />
             { Platform.OS === 'ios' && (
@@ -85,7 +85,7 @@ export default function MarkAvailableTimes({loggedUserID}) {
             )}
             </View>
             <Pressable onPress={addAvailability}>
-                {(state) => <CustomButton2 pressed={state.pressed} buttonText='Add Availability'/>}
+                {(state) => <CustomButton2 pressed={state.pressed} buttonText='Add availability' color='#32d106'/>}
             </Pressable>
             </View>
     </View>

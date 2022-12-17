@@ -16,7 +16,7 @@ export default function AnswerQuestionCard({question, goGiveAnswer}) {
         <Text style={{fontSize: 18}}>{question.question_input}</Text>
         <View style={{flex: 1, alignItems: 'center'}}>
         <Pressable onPress={goGiveAnswer}>
-            {(state) =>  <CustomButton2 pressed={state.pressed} buttonText='I know this' /> }
+            {(state) =>  <CustomButton2 pressed={state.pressed} buttonText='I know this' color='#32d106' /> }
         </Pressable>
         </View>
     </View>

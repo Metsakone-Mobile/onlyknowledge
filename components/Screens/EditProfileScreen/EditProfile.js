@@ -104,10 +104,10 @@ export default function EditProfile({ navigation}) {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} > 
       <ScrollView style={EditProfileStyles.container}
-      contentContainerStyle={{justifyContent: 'space-between',  alignItems: 'center' }}
+      contentContainerStyle={{alignItems: 'center' }}
       showsVerticalScrollIndicator={false}>
       <View style={EditProfileStyles.base}></View>
-      <View style= {{marginTop:20}}>
+      <View style={{marginTop: 5}}>
         <TouchableOpacity>
           <ImageBackground source={{uri: photoURL }}
             style={{ width: 100,height: 100,}}
