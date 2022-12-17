@@ -9,7 +9,7 @@ import Circles from '../../Customs/Decoratives/Circles'
 
 
 
-export default function ConfirmBooking({route, navigation}) {
+export default function Testi({route, navigation}) {
 
   const { loggedUserID } = useContext(AuthContext)
 
@@ -59,24 +59,22 @@ if(!isLoaded){
   <View><Text>Loading...</Text></View>
 } else {
   return (
-    <SafeAreaView style={{flex: 1}} > 
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} > 
     <Circles/>
-      <ScrollView
+     {/*  <ScrollView
       contentContainerStyle={{justifyContent: 'space-between',  alignItems: 'center' }}
       showsVerticalScrollIndicator={false}>
-      <View style={ConfirmBookingStyles.container}>
+      <View style={ConfirmBookingStyles.container}></View>
       
-        <Text style={{  fontSize:15 }}> Confirm booking a time with: {tutorUsername}</Text>
-
+      <Text> Confirm booking a time with: {tutorUsername}</Text>
         <Text style={ConfirmBookingStyles.tutornamehHader}>Date: {tutorDate}</Text>
         <Text style={ConfirmBookingStyles.tutornamehHader}>Time: {tutorTime}</Text>
-  
-  
-      </View>
+      
       <Pressable onPress={confirmBooking}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Book!'} />}
       </Pressable>
-    </ScrollView>
+    
+    </ScrollView> */}
   </SafeAreaView>
 
 

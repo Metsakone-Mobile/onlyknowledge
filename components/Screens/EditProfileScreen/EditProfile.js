@@ -7,7 +7,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 import CustomButton from '../../Customs/Buttons/CustomButton'
 import * as ImagePicker from 'expo-image-picker'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Radiobutton from './EditSubjectPanel'
+import EditSubjectPanel from './EditSubjectPanel'
 
 
 export default function EditProfile({ navigation}) {
@@ -118,7 +118,6 @@ export default function EditProfile({ navigation}) {
                 name="camera"   style={EditProfileStyles.EditPicture}
                 size={35}
                 color="#fff"/>
-
             </View>
           </ImageBackground>
         </TouchableOpacity>
@@ -159,18 +158,23 @@ export default function EditProfile({ navigation}) {
       </View>
       
       
-      <Radiobutton subjects={subjects}
+      <EditSubjectPanel subjects={subjects}
       onPress ={(value) =>  
-      { subjects.includes(value) ? setSubjects (subjects.filter(subject => subject !==value)) : setSubjects([...subjects, value])}}/>
-        
-      
 
-       
-      <Pressable onPress={updateUser}>
+      { subjects.includes(value) 
+        ? 
+        setSubjects (subjects.filter(subject => subject !==value)) 
+        : 
+        setSubjects([...subjects, value])}}/>
+    
+
+  <View style={{ marginTop:50}}>
+    <Pressable onPress={updateUser}>
         {(state) => <CustomButton pressed={state.pressed} buttonText={'Submit changes'} />}
       </Pressable>
-    
+      </View>
     </ScrollView>
+  
   </SafeAreaView>
 
 

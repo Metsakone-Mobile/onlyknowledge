@@ -39,6 +39,7 @@ export default StyleSheet.create({
         height: 150,
         borderRadius: 150 / 2,
         borderWidth: 1,
+        
       },
       
       tutornamehHader:{
