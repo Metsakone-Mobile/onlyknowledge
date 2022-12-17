@@ -8,6 +8,7 @@ import Heading from '../Customs/TextWrappers/Heading'
 import Tokens from '../Customs/TokenInfo'
 
 
+
 export default function ProfileNavigator({navigation}) {
 
 const Stack = createStackNavigator()
@@ -15,7 +16,6 @@ const Stack = createStackNavigator()
 const goBackToProfile = () => {
     navigation.navigate(' My Profile')
   }
-  
 
 return(
 

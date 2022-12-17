@@ -1,10 +1,11 @@
-import { View, Text, Image, TouchableOpacity, ScrollView, SafeAreaView, Modal} from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, Pressable, Modal} from 'react-native'
 import React, { useCallback, useContext, useState } from 'react'
 import { firestore, doc, getDoc, USER } from '../../../firebase/Config'
 import { getAuth, signOut } from '../../../firebase/Config'
 import { AuthContext } from '../../../context/AuthContext'
 import myProfileStyles from './MyProfileStyles'
 import Label from '../../Customs/TextWrappers/Label'
+import CustomButton2 from '../../Customs/Buttons/CustomButton2'
 import MyAppointments from './MyAppointments/MyAppointments'
 import MarkAvailableTimes from './MarkAvailableTimes/MarkAvailableTimes'
 import { useFocusEffect } from '@react-navigation/native'
@@ -59,6 +60,7 @@ export default function MyProfile({navigation}) {
   }
   
   return (  
+
 <SafeAreaView style={{flex: 1}} >
   <ScrollView contentContainerStyle={myProfileStyles.container}>
     <View style={myProfileStyles.circle}></View>
@@ -98,9 +100,8 @@ export default function MyProfile({navigation}) {
     >
       <MyAppointments loggedUserID={loggedUserID} setModalVisible={setModalVisible} isUserTutor={isUserTutor} />
     </Modal>
+   </View> 
   </ScrollView>
-</SafeAreaView>
-      
 )
 }
       

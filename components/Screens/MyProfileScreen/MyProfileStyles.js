@@ -9,7 +9,7 @@ export default StyleSheet.create ({
       alignItems:'center' ,
       backgroundColor: '#f5f0f0',
       width:'100%',
-      padding: 20
+      padding: 20,
      },
     profilePic:{
         width: 150,
