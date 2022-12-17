@@ -23,8 +23,8 @@ const styles= StyleSheet.create({
     },
     circle2: {
         position: 'absolute',
-        bottom: 20,
-        left: 20,
+        bottom: 10,
+        left: 100,
         backgroundColor: '#f7884d',
         width: 300,
         height: 300,
@@ -32,11 +32,11 @@ const styles= StyleSheet.create({
     },
     circle3: {
         position: 'absolute',
-        top: 60,
-        right: 10,
-        width: 150,
-        height: 150,
-        borderRadius: 75,
+        top: 20,
+        right: 50,
+        width: 200,
+        height: 200,
+        borderRadius: 100,
         backgroundColor: '#f7410a',
     },
 })

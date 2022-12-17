@@ -15,28 +15,28 @@ export default StyleSheet.create ({
         width: 150,
         height: 150,
         borderRadius: 150 / 2,
-        marginTop: 20,
+        
     },
     mainTitle: {
-    fontSize: 30, 
-    marginBottom:10,
-    marginTop: 10,
+      fontSize: 30, 
+      marginBottom:10,
+      marginTop: 10,
     },  
     label: {
-    marginTop:10,
-    fontSize: 15, 
-    marginBottom:5,
-    fontWeight: '600',
+      marginTop:10,
+      fontSize: 15, 
+      marginBottom:5,
+      fontWeight: '600',
     },  
     aboutUser:{
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#666',
-    textAlign: 'justify'
+      fontSize: 12,
+      fontWeight: '600',
+      color: '#666',
+      textAlign: 'justify'
     },
     listSubjects: {
-    fontSize: 14,
-    marginBottom: 20,
+      fontSize: 14,
+      marginBottom: 20,
     },
     subjectsContainer: {
       marginTop: 19,
@@ -83,8 +83,8 @@ export default StyleSheet.create ({
       width: 500,
       height: 500,
       borderRadius: 250,
-      backgroundColor:'#f9b87b',
-      top: -200,
+      backgroundColor:'#ffca99',
+      top: -220,
       bottom: 150,
     },
 })

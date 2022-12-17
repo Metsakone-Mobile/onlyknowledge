@@ -41,8 +41,7 @@ export default StyleSheet.create ({
     base:{
         backgroundColor:'#eca04d',
         width: '100%',
-        height: 110,
-        marginTop:15,
+        height: 140,
         position:'absolute'
     }
 

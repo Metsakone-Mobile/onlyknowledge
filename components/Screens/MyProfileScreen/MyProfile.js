@@ -79,7 +79,7 @@ export default function MyProfile({navigation}) {
       <Text style={myProfileStyles.aboutUser}>{name} </Text>
       <Text style={myProfileStyles.label}>ABOUT ME</Text>
       <Text style={myProfileStyles.aboutUser}>{profileDescription} </Text>
-      <Text style={myProfileStyles.label}>My Favorite subjects:</Text> 
+      <Text style={myProfileStyles.label}>SUBJECTS I AM INTERESTED IN:</Text> 
         {subjects.map((favoriteSubjects, index) =>{
         return(
         <Text key={index} style={myProfileStyles.aboutUser}> {favoriteSubjects}</Text>
@@ -87,7 +87,7 @@ export default function MyProfile({navigation}) {
     </View>    
     <TouchableOpacity onPress={() => setModalVisible(true)}>
       <Text>Show appointments</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> 
     {isUserTutor && 
     <MarkAvailableTimes loggedUserID={loggedUserID}/>
     }

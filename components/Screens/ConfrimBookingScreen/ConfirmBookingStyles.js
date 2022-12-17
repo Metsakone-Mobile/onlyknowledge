@@ -7,6 +7,10 @@ export const ConfirmBookingStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5,
+        marginTop: 250,
+        marginBottom: 20,
+        width:'80%',
+        borderRadius:25,
        
     },
     mainTitle: {

@@ -39,7 +39,7 @@ export default StyleSheet.create({
     container: {
         backgroundColor: '#f5f0f0',
         alignItems: 'center',
-        paddingTop: 20,
+        paddingTop: 10,
       },
   
 })
