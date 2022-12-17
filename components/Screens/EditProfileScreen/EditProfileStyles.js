@@ -39,7 +39,7 @@ export default StyleSheet.create ({
 
     },    
     base:{
-        backgroundColor:'#f9b87b',
+        backgroundColor:'#ffca99',
         width: '100%',
         height: 140,
         position:'absolute'
