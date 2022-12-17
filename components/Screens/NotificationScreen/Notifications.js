@@ -83,6 +83,14 @@ export default function Notifications({navigation}) {
     markAsViewed(questionId)
   }
 
+  const markAsSeenByTutor = async(bookingId) => {
+    const bookingsRef = doc(firestore, 'Bookings', bookingId)
+    await updateDoc(bookingsRef, {
+        seenByTutor: true
+    })
+    getBookedAppointments()
+  }
+
   if(!isLoaded){
     return <View><Text>Loading...</Text></View>
   } else {
@@ -93,7 +101,7 @@ export default function Notifications({navigation}) {
             <Title text1="only" text2='KNOWLEDGE' />
             <Heading text="Notifications" />
             {bookedAppointments.map(appointment => (
-              <TouchableOpacity key={appointment.bookingId}>
+              <TouchableOpacity onPress={() => markAsSeenByTutor(appointment.bookingId)} key={appointment.bookingId}>
                 <NotificationCard bookingNotificationDetails={appointment} />
               </TouchableOpacity>
             ))}

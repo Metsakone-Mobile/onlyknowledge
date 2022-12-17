@@ -1,14 +1,12 @@
 import { View, Text, Platform, Pressable, Alert } from 'react-native'
-import React, { useState, useContext } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import { firestore, addDoc, collection } from '../../firebase/Config'
-import Heading from './TextWrappers/Heading'
-import Label from './TextWrappers/Label'
-import CustomButton2 from './Buttons/CustomButton2'
+import React, { useState } from 'react'
+import { firestore, addDoc, collection } from '../../../../firebase/Config'
+import Label from '../../../Customs/TextWrappers/Label'
+import CustomButton2 from '../../../Customs/Buttons/CustomButton2'
 import DateTimePicker from '@react-native-community/datetimepicker'
 
-export default function MarkAvailableTimes() {
-  const { loggedUserID } = useContext(AuthContext)
+export default function MarkAvailableTimes({loggedUserID}) {
+
   const [ date, setDate ] = useState(new Date())
   const [ time, setTime ] = useState(new Date())
 
