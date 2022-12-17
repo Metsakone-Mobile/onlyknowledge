@@ -11,9 +11,10 @@ import { firestore, collection, query, where, getDocs, USER, doc, updateDoc, get
 
 export default function Notifications({navigation}) {
 
-  const { loggedUserID } = useContext(AuthContext)
+  const { loggedUserID, isUserTutor } = useContext(AuthContext)
 
     const [closedQuestions, setClosedQuestions] = useState([])
+    const [bookedAppointments, setBookedAppointments] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
   const getOpenQuestions = async () => {
@@ -40,9 +41,32 @@ export default function Notifications({navigation}) {
     console.log(tempAnsweredQuestions)
   }  
 
+  const getBookedAppointments = async () => {
+    const bookingsRef = collection(firestore, 'Bookings')
+    const q = query(bookingsRef, where("tutorID", '==', loggedUserID), where("isAvailable", '==', false), where("seenByTutor", '==', false))
+  
+    const querySnapShot = await getDocs(q)
+    let tempBookedAppointments = []
+    querySnapShot.forEach((doc) => {
+        const appointment = {
+          date: doc.data().date,
+          time: doc.data().time,
+          student: doc.data().student,
+          bookingId: doc.id
+        }
+        tempBookedAppointments.push(appointment)
+    })
+    console.log(tempBookedAppointments)
+    setBookedAppointments(tempBookedAppointments)
+    setIsLoaded(true)
+  }  
+
   useFocusEffect(
     useCallback(() => {
     getOpenQuestions()
+    if(isUserTutor){
+      getBookedAppointments()
+    }
     }, [])
   )
 
@@ -68,6 +92,11 @@ export default function Notifications({navigation}) {
           <ScrollView style={{flex: 1, width: '100%'}} showsVerticalScrollIndicator={false}>
             <Title text1="only" text2='KNOWLEDGE' />
             <Heading text="Notifications" />
+            {bookedAppointments.map(appointment => (
+              <TouchableOpacity key={appointment.bookingId}>
+                <NotificationCard bookingNotificationDetails={appointment} />
+              </TouchableOpacity>
+            ))}
             {closedQuestions.map(question => (
               <TouchableOpacity onPress={() => goSeeAnswer(question.questionId)} key={question.questionId}>
                   <NotificationCard notificationDetails={question} />
